@@ -68,6 +68,11 @@ aws codeartifact put-repository-permissions-policy --domain my-domain --domain-o
           --repository my-repo --policy-document file:///PATH/TO/policy.json
 ```
 
+When you call `put-repository-permissions-policy`, the resource policy on the repository is ignored when evaluting permissions\. This ensures that the owner of a domain cannot lock themselves out of the repository, which would prevent them from being able to update the resource policy\.
+
+**Note**  
+ You cannot grant permissions to another AWS account to update the resource policy on a repository using a resource policy, since the resource policy is ignored when calling put\-repository\-permissions\-policy\. 
+
 Sample output:
 
 ```

@@ -40,7 +40,7 @@ These steps are required when using Maven packages from CodeArtifact in CodeBuil
 
 ## Use gradle or mvn<a name="maven-packages-in-codebuild-login"></a>
 
-To use Maven packages with `gradle` or `mvn`, store the CodeArtifact auth token in an environment variable, as described in [Pass an auth token in an environment variable](env-var.md)\. The following is an example\. 
+To use Maven packages with `gradle` or `mvn`, store the CodeArtifact auth token in an environment variable, as described in [Pass an auth token in an environment variable](tokens-authentication.md#env-var)\. The following is an example\. 
 
 ```
 pre_build:

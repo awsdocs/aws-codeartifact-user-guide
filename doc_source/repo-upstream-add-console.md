@@ -13,3 +13,6 @@
 1.  Choose **Upstreams**\.
 
 1.  Choose **Update repository**\.
+
+**Note**  
+This guide contains information about configuring other CodeArtifact repositories as upstream repositories\. For information about configuring an external connection to public repositories like npmjs\.com, Maven Central, or PyPI, see [Add an external connection](https://docs.aws.amazon.com/codeartifact/latest/ug/external-connection.html)\.

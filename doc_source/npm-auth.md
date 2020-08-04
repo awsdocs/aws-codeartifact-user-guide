@@ -5,7 +5,7 @@ After you create a repository in CodeArtifact, you can use the `npm` client to i
  Use the CodeArtifact `login` command to fetch credentials for use with npm\.
 
 **Note**  
-If you are accessing a repository in a domain that you own, you don't need to include the `--domain-owner`\. For more information, see [Cross\-account domains](domain-overview.md#domain-overview-cross-account)\.
+If you are accessing a repository in a domain that you own, you don't need to include `--domain-owner`\. For more information, see [Cross\-account domains](domain-overview.md#domain-overview-cross-account)\.
 
 ```
 aws codeartifact login --tool npm --domain my-domain --domain-owner domain-owner-id --repository my-repo
@@ -16,10 +16,7 @@ This command makes the following changes to your `~/.npmrc` file:
 + Sets the npm registry to the repository specified by the `--repository` option\.
 + Adds `"always-auth=true"` so the authorization token is sent for every `npm` command\.
 
-**Note**  
-CodeArtifact authorization tokens that are created from the `login` command are valid for a period of 12 hours, so you must call `login` periodically to refresh the token\. The 12\-hour authorization period begins after `login` is called\.   
-If `login` is called while assuming a role, the token lifetime is independent of the maximum session duration of the role\. For example, suppose that you call `sts assume-role` and specify a session duration of 15 minutes, and then call `login` to fetch an CodeArtifact authorization token\. In this case, the token is valid for the full 12\-hour period even though this is longer than the 15\-minute session duration\.   
-For information about controlling session duration, see [Using IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) in the *IAM User Guide*\. Tokens created by calling the `GetAuthorizationToken` API can be customized to last any period of time up to 12 hours\.
+The default authorization period after calling `login` is 12 hours, and `login` must be called to periodically refresh the token\. For more information about the authorization token created with the `login` command, see [Tokens created with the `login` command](tokens-authentication.md#auth-token-login)\.
 
 ## Verify npm authentication and authorization<a name="verifying-npm-authentication-and-authorization"></a>
 
@@ -49,7 +46,7 @@ The `-d` option causes `npm` to print additional debug information, including th
 Use `npm config` to set the CodeArtifact registry endpoint\.
 
 ```
-npm config set registry=https://my-domain-123456789012.d.codeartifact.us-west-2.amazonaws.com/npm/my-repo/
+npm config set registry=https://my-domain-123456789012.d.codeartifact.region.amazonaws.com/npm/my-repo/
 ```
 
 With the domain you are using for `my-domain`, a domain owner ID of `123456789012`, and a repository name of `my-repo`\.
@@ -60,13 +57,13 @@ The registry URL must end with a forward slash \(/\)\. Otherwise, you cannot con
 Use the following command to add the auth token returned by `get-authorization-token`, using the same domain and repository\.
 
 ```
-npm config set //my-domain-123456789012.d.codeartifact.us-west-2.amazonaws.com/npm/my-repo/:_authToken eyJ2ZX...
+npm config set //my-domain-123456789012.d.codeartifact.region.amazonaws.com/npm/my-repo/:_authToken eyJ2ZX...
 ```
 
  To make `npm` always pass the auth token to CodeArtifact, even for `GET` requests, set the `always-auth` configuration variable with `npm config`\. 
 
 ```
-npm config set always-auth=true
+npm config set //my-domain-123456789012.d.codeartifact.region.amazonaws.com/npm/my-repo/:always-auth=true
 ```
 
 ## Run npm commands<a name="running-npm-commands"></a>

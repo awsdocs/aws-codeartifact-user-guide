@@ -2,6 +2,9 @@
 
  You can add, update, or remove an CodeArtifact repository's upstream repositories using the AWS Command Line Interface \(AWS CLI\)\. To do this, use the `update-repository` command, and specify the upstream repositories using the `--upstreams` parameter\. 
 
+**Note**  
+This guide contains information about configuring other CodeArtifact repositories as upstream repositories\. For information about configuring an external connection to public repositories like npmjs\.com, Maven Central, or PyPI, see [Add an external connection](https://docs.aws.amazon.com/codeartifact/latest/ug/external-connection.html)\.
+
  The following command adds two upstream repositories to a repository named `my-repo` that is in a domain named `my-domain`\. The order of the upstream repositories in the `--upstreams` parameter determines their search priority when CodeArtifact requests a package from the `my-repo` repository\. For more information, see [Upstream repository priority order](repo-upstream-search-order.md)\. 
 
 ```

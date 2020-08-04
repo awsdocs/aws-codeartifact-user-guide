@@ -13,5 +13,6 @@ This documentation helps you understand how to apply the shared responsibility m
 + [Identity and access management in AWS CodeArtifact](auth-and-access-control-aca.md)
 + [Monitoring CodeArtifact](security-logging-and-monitoring.md)
 + [Compliance validation for AWS CodeArtifact](codeartifact-compliance-validation.md)
++ [AWS CodeArtifact authentication and tokens](tokens-authentication.md)
 + [Resilience in AWS CodeArtifact](codeartifact-disaster-recovery-resiliency.md)
 + [Infrastructure security in AWS CodeArtifact](infrastructure-security.md)

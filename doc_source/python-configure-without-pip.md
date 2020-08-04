@@ -13,7 +13,7 @@ If you are accessing a repository in a domain that you own, you do not need to i
 1. Use `pip config` to set the CodeArtifact registry URL and credentials\.
 
    ```
-   pip config set global.index-url https://aws:$CODEARTIFACT_TOKEN@my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/pypi/my-repo/simple/
+   pip config set global.index-url https://aws:$CODEARTIFACT_TOKEN@my-domain-domain-owner-id.d.codeartifact.region.amazonaws.com/pypi/my-repo/simple/
    ```
 
 **Important**  

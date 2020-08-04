@@ -2,7 +2,7 @@
 
 You use the `mvn` command to execute Maven builds\. This section shows how to configure `mvn` to use an CodeArtifact repository\.
 
-After you have the CodeArtifact auth token in an environment variable as described in [Passing an Auth Token Using an Environment Variable](env-var.md), follow these instructions to consume Maven packages from, and publish new packages to, an CodeArtifact repository\.
+After you have the CodeArtifact auth token in an environment variable as described in [Passing an Auth Token Using an Environment Variable](tokens-authentication.md#env-var), follow these instructions to consume Maven packages from, and publish new packages to, an CodeArtifact repository\.
 
 **Topics**
 + [Fetch dependencies](#fetching-dependencies)

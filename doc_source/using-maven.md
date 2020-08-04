@@ -7,7 +7,6 @@ We have tested and confirmed compatibility with CodeArtifact for the following v
 + Latest **Gradle** version: 6\.4\.1\. 5\.5\.1 has also been tested\.
 
 **Topics**
-+ [Pass an auth token using an environment variable](env-var.md)
 + [Use CodeArtifact with Gradle](maven-gradle.md)
 + [Use CodeArtifact with mvn](maven-mvn.md)
 + [Using Maven checksums](maven-checksums.md)

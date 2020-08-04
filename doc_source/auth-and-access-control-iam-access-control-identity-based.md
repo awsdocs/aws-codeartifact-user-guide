@@ -12,7 +12,6 @@ When you grant permissions, you decide who is getting the permissions, the resou
 + [Understanding resource ownership](#understanding-resource-ownership)
 + [Managing access to resources](#managing-access-resources)
 + [Specifying policy elements: Actions, effects, and principals](#actions-effects-principals)
-+ [Revoking CodeArtifact authorization tokens](#revoke-access)
 + [AWS Global Condition Context Keys](#global-condition-keys)
 
 ## AWS CodeArtifact resources and operations<a name="arn-formats"></a>
@@ -102,16 +101,6 @@ The following are the basic policy elements:
 To learn more about IAM policy syntax and descriptions, see [AWS IAM Policy Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html) in the *IAM User Guide*\.
 
 For a table showing all of the CodeArtifact API actions and the resources they apply to, see the [AWS CodeArtifact permissions reference](auth-and-access-control-permissions-reference.md)\.
-
-## Revoking CodeArtifact authorization tokens<a name="revoke-access"></a>
-
- When an authenticated user creates a token to access CodeArtifact resources, that token lasts until its customizable access period has ended\. The default access period is 12 hours\. In some circumstances, you might want to revoke access to a token before the access period has expired\. You can revoke access to CodeArtifact resources by following these instructions\.
-
- If you created the access token using temporary security credentials, such as *assumed roles* or *federated user access*, you can revoke access by updating an IAM policy to deny access\. For information, see [Disabling Permissions for Temporary Security Credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_disable-perms.html) in the *IAM User Guide*\. 
-
- If you used long\-term IAM user credentials to create the access token, you must modify the user's policy to deny access, or delete the IAM user\. For more information, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) or [Deleting an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_manage.html#id_users_deleting)\. 
-
- If you used an account root user's credentials to call `GetAuthorizationToken`, you can't invalidate the authorization token before it expires because the root user doesn't have a permissions policy\.
 
 ## AWS Global Condition Context Keys<a name="global-condition-keys"></a>
 

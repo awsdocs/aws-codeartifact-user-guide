@@ -1,10 +1,11 @@
 # Use CodeArtifact with Gradle<a name="maven-gradle"></a>
 
-After you have the CodeArtifact auth token in an environment variable as described in [Pass an auth token using an environment variable](env-var.md), follow these instructions to consume Maven packages from, and publish new packages to, an CodeArtifact repository\.
+After you have the CodeArtifact auth token in an environment variable as described in [Pass an auth token using an environment variable](tokens-authentication.md#env-var), follow these instructions to consume Maven packages from, and publish new packages to, an CodeArtifact repository\.
 
 **Topics**
 + [Fetch dependencies](#fetching-dependencies)
 + [Publish artifacts](#publishing-artifacts)
++ [Run a Gradle build in IntelliJ IDEA](#gradle-intellij)
 
 ## Fetch dependencies<a name="fetching-dependencies"></a>
 
@@ -110,3 +111,73 @@ Sample output:
 For more information, see these topics on the Gradle website:
 +  [Building Java Libraries](https://guides.gradle.org/building-java-libraries/) 
 +  [Publishing a project as a module](https://docs.gradle.org/current/userguide/publishing_setup.html) 
+
+## Run a Gradle build in IntelliJ IDEA<a name="gradle-intellij"></a>
+
+You can run a Gradle build in IntelliJ IDEA that pulls dependencies from CodeArtifact\. You can store and use a CodeArtifact auth token in `gradle.properties` or a separate file of your choice\.
+
+**Method 1: Putting the auth token in `gradle.properties`**
+
+Use this method if you are not using the `gradle.properties` file and can overwrite its contents with your auth token\. If you are using `gradle.properties`, you can modify this method to add the token instead of overwriting the file's contents\.
+**Note**  
+The example shows the `gradle.properties` file located in `GRADLE_USER_HOME`\.
+
+1. Update your `build.gradle` file with the following snippet:
+
+   ```
+   repositories {
+       maven {
+                url 'https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/'
+                credentials {
+                    username "aws"
+                    password "$codeartifactToken"
+                }   
+       }   
+   }
+   ```
+
+1. Fetch a CodeArtifact auth token:
+
+   ```
+   export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain domain-name --domain-owner domain-owner-id --query authorizationToken --output text --profile profile-name`
+   ```
+
+1. Write the auth token into the `gradle.properties` file:
+
+   ```
+   echo "codeartifactToken=$CODEARTIFACT_AUTH_TOKEN" > ~/.gradle/gradle.properties
+   ```
+
+**Method 2: Putting the auth token in a separate file**
+
+Use this method if you do not want to modify your `gradle.properties` file\.
+
+1. Update your `build.gradle` file with the following snippet:
+
+   ```
+   def props = new Properties()
+   file("file").withInputStream { props.load(it) }
+   
+   repositories {
+   
+       maven {
+                url 'https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/'
+                credentials {
+                    username "aws"
+                    password props.getProperty("codeartifactToken")
+                }
+       }
+   }
+   ```
+
+1. Fetch a CodeArtifact auth token:
+
+   ```
+   export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain domain-name --domain-owner domain-owner-id --query authorizationToken --output text --profile profile-name`
+   ```
+
+1. Write the auth token into the file that was specified in your `build.gradle` file:
+
+   ```
+   echo "codeartifactToken=$CODEARTIFACT_AUTH_TOKEN" > file
+   ```

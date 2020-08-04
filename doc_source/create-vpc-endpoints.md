@@ -31,4 +31,4 @@ aws ec2 create-vpc-endpoint --vpc-id vpcid --vpc-endpoint-type Interface \
 ```
 
 **Note**  
- When you create a `codeartifact.repositories` endpoint, you must create a private DNS hostname using the `--private-dns-enabled` option\. However, because private DNS is not currently supported for the `codeartifact.repositories` endpoint, do not use the `--private-dns-enabled` option\. 
+ When you create a `codeartifact.repositories` endpoint, you must create a private DNS hostname using the `--private-dns-enabled` option\. However, because multiple private DNS hostnames are not currently supported for the `codeartifact.api` and `codeartifact.repositories` endpoints, do not use the `--private-dns-enabled` option for `codeartifact.api`\. 
