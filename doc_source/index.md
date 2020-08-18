@@ -65,6 +65,7 @@ Amazon's trademarks and trade dress may not be used in
 + [Using CodeArtifact with Maven](using-maven.md)
    + [Use CodeArtifact with Gradle](maven-gradle.md)
    + [Use CodeArtifact with mvn](maven-mvn.md)
+   + [Publishing with curl](maven-curl.md)
    + [Using Maven checksums](maven-checksums.md)
    + [Use Maven snapshots](maven-snapshots.md)
 + [Using CodeArtifact with CodeBuild](codebuild.md)

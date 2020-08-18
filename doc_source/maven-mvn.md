@@ -7,6 +7,7 @@ After you have the CodeArtifact auth token in an environment variable as describ
 **Topics**
 + [Fetch dependencies](#fetching-dependencies)
 + [Publish artifacts](#publishing-artifacts)
++ [Publish third\-party artifacts](#publishing-third-party-artifacts)
 
 ## Fetch dependencies<a name="fetching-dependencies"></a>
 
@@ -158,6 +159,50 @@ Sample output:
     ]
 }
 ```
+
+## Publish third\-party artifacts<a name="publishing-third-party-artifacts"></a>
+
+You can publish third\-party Maven artifacts to a CodeArtifact repository with `mvn deploy:deploy-file`\. This can be helpful to users that want to publish artifacts and only have `JAR` files and don't have access to package source code or `POM` files\.
+
+The `mvn deploy:deploy-file` command will generate a `POM` file based on the information passed in the command line\.
+
+**Publish third\-party Maven artifacts**
+
+1. Create a `~/.m2/settings.xml` file with the following contents:
+
+   ```
+   <settings>
+       <servers>
+           <server>
+               <id>codeartifact</id>
+               <username>aws</username>
+               <password>${env.CODEARTIFACT_AUTH_TOKEN}</password>
+           </server>
+       </servers>
+   </settings>
+   ```
+
+1. Fetch a CodeArtifact authorization token:
+
+   ```
+   export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain domain-name --domain-owner domain-owner-id --query authorizationToken --output text --profile profile-name
+   ```
+
+1. Run the `mvn deploy:deploy-file` command:
+
+   ```
+   mvn deploy:deploy-file -DgroupId=commons-cli          \
+   -DartifactId=commons-cli       \
+   -Dversion=1.4                  \
+   -Dfile=./commons-cli-1.4.jar   \
+   -Dpackaging=jar                \
+   -DrepositoryId=codeartifact    \
+   -Durl=https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/
+   ```
+**Note**  
+The example above publishes `commons-cli 1.4`\. Modify the groupId, artifactID, version, and file arguments to publish a different JAR\.
+
+These instructions are based on examples in the [Guide to deploying 3rd party JARs to remote repository](https://maven.apache.org/guides/mini/guide-3rd-party-jars-remote.html) from the *Apache Maven documentation*\. 
 
  For more information, see these topics on the Apache Maven Project website:
 +  [Setting up Multiple Repositories](https://maven.apache.org/guides/mini/guide-multiple-repositories.html) 

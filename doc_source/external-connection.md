@@ -30,7 +30,7 @@ Example output:
         "administratorAccount": "123456789012",
         "domainName": "my-domain",
         "domainOwner": "123456789012",
-        "arn": "arn:aws:codeartifact:region-id:123456789012:repository/my-domain/my-repo",
+        "arn": "arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/my-repo",
         "description": "A description of my-repo",
         "upstreams": [],
         "externalConnections": [
@@ -79,7 +79,7 @@ Example output:
         "administratorAccount": "123456789012",
         "domainName": "my-domain",
         "domainOwner": "123456789012",
-        "arn": "arn:aws:codeartifact:region-id:123456789012:repository/my-domain/my-repo",
+        "arn": "arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/my-repo",
         "description": "A description of my-repo",
         "upstreams": [],
         "externalConnections": [
@@ -330,7 +330,7 @@ Example output:
         "administratorAccount": "123456789012",
         "domainName": "my-domain",
         "domainOwner": "123456789012",        
-        "arn": "arn:aws:codeartifact:region-id:123456789012:repository/my-domain/my-downstream-repo",
+        "arn": "arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/my-downstream-repo",
         "upstreams": [
             {
                 "repositoryName": "my-upstream-repo"

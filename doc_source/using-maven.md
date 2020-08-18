@@ -9,5 +9,6 @@ We have tested and confirmed compatibility with CodeArtifact for the following v
 **Topics**
 + [Use CodeArtifact with Gradle](maven-gradle.md)
 + [Use CodeArtifact with mvn](maven-mvn.md)
++ [Publishing with curl](maven-curl.md)
 + [Using Maven checksums](maven-checksums.md)
 + [Use Maven snapshots](maven-snapshots.md)
