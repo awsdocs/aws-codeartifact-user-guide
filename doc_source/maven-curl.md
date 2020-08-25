@@ -4,7 +4,7 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
 
 **Publish a Maven artifact with `curl`**
 
-1. Fetch a CodeArtifact authorization token by following the steps in [Pass an auth token using an environment variable](https://docs.aws.amazon.com/codeartifact/latest/ug/env-var.xml) and return to these steps\.
+1. Fetch a CodeArtifact authorization token by following the steps in [Pass an auth token using an environment variable](tokens-authentication.md#env-var) and return to these steps\.
 
 1. Use the following `curl` command to publish the JAR to a CodeArtifact repository:
 
@@ -62,4 +62,4 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
           --target-status Published
       ```
 
-If you only have an artifact's JAR file, you can publish a consumable package version to a CodeArtifact repository using `mvn`\. This can be useful if you do not have access to the artifact's source code or POM\. See [Publish third\-party artifacts](https://docs.aws.amazon.com/codeartifact/latest/ug/publishing-third-party-artifacts) for details\.
+If you only have an artifact's JAR file, you can publish a consumable package version to a CodeArtifact repository using `mvn`\. This can be useful if you do not have access to the artifact's source code or POM\. See [Publish third\-party artifacts](maven-mvn.md#publishing-third-party-artifacts) for details\.

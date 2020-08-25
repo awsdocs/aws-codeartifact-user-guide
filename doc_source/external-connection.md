@@ -63,7 +63,7 @@ A repository is limited to a single external connection only\.
 
 ## Remove an external connection<a name="removing-an-external-connection"></a>
 
-To remove an external connection, use `remove-external-connection-from-repository`\.
+To remove an external connection, use `disassociate-external-connection`\.
 
 ```
 aws codeartifact disassociate-external-connection --external-connection public:npmjs \

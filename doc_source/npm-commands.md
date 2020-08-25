@@ -61,6 +61,7 @@ These commands don't require any direct interaction with a repository, so CodeAr
 |   [root](https://docs.npmjs.com/cli/root)   |  Prints the effective `node_modules` folder to standard out\.  | 
 |   [run\-script](https://docs.npmjs.com/cli/run-script)   |  Runs arbitrary package scripts\.  | 
 |   [shrinkwrap](https://docs.npmjs.com/cli/shrinkwrap)   |  Locks down dependency versions for publication\.  | 
+|   [uninstall](https://docs.npmjs.com/cli/uninstall)   |  Uninstalls a package\.  | 
 
 ## Unsupported commands<a name="unsupported-commands"></a>
 
