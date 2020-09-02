@@ -48,6 +48,9 @@ After `login` has run successfully, you can run `pip` commands from the `build` 
 
 ### Linux<a name="python-packages-in-codebuild-login-linux"></a>
 
+**Note**  
+It is only necessary to upgrade the AWS CLI with `pip3 install awscli --upgrade --user` if you are using an older CodeBuild image\. If you are using the latest image versions, you can remove that line\.
+
  To install Python packages using `pip`: 
 
 ```

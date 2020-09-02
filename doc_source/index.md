@@ -96,5 +96,6 @@ Amazon's trademarks and trade dress may not be used in
    + [Create the Amazon S3 gateway endpoint](create-s3-gateway-endpoint.md)
    + [Use CodeArtifact from a VPC](use-codeartifact-from-vpc.md)
    + [Create a VPC endpoint policy for CodeArtifact](create-vpc-endoint-policy.md)
++ [Troubleshooting](troubleshooting.md)
 + [Quotas in AWS CodeArtifact](service-limits.md)
 + [AWS CodeArtifact user guide document history](history.md)

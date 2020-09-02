@@ -42,6 +42,9 @@ These steps are required when using Maven packages from CodeArtifact in CodeBuil
 
 To use Maven packages with `gradle` or `mvn`, store the CodeArtifact auth token in an environment variable, as described in [Pass an auth token in an environment variable](tokens-authentication.md#env-var)\. The following is an example\. 
 
+**Note**  
+It is only necessary to upgrade the AWS CLI with `pip3 install awscli --upgrade --user` if you are using an older CodeBuild image\. If you are using the latest image versions, you can remove that line\.
+
 ```
 pre_build:
   commands:
