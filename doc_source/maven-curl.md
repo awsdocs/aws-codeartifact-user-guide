@@ -11,7 +11,7 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
    ```
    curl -u aws:$CODEARTIFACT_TOKEN https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/com/mycompany/app/my-app/1.0/my-app-1.0.jar \
        --request PUT \
-       --data target/my-app-1.0.jar
+       --data-binary @target/my-app-1.0.jar
    ```
 
 1. Use the following `curl` command to publish the POM to a CodeArtifact repository:
@@ -19,7 +19,7 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
    ```
    curl -u aws:$CODEARTIFACT_TOKEN https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/com/mycompany/app/my-app/1.0/my-app-1.0.pom \
        --request PUT \
-       --data target/my-app-1.0.pom
+       --data @target/my-app-1.0.pom
    ```
 
 1. At this point, the Maven artifact will be in your CodeArtifact repository with a status of `Unfinished`\. To be able to consume the package, it must be in the `Published` state\. You can move the package from `Unfinished` to `Published` by either uploading a `maven-metadata.xml` file to your package, or calling the [UpdatePackageVersionsStatus API](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html) to change the status\.
@@ -29,7 +29,7 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
       ```
       curl -u aws:$CODEARTIFACT_TOKEN https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/com/mycompany/app/my-app/maven-metadata.xml \
           --request PUT \
-          --data target/maven-metadata.xml
+          --data @target/maven-metadata.xml
       ```
 
       Below is an example of the contents of a `maven-metadata.xml` file:
@@ -57,6 +57,7 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
           --domain-owner domain-owner-id \
           --repository repo-name \
           --format maven \
+          --namespace com.mycompany.app \
           --package my-app \
           --versions 1.0 \
           --target-status Published
