@@ -57,7 +57,7 @@ The registry URL must end with a forward slash \(/\)\. Otherwise, you cannot con
 Use the following command to add the auth token returned by `get-authorization-token`, using the same domain and repository\.
 
 ```
-npm config set //my-domain-123456789012.d.codeartifact.region.amazonaws.com/npm/my-repo/:_authToken eyJ2ZX...
+npm config set //my-domain-123456789012.d.codeartifact.region.amazonaws.com/npm/my-repo/:_authToken=eyJ2ZX...
 ```
 
  To make `npm` always pass the auth token to CodeArtifact, even for `GET` requests, set the `always-auth` configuration variable with `npm config`\. 

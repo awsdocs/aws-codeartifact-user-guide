@@ -9,17 +9,17 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
 1. Use the following `curl` command to publish the JAR to a CodeArtifact repository:
 
    ```
-   curl -u aws:$CODEARTIFACT_TOKEN https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/com/mycompany/app/my-app/1.0/my-app-1.0.jar \
-       --request PUT \
-       --data-binary @target/my-app-1.0.jar
+   curl --request PUT https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/com/mycompany/app/my-app/1.0/my-app-1.0.jar \
+        --user "aws:$CODEARTIFACT_TOKEN" --header "Content-Type: application/octet-stream" \
+        --data-binary @target/my-app-1.0.jar
    ```
 
 1. Use the following `curl` command to publish the POM to a CodeArtifact repository:
 
    ```
-   curl -u aws:$CODEARTIFACT_TOKEN https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/com/mycompany/app/my-app/1.0/my-app-1.0.pom \
-       --request PUT \
-       --data @target/my-app-1.0.pom
+   curl --request PUT https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/com/mycompany/app/my-app/1.0/my-app-1.0.pom \
+        --user "aws:$CODEARTIFACT_TOKEN" --header "Content-Type: application/octet-stream" \
+        --data-binary @target/my-app-1.0.pom
    ```
 
 1. At this point, the Maven artifact will be in your CodeArtifact repository with a status of `Unfinished`\. To be able to consume the package, it must be in the `Published` state\. You can move the package from `Unfinished` to `Published` by either uploading a `maven-metadata.xml` file to your package, or calling the [UpdatePackageVersionsStatus API](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html) to change the status\.
@@ -27,9 +27,9 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
    1.  Option 1: Use the following `curl` command to add a `maven-metadata.xml` file to your package: 
 
       ```
-      curl -u aws:$CODEARTIFACT_TOKEN https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/com/mycompany/app/my-app/maven-metadata.xml \
-          --request PUT \
-          --data @target/maven-metadata.xml
+      curl --request PUT https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/com/mycompany/app/my-app/maven-metadata.xml \
+           --user "aws:$CODEARTIFACT_TOKEN" --header "Content-Type: application/octet-stream" \
+           --data-binary @target/maven-metadata.xml
       ```
 
       Below is an example of the contents of a `maven-metadata.xml` file:

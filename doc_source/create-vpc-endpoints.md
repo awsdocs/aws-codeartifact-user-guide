@@ -11,7 +11,7 @@ com.amazonaws.region.codeartifact.api
  The second endpoint is used to access CodeArtifact repositories using package managers and build tools \(for example, npm and Gradle\)\.
 
 ```
-com.amazonaws.region.codeartifact.respositories
+com.amazonaws.region.codeartifact.repositories
 ```
 
  The following command creates an endpoint to access CodeArtifact repositories\.

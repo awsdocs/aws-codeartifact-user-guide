@@ -89,7 +89,7 @@ In some scenarios, you don't need to include the `--domain-owner` argument\. For
    + Windows PowerShell:
 
      ```
-     $CODEARTIFACT_TOKEN = aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text
+     $env:CODEARTIFACT_TOKEN = aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text
      ```
 
 ## Revoking CodeArtifact authorization tokens<a name="revoke-access"></a>
