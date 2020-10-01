@@ -109,4 +109,3 @@ AWS CodeArtifact does not support the following AWS Global Condition Context Key
 + [UserAgent](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html#condition-keys-useragent)
 
  For more information on condition keys, see [AWS Global Condition Context Keys](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies_condition-keys.html)\. 
-
