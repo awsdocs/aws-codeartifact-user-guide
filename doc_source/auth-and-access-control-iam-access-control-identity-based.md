@@ -22,7 +22,7 @@ In AWS CodeArtifact, the primary resource is a domain\. In a policy, you use an 
 | Resource type | ARN format | 
 | --- | --- | 
 | Domain |  `arn:aws:codeartifact:region-ID:account-ID:domain/domain-name`  | 
-| Repository |  `arn:aws:codeartifact:region-ID:account-ID:domain/domain-name/repository-name`  | 
+| Repository |  `arn:aws:codeartifact:region-ID:account-ID:repository/domain-name/repository-name`  | 
 | Package with a namespace |  arn:aws:codeartifact:region\-ID:account\-ID:package/domain\-name/repository\-name/package\-format/namespace/package\-name  | 
 | Package without a namespace |  arn:aws:codeartifact:region\-ID:account\-ID:package/domain\-name/repository\-name/package\-format//package\-name  | 
 |  All CodeArtifact resources  |  `arn:aws:codeartifact:*`  | 
