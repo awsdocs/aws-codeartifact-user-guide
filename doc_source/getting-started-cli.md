@@ -130,15 +130,19 @@
    aws codeartifact login --tool npm --repository my-repo --domain my-domain --domain-owner your-AWS-account-ID
    ```
 
-   If successful, you see the following output\.
-
+You should receive output confirming your login succeeded\.
    ```
-   Successfully logged in to codeartifact for npm
+   Successfully configured npm to use AWS CodeArtifact repository https://my-domain-8529020723677.d.codeartifact.us-east-2.amazonaws.com/npm/my-repo/
+   Login expires in 12 hours at 2020-10-08 02:45:33-04:00
    ```
 
-    For more information, see [Authentication with npm](npm-auth.md)\. 
+If you receive the error `Could not connect to the endpoint URL`, make sure that your AWS CLI is configured and that your **Default region name** is set to the same region where you created your artifact repository, see [Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
 
-1.  Use the npm CLI to install an npm library\. For example, install a library listed in [https://www\.npmjs\.com/](https://www.npmjs.com/) as follows\. 
+For more information, see [Authentication with npm](npm-auth.md)\.
+
+1.  Use the npm CLI to install an npm library\. For example, install a library listed in [https://www\.npmjs\.com/](https://www.npmjs.com/)\.
+**Note**
+*lodash* is a popular package to use\.
 
    ```
    npm install library-name
