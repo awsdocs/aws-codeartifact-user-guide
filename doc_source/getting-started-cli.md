@@ -156,7 +156,7 @@ For more information, see [Authentication with npm](npm-auth.md)\.
  There may be a delay between when you install the package and when it is ingested into your repository\. 
 
    ```
-   aws codeartifact list-packages --domain my-domain --repostiory my-repo
+   aws codeartifact list-packages --domain my-domain --repository my-repo
    ```
 
     JSON\-formatted data appears in the output with the format and name of the package that you installed\. 
@@ -172,10 +172,10 @@ For more information, see [Authentication with npm](npm-auth.md)\.
    }
    ```
 
-   You now have the following three CodeArtifact resources: 
+   You now have three CodeArtifact resources:
    +  The domain `my-domain`\. 
    +  The repository `my-repo` that is contained in `my-domain`\. This repository has an npm package available to it\. 
-   +  The repository `npm-store` that is contained in `my-domain`\. This repository also has an external connection to the public npm repository and is associated as an upstream repository with the `my-repo` repository\. 
+   +  The repository `npm-store` that is contained in `my-domain`\. This repository has an external connection to the public npm repository and is associated as an upstream repository with the `my-repo` repository\.
 
 1. To avoid further AWS charges, delete the resources that you used during this tutorial: 
 **Note**  
@@ -249,8 +249,11 @@ For more information, see [Authentication with npm](npm-auth.md)\.
               "name": "my-domain",
               "owner": "123456789012",
               "arn": "arn:aws:codeartifact:us-west-2:123456789012:domain/my-domain",
-              "status": "Active",
-              "encryptionKey": "arn:aws:kms:us-west-2:123456789012:key/your-kms-key"
+              "status": "Deleted",
+              "createdTime": "2020-10-07T15:36:35.194000-04:00",
+              "encryptionKey": "arn:aws:kms:us-west-2:123456789012:key/your-kms-key",
+              "repositoryCount": 0,
+              "assetSizeBytes": 0
           }
       }
       ```
