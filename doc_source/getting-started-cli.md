@@ -22,6 +22,8 @@
    }
    ```
 
+If you receive the error `Could not connect to the endpoint URL`, make sure that your AWS CLI is configured and that your **Default region name** is set to the same region where you created your artifact repository, see [Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
+
 1.  Use the create\-repository command to create a repository in your domain\.
 
    ```
@@ -135,8 +137,6 @@ You should receive output confirming your login succeeded\.
    Successfully configured npm to use AWS CodeArtifact repository https://my-domain-8529020723677.d.codeartifact.us-east-2.amazonaws.com/npm/my-repo/
    Login expires in 12 hours at 2020-10-08 02:45:33-04:00
    ```
-
-If you receive the error `Could not connect to the endpoint URL`, make sure that your AWS CLI is configured and that your **Default region name** is set to the same region where you created your artifact repository, see [Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
 
 For more information, see [Authentication with npm](npm-auth.md)\.
 
