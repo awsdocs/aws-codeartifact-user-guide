@@ -8,9 +8,9 @@
 
 1.  In **Repository name**, enter **my\-repo**\. 
 
-1.  \(Optional\) In **Description**, enter an optional description for your repository\. 
+1.  \(Optional\) In **Repository Description**, enter an optional description for your repository\.
 
-1.  Select **npm\-store** to create a repository connected to **npmjs** that is upstream from your `my-repo` repository\. 
+1.  In **Public upstream repositories**, select **npm\-store** to create a repository connected to **npmjs** that is upstream from your `my-repo` repository\.
 
    CodeArtifact assigns the name `npm-store` to this repository for you\. All packages available in the upstream repository `npm-store` are also available to its downstream repository, `my-repo`\. 
 
@@ -45,7 +45,15 @@
    aws codeartifact login --tool npm --repository my-repo --domain my-domain --domain-owner your-AWS-account-ID
    ```
 
-1.  Use the npm CLI to install an npm library\. For example, install a library listed in [https://www\.npmjs\.com/](https://www.npmjs.com/) as follows\. 
+You should receive output confirming your login succeeded\.
+   ```
+   Successfully configured npm to use AWS CodeArtifact repository https://my-domain-8529020723677.d.codeartifact.us-east-2.amazonaws.com/npm/my-repo/
+   Login expires in 12 hours at 2020-10-08 02:45:33-04:00
+   ```
+
+If you receive the error `Could not connect to the endpoint URL`, make sure that your AWS CLI is configured and that your **Default region name** is set to the same region where you created your artifact repository, see [Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
+
+1.  Use the npm CLI to install an npm library\. For example, install a library listed in [https://www\.npmjs\.com/](https://www.npmjs.com/)\.
 **Note**  
 *lodash* is a popular package to use\.
 
@@ -55,19 +63,19 @@
 
 1.  Return to the CodeArtifact console\. If your **my\-repo** repository is open, refresh the page\. Otherwise, in the navigation pane, choose **Repositories**, and then choose **my\-repo**\. 
 
-    Under **Packages**, you should see the npm library, or package, that you installed\. You can choose the name of the package to view its version and status\. You can choose its latest version to view package details such as dependencies, files, and more\. 
+    Under **Packages**, you should see the npm library, or package, that you installed\. You can choose the name of the package to view its version and status\. You can choose its latest version to view package details such as dependencies, assets, and more\.
 **Note**  
  There may be a delay between when you install the package and when it is ingested into your repository\. 
 
 1.  To avoid further AWS charges, delete the resources that you used during this tutorial: 
 
-   1.  From the navigation pane, choose **Repositories**\. 
+   1.  In the navigation pane, choose **Repositories**\.
 
    1.  Choose **npm\-store**, choose **Delete**, and then follow the steps to delete the repository\. 
 
    1.  Choose **my\-repo**, choose **Delete**, and then follow the steps to delete the repository\. 
 
-   1.  From the navigation pane, choose **Domains**\. 
+   1.  In the navigation pane, choose **Domains**\.
 
    1.  Choose **my\-domain**, choose **Delete**, and then follow the steps to delete the domain\. 
 **Note**  
