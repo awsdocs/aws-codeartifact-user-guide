@@ -53,6 +53,8 @@ You should receive output confirming your login succeeded\.
 
 If you receive the error `Could not connect to the endpoint URL`, make sure that your AWS CLI is configured and that your **Default region name** is set to the same region where you created your artifact repository, see [Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
 
+For more information, see [Authentication with npm](npm-auth.md)\.
+
 1.  Use the npm CLI to install an npm library\. For example, install a library listed in [https://www\.npmjs\.com/](https://www.npmjs.com/)\.
 **Note**  
 *lodash* is a popular package to use\.
