@@ -17,7 +17,10 @@
            "owner": "123456789012",
            "arn": "arn:aws:codeartifact:us-west-2:123456789012:domain/my-domain",
            "status": "Active",
-           "encryptionKey": "arn:aws:kms:us-west-2:123456789012:key/your-kms-key"
+           "createdTime": "2020-10-07T15:36:35.194000-04:00",
+           "encryptionKey": "arn:aws:kms:us-west-2:123456789012:key/your-kms-key",
+           "repositoryCount": 0,
+           "assetSizeBytes": 0
        }
    }
    ```
@@ -57,7 +60,7 @@ If you receive the error `Could not connect to the endpoint URL`, make sure that
    ```
    {
        "repository": {
-           "name": "delete",
+           "name": "npm-store",
            "administratorAccount": "123456789012",
            "domainName": "my-domain",
            "domainOwner": "123456789012",
