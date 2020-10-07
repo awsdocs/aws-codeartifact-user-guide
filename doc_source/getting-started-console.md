@@ -70,6 +70,8 @@ For more information, see [Authentication with npm](npm-auth.md)\.
  There may be a delay between when you install the package and when it is ingested into your repository\. 
 
 1.  To avoid further AWS charges, delete the resources that you used during this tutorial: 
+**Note**
+ You cannot delete a domain that contains repositories, so you must delete `my-repo` and `npm-store` before you delete `my-domain`\.
 
    1.  In the navigation pane, choose **Repositories**\.
 
@@ -80,5 +82,3 @@ For more information, see [Authentication with npm](npm-auth.md)\.
    1.  In the navigation pane, choose **Domains**\.
 
    1.  Choose **my\-domain**, choose **Delete**, and then follow the steps to delete the domain\. 
-**Note**  
- You cannot delete a domain that contains repositories, so you must delete `my-repo` and `npm-store` before you delete `my-domain`\. 
