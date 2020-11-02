@@ -9,7 +9,7 @@ For more information, see the following on the Python Packaging Authority's GitH
 
 ## pip command support<a name="pip-command-support"></a>
 
-The following sections summarize the npm commands that are supported, by CodeArtifact repositories, in addition to specific commands that are not supported\.
+The following sections summarize the pip commands that are supported, by CodeArtifact repositories, in addition to specific commands that are not supported\.
 
 **Topics**
 + [Supported commands that interact with a repository](#supported-pip-commands-that-interact-with-a-repository)
