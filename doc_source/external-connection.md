@@ -10,6 +10,7 @@ You can add a connection between an CodeArtifact repository and an external, pub
 + [Fetch Maven packages from an external connection](#fetch-maven-packages-from-public-repo)
 + [npm ingestion behavior](#npm-ingestion-behavior)
 + [Maven ingestion behavior](#maven-ingestion-behavior)
++ [CodeArtifact behavior when an external repository is not available](#external-connection-unavailable)
 
 ## Add an external connection to a repository<a name="adding-an-external-connection"></a>
 
@@ -281,3 +282,9 @@ When this occurs, CodeArtifact is still copying packages from the external repos
 ```
 
  When this occurs, CodeArtifact is still copying packages from the external repository asynchronously\. Retry the same command to complete the ingestion of the entire dependency tree\. 
+
+## CodeArtifact behavior when an external repository is not available<a name="external-connection-unavailable"></a>
+
+Occasionally, an external repository will experience an outage that means CodeArtifact cannot fetch packages from it, or fetching packages is much slower than normal\. When this occurs, package versions already pulled from an external repository \(e\.g\. **npmjs\.com**\) and stored in a CodeArtifact repository will continue to be available for download from CodeArtifact\. However, packages that are not already stored in CodeArtifact may not be available, even when an external connection to that repository has been configured\. For example, your CodeArtifact repository might contain the npm package version `lodash 4.17.19 ` because that's what you have been using in your application so far\. When you want to upgrade to `4.17.20`, normally CodeArtifact will fetch that new version from **npmjs\.com** and store it in your CodeArtifact repository\. However, if **npmjs\.com** is experiencing an outage this new version will not be available\. The only workaround is to try again later once **npmjs\.com** has recovered\.
+
+External repository outages can also affect publishing new package versions to CodeArtifact\. In a repository with an external connection configured, CodeArtifact will not permit publishing a package version that is already present in the external repository, see [Packages overview](packages-overview.md) for more information\. However, an external repository outage may in rare cases mean that CodeArtifact does not have up\-to\-date information on which packages and package versions are present in an external repository\. In this case, CodeArtifact might permit a package version to be published that it would normally deny\.

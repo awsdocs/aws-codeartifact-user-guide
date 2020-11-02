@@ -13,3 +13,4 @@ For more information, see [Create a repository with an upstream repository](crea
 + [Add, update, or remove upstream repositories \(AWS CLI\)](repo-upstream-add-cli.md)
 + [Requesting a package version with upstream repositories](repo-upstream-behavior.md)
 + [Upstream repository priority order](repo-upstream-search-order.md)
++ [API behavior with upstream repositories](upstream-repo-api-behavior.md)

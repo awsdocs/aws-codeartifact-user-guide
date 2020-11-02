@@ -76,6 +76,14 @@ Example output:
 
 A new repository doesn't contain any packages\. Each repository is associated with the AWS account that you're authenticated to when the repository is created\. An AWS account can have a maximum of 100 repositories\. Repositories that have been deleted with the `delete-repository` command don't count towards this limit\.
 
+### Create a repository with tags<a name="create-repo-cli-tags"></a>
+
+To create a repository with tags, add the `--tags` parameter to your `create-domain` command\.
+
+```
+aws codeartifact create-repository --domain my-domain --domain-owner domain-owner-id --repository my-repo --tags key=k1,value=v1 key=k2,value=v2
+```
+
 ## Create a repository with an upstream repository<a name="creating-a-repository-with-an-upstream"></a>
 
 You can specify one or more upstream repositories when you create a repository\. 

@@ -11,3 +11,4 @@ These topics describe how to use the CLI and API to configure CodeArtifact domai
 + [Create a domain](domain-create.md)
 + [Delete a domain](delete-domain.md)
 + [Domain policies](domain-policies.md)
++ [Tag a domain](tag-domains.md)

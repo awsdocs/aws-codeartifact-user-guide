@@ -18,7 +18,7 @@
 ```
 aws events put-rule --name MyCodeArtifactRepoRule --event-pattern \
     '{"source":["aws.codeartifact"],"detail-type":["CodeArtifact Package Version State Change"],
-    "detail":{"domainName":["mydomain"],"domainOwner":["123456789012"]"repositoryName":["myrepo"]}}'
+    "detail":{"domainName":["mydomain"],"domainOwner":["123456789012"],"repositoryName":["myrepo"]}}'
 ```
 
 ## Create the EventBridge rule target<a name="configure-service-events-codepipeline-create-rule-target"></a>

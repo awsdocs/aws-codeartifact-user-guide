@@ -26,7 +26,7 @@ You can create a domain using the CodeArtifact console or the AWS Command Line I
 
 ## Create a domain \(AWS CLI\)<a name="create-domain-cli"></a>
 
-Use the `create-domain` command to create a repository in your domain\. You must use a *customer master key* \(CMK\) to encrypt all assets in your domain\. You can use an AWS managed CMK or a CMK that you manage\. If you use an AWS managed CMK, do not use the `--encryption-key` parameter\.
+Use the `create-domain` command to create domain with the AWS CLI\. You must use a *customer master key* \(CMK\) to encrypt all assets in your domain\. You can use an AWS managed CMK or a CMK that you manage\. If you use an AWS managed CMK, do not use the `--encryption-key` parameter\.
 
 ```
 aws codeartifact create-domain --domain my-domain
@@ -68,4 +68,12 @@ aws codeartifact create-domain --domain my-domain --encryption-key arn:aws:kms:u
         "assetSizeBytes": 0
     }
 }
+```
+
+### Create a domain with tags<a name="create-domain-cli-tags"></a>
+
+To create a domain with tags, add the `--tags` parameter to your `create-domain` command\.
+
+```
+aws codeartifact create-domain --domain my-domain --tags key=k1,value=v1 key=k2,value=v2
 ```

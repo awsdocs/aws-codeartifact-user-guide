@@ -19,7 +19,7 @@ com.amazonaws.region.codeartifact.repositories
 ```
 aws ec2 create-vpc-endpoint --vpc-id vpcid --vpc-endpoint-type Interface \
   --service-name com.amazonaws.region.codeartifact.api --subnet-ids subnetid \
-  --security-group-ids groupid
+  --security-group-ids groupid --no-private-dns-enabled
 ```
 
  The following command creates an endpoint to access package managers and build tools\.
@@ -31,4 +31,4 @@ aws ec2 create-vpc-endpoint --vpc-id vpcid --vpc-endpoint-type Interface \
 ```
 
 **Note**  
- When you create a `codeartifact.repositories` endpoint, you must create a private DNS hostname using the `--private-dns-enabled` option\. However, because multiple private DNS hostnames are not currently supported for the `codeartifact.api` and `codeartifact.repositories` endpoints, do not use the `--private-dns-enabled` option for `codeartifact.api`\. 
+ When you create a `codeartifact.repositories` endpoint, you must create a private DNS hostname using the `--private-dns-enabled` option\. However, because multiple private DNS hostnames are not currently supported for the `codeartifact.api` and `codeartifact.repositories` endpoints, use the `--no-private-dns-enabled` option for `codeartifact.api`\. 
