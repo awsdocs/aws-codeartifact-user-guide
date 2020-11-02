@@ -17,10 +17,15 @@
            "owner": "123456789012",
            "arn": "arn:aws:codeartifact:us-west-2:123456789012:domain/my-domain",
            "status": "Active",
-           "encryptionKey": "arn:aws:kms:us-west-2:123456789012:key/your-kms-key"
+           "createdTime": "2020-10-07T15:36:35.194000-04:00",
+           "encryptionKey": "arn:aws:kms:us-west-2:123456789012:key/your-kms-key",
+           "repositoryCount": 0,
+           "assetSizeBytes": 0
        }
    }
    ```
+
+If you receive the error `Could not connect to the endpoint URL`, make sure that your AWS CLI is configured and that your **Default region name** is set to the same region where you created your artifact repository, see [Configuring the AWS Command Line Interface](https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-getting-started.html)\.
 
 1.  Use the create\-repository command to create a repository in your domain\.
 
@@ -55,7 +60,7 @@
    ```
    {
        "repository": {
-           "name": "delete",
+           "name": "npm-store",
            "administratorAccount": "123456789012",
            "domainName": "my-domain",
            "domainOwner": "123456789012",
@@ -130,15 +135,17 @@
    aws codeartifact login --tool npm --repository my-repo --domain my-domain --domain-owner your-AWS-account-ID
    ```
 
-   If successful, you see the following output\.
-
+You should receive output confirming your login succeeded\.
    ```
-   Successfully logged in to codeartifact for npm
+   Successfully configured npm to use AWS CodeArtifact repository https://my-domain-8529020723677.d.codeartifact.us-east-2.amazonaws.com/npm/my-repo/
+   Login expires in 12 hours at 2020-10-08 02:45:33-04:00
    ```
 
-    For more information, see [Authentication with npm](npm-auth.md)\. 
+For more information, see [Authentication with npm](npm-auth.md)\.
 
-1.  Use the npm CLI to install an npm library\. For example, install a library listed in [https://www\.npmjs\.com/](https://www.npmjs.com/) as follows\. 
+1.  Use the npm CLI to install an npm library\. For example, install a library listed in [https://www\.npmjs\.com/](https://www.npmjs.com/)\.
+**Note**
+*lodash* is a popular package to use\.
 
    ```
    npm install library-name
@@ -149,7 +156,7 @@
  There may be a delay between when you install the package and when it is ingested into your repository\. 
 
    ```
-   aws codeartifact list-packages --domain my-domain --repostiory my-repo
+   aws codeartifact list-packages --domain my-domain --repository my-repo
    ```
 
     JSON\-formatted data appears in the output with the format and name of the package that you installed\. 
@@ -165,10 +172,10 @@
    }
    ```
 
-   You now have the following three CodeArtifact resources: 
+   You now have three CodeArtifact resources:
    +  The domain `my-domain`\. 
    +  The repository `my-repo` that is contained in `my-domain`\. This repository has an npm package available to it\. 
-   +  The repository `npm-store` that is contained in `my-domain`\. This repository also has an external connection to the public npm repository and is associated as an upstream repository with the `my-repo` repository\. 
+   +  The repository `npm-store` that is contained in `my-domain`\. This repository has an external connection to the public npm repository and is associated as an upstream repository with the `my-repo` repository\.
 
 1. To avoid further AWS charges, delete the resources that you used during this tutorial: 
 **Note**  
@@ -242,8 +249,11 @@
               "name": "my-domain",
               "owner": "123456789012",
               "arn": "arn:aws:codeartifact:us-west-2:123456789012:domain/my-domain",
-              "status": "Active",
-              "encryptionKey": "arn:aws:kms:us-west-2:123456789012:key/your-kms-key"
+              "status": "Deleted",
+              "createdTime": "2020-10-07T15:36:35.194000-04:00",
+              "encryptionKey": "arn:aws:kms:us-west-2:123456789012:key/your-kms-key",
+              "repositoryCount": 0,
+              "assetSizeBytes": 0
           }
       }
       ```
