@@ -21,7 +21,7 @@ The following table describes the parameters for the `login` command\.
 
 | Parameter | Required | Description | 
 | --- | --- | --- | 
-| `--tool` | Yes | The package manager to authenticate to\. Possible values are `maven`, `npm`, and `pip`\. | 
+| `--tool` | Yes | The package manager to authenticate to\. Possible values are `twine`, `npm`, and `pip`\. | 
 | `--domain` | Yes | The domain name that the repository belongs to\. | 
 | `--domain-owner` | No | The ID of the owner of the domain\. This parameter is required if accessing a domain that is owned by an AWS account that you are not authenticated to\. For more information, see [Cross\-account domains](domain-overview.md#domain-overview-cross-account)\. | 
 | `--repository` | Yes | The name of the repository to authenticate to\. | 
