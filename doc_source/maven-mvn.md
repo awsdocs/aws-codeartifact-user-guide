@@ -98,7 +98,7 @@ Downloaded from codeartifact: https://<domain>.d.codeartifact.us-west-2.amazonaw
 
 To publish a Maven artifact with `mvn` to an CodeArtifact repository, you must also edit `~/.m2/settings.xml` and the project POM\.
 
-1. Add a `<servers>` section to `settings.xml` with a reference to the `CODEARTIFACT_TOKEN` environment variable so that Maven passes the token in HTTP requests\.
+1. Add a `<servers>` section to `settings.xml` with a reference to the `CODEARTIFACT_AUTH_TOKEN` environment variable so that Maven passes the token in HTTP requests\.
 
    ```
    <settings>
@@ -107,7 +107,7 @@ To publish a Maven artifact with `mvn` to an CodeArtifact repository, you must a
            <server>
                <id>codeartifact</id>
                <username>aws</username>
-               <password>${env.CODEARTIFACT_TOKEN}</password>
+               <password>${env.CODEARTIFACT_AUTH_TOKEN}</password>
            </server>
        </servers>
    ...
