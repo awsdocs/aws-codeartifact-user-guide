@@ -181,7 +181,7 @@ You can use the `--format`, `--namespace`, and `--package-prefix` options in any
 
 ```
 aws codeartifact list-packages --domain my-domain --domain-owner domain-owner-id --repository my-repo \
-  --output text --query 'packageCoordinateList[*].[packageName]'
+  --output text --query 'packages[*].[package]'
 ```
 
 Sample output:

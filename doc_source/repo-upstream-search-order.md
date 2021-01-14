@@ -1,11 +1,11 @@
 # Upstream repository priority order<a name="repo-upstream-search-order"></a>
 
- When you request a package version from a repository with one or more upstream repositories, their priority corresponds to the order that they were listed in when calling the `create-repository` or `update-repository` command\. When the requested package version is found, the search stops, even if it didn't search all upstream repositories\. For more information, see [Add, update, or remove upstream repositories \(AWS CLI\)](repo-upstream-add-cli.md)\. 
+ When you request a package version from a repository with one or more upstream repositories, their priority corresponds to the order that they were listed when calling the `create-repository` or `update-repository` command\. When the requested package version is found, the search stops, even if it didn't search all upstream repositories\. For more information, see [Add, update, or remove upstream repositories \(AWS CLI\)](repo-upstream-add-cli.md)\. 
 
- Use the `describe-repository` command to see the priority order, as in the following example\.
+ Use the `describe-repository` command to see the priority order\.
 
 ```
-aws codeartifact describe-repository --repository-name my-repo --domain my-domain --domain-owner 123456789012
+aws codeartifact describe-repository --repository my-repo --domain my-domain --domain-owner domain-owner-id
 ```
 
  The result might be the following\. It shows that the upstream repository priority is `upstream-1` first, `upstream-2` second, and `upstream-3` third\. 
@@ -17,6 +17,8 @@ aws codeartifact describe-repository --repository-name my-repo --domain my-domai
         "administratorAccount": "123456789012",
         "domainName": "my-domain",
         "domainOwner": "123456789012",
+        "arn": "arn:aws:codeartifact:us-east-1:123456789012:repository/my-domain/my-repo",
+        "description": "My new repository",
         "upstreams": [
             {
                 "repositoryName": "upstream-1"

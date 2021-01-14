@@ -3,7 +3,7 @@
  The following table describes resource quotas in CodeArtifact\. 
 
 **Note**  
-You can [request a limit increase](https://console.aws.amazon.com/support/home#/case/create%3FissueType=service-limit-increase) for the CodeArtifact limits listed in [AWS Service Limits](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html#limits_codedeploy) in the *Amazon Web Services General Reference*\.
+You can [request a limit increase](https://console.aws.amazon.com/support/home#/case/create%3FissueType=service-limit-increase) for the CodeArtifact limits listed in [AWS service quotas](https://docs.aws.amazon.com/general/latest/gr/aws_service_limits.html) in the *Amazon Web Services General Reference*\.
 
 
 ****  
@@ -16,3 +16,4 @@ You can [request a limit increase](https://console.aws.amazon.com/support/home#/
 |  Maximum asset file size  |  1 GB  | 
 |  Maximum package version metadata file size  |  100 KB  | 
 |  Maximum number of direct upstream repositories allowed for one repository  |  10  | 
+|  Maximum number of repositories CodeArtifact looks in when a package version is requested\.   |  25  | 

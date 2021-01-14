@@ -8,7 +8,7 @@ To fetch an authorization token from CodeArtifact, you must call the [GetAuthori
 
 CodeArtifact authorization tokens are valid for a default period of 12 hours\. Tokens can be configured with a lifetime between 15 minutes and 12 hours\. When the lifetime expires, you must fetch another token\. The token lifetime begins after `login` or `get-authorization-token` is called\.
 
-If `login` or `get-authorization-token` is called while assuming a role, you can configure the lifetime of the token to be equal to the remaining time in the session duration of the role by setting the value of `--duration-seconds` \(for `login`\) or `--durationSeconds` \(for `get-authorization-token`\) to `0`\. Otherwise, the token lifetime is independent of the maximum session duration of the role\. For example, suppose that you call `sts assume-role` and specify a session duration of 15 minutes, and then call `login` to fetch an CodeArtifact authorization token\. In this case, the token is valid for the full 12\-hour period even though this is longer than the 15\-minute session duration\. For information about controlling session duration, see [Using IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) in the *IAM User Guide*\.
+If `login` or `get-authorization-token` is called while assuming a role, you can configure the lifetime of the token to be equal to the remaining time in the session duration of the role by setting the value of `--duration-seconds` to `0`\. Otherwise, the token lifetime is independent of the maximum session duration of the role\. For example, suppose that you call `sts assume-role` and specify a session duration of 15 minutes, and then call `login` to fetch a CodeArtifact authorization token\. In this case, the token is valid for the full 12\-hour period even though this is longer than the 15\-minute session duration\. For information about controlling session duration, see [Using IAM Roles](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_roles_use.html) in the *IAM User Guide*\.
 
 ## Tokens created with the `login` command<a name="auth-token-login"></a>
 
@@ -21,11 +21,12 @@ The following table describes the parameters for the `login` command\.
 
 | Parameter | Required | Description | 
 | --- | --- | --- | 
-| `--tool` | Yes | The package manager to authenticate to\. Possible values are `twine`, `npm`, and `pip`\. | 
+| `--tool` | Yes | The package manager to authenticate to\. Possible values are `npm`, `pip`, and `twine`\. | 
 | `--domain` | Yes | The domain name that the repository belongs to\. | 
 | `--domain-owner` | No | The ID of the owner of the domain\. This parameter is required if accessing a domain that is owned by an AWS account that you are not authenticated to\. For more information, see [Cross\-account domains](domain-overview.md#domain-overview-cross-account)\. | 
 | `--repository` | Yes | The name of the repository to authenticate to\. | 
 | `--duration-seconds` | No | The time, in seconds, that the login information is valid\. The minimum value is 900\* and maximum value is 43200\. | 
+| `--namespace` | No | Associates a namespace with your repository tool\. | 
 | `--dry-run` | No | Only print the commands that would be executed to connect your tool with your repository without making any changes to your configuration\. | 
 | \*A value of 0 is also valid when calling `login` while assuming a role\. Calling `login` with `--duration-seconds 0` creates a token with a lifetime equal to the remaining time in the session duration of an assumed role\. | 
 
@@ -45,16 +46,16 @@ You can call `get-authorization-token` to fetch an authorization token from Code
 aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text
 ```
 
-You can change how long a token is valid using the `--durationSeconds` argument\. The minimum value is 900 and the maximum value is 43200\. The following example creates a token that will last for 1 hour \(3600 seconds\)\. 
+You can change how long a token is valid using the `--duration-seconds` argument\. The minimum value is 900 and the maximum value is 43200\. The following example creates a token that will last for 1 hour \(3600 seconds\)\. 
 
 ```
-aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text --durationSeconds 3600
+aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text --duration-seconds 3600
 ```
 
-If calling `get-authorization-token` while assuming a role the token lifetime is independent of the maximum session duration of the role\. You can configure the token to expire when the assumed role's session duration expires by setting `--durationSeconds` to 0\.
+If calling `get-authorization-token` while assuming a role the token lifetime is independent of the maximum session duration of the role\. You can configure the token to expire when the assumed role's session duration expires by setting `--duration-seconds` to 0\.
 
 ```
-aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text --durationSeconds 0
+aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text --duration-seconds 0
 ```
 
 See the following documentation for more information:
@@ -67,7 +68,7 @@ See the following documentation for more information:
 
 AWS CodeArtifact uses authorization tokens vended by the `GetAuthorizationToken` API to authenticate and authorize requests from build tools such as Maven and Gradle\. For more information on these auth tokens, see [Tokens created with the `GetAuthorizationToken` API](#get-auth-token-api)\.
 
-You can store these auth tokens in an environment variable that can be read by a build tool to obtain the token it needs to fetch packages from an CodeArtifact repository or publish packages to it\. 
+You can store these auth tokens in an environment variable that can be read by a build tool to obtain the token it needs to fetch packages from a CodeArtifact repository or publish packages to it\. 
 
 For security reasons, this approach is preferable to storing the token in a file where it might be read by other users or processes, or accidentally checked into source control\.
 

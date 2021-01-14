@@ -6,7 +6,7 @@ For more information, see [Resource\-Based Policies](https://docs.aws.amazon.com
 
 ## Create a resource policy to grant read access<a name="creating-a-resource-policy-to-grant-read-access"></a>
 
-A resource policy is a text file in JSON format\. The file must specify a principal \(actor\), one or more actions, and an effect \(`Allow` or `Deny`\)\. For example, the following resource policy grants the account `1234567890` permission to download packages from the repository\.
+A resource policy is a text file in JSON format\. The file must specify a principal \(actor\), one or more actions, and an effect \(`Allow` or `Deny`\)\. For example, the following resource policy grants the account `123456789012` permission to download packages from the repository\.
 
 ```
 {
@@ -31,7 +31,7 @@ Because the policy is evaluated only for operations against the repository that 
 **Note**  
 The `codeartifact:ReadFromRepository` action can only be used on a repository resource\. You cannot put a package's Amazon Resource Name \(ARN\) as a resource with `codeartifact:ReadFromRepository` as the action to allow read access to a subset of packages in a repository\. A given principal can either read all the packages in a repository or none of them\.
 
-Because the only action specified in the repository is `ReadFromRepository`, users and roles from account `1234567890` can download packages from the repository\. However, they can't perform other actions on them \(for example, listing package names and versions\)\. Typically, you grant permissions in the following policy in addition to `ReadFromRepository` because a user who downloads packages from a repository needs to interact with it in other ways, too\.
+Because the only action specified in the repository is `ReadFromRepository`, users and roles from account `1234567890` can download packages from the repository\. However, they can't perform other actions on them \(for example, listing package names and versions\)\. Typically, you grant permissions in the following policy in addition to `ReadFromRepository` because a user who downloads packages from a repository needs to interact with it in other ways too\.
 
 ```
 {
@@ -93,7 +93,7 @@ Use the `get-repository-permissions-policy` command to read an existing version 
 
 ```
 aws codeartifact get-repository-permissions-policy --domain my-domain --domain-owner domain-owner-id \
-          --repository my-repo
+          --repository my-repo --output text --query policy.document | python -m json.tool
 ```
 
 Sample output:
@@ -133,11 +133,11 @@ aws codeartifact delete-repository-permissions-policy --domain my-domain --domai
           --repository my-repo
 ```
 
-The format of the output is the same as that of `get-repository-permissions-policy` and `delete-repository-permissions-policy` commands\.
+The format of the output is the same as that of the `get-repository-permissions-policy` command\.
 
 ## Grant read access to principals<a name="granting-read-access-to-specific-principals"></a>
 
- When you specify the root user of an account as the principal in a policy document, you grant access to all of the users and roles in that account\. To limit access to selected users or roles, use their ARN in the `Principal` section of the policy\. For example, use the following to grant read access to the IAM user `bob` in account 123456789012\.
+ When you specify the root user of an account as the principal in a policy document, you grant access to all of the users and roles in that account\. To limit access to selected users or roles, use their ARN in the `Principal` section of the policy\. For example, use the following to grant read access to the IAM user `bob` in account `123456789012`\.
 
 ```
 {
@@ -165,19 +165,19 @@ The format of the output is the same as that of `get-repository-permissions-poli
 arn:aws:codeartifact:region-id:123456789012:package/my-domain/my-repo/package-format/package-namespace/package-name
 ```
 
-The following example shows the ARN for an npm package with scope `@parity` and name `ui` in the `example-repo` repository in domain `example-domain`\.: 
+The following example shows the ARN for an npm package with scope `@parity` and name `ui` in the `example-repo` repository in domain `my-domain`\. 
 
 ```
-arn:aws:codeartifact:region-id:123456789012:package/example-domain/example-repo/npm/parity/ui
+arn:aws:codeartifact:region-id:123456789012:package/my-domain/example-repo/npm/parity/ui
 ```
 
-The ARN for an npm package without a scope has the empty string for the namespace field\. For example, the following is the ARN for a package without a scope and with name `react` in the `example-repo` repository in domain `example-domain`\.
+The ARN for an npm package without a scope has the empty string for the namespace field\. For example, the following is the ARN for a package without a scope and with name `react` in the `example-repo` repository in domain `my-domain`\.
 
 ```
-arn:aws:codeartifact:region-id:123456789012:package/example-domain/example-repo/npm//react
+arn:aws:codeartifact:region-id:123456789012:package/my-domain/example-repo/npm//react
 ```
 
-The following policy grants account 123456789012 permission to publish versions of `@parity/ui` in the `example-repo` repository\.
+The following policy grants account `123456789012` permission to publish versions of `@parity/ui` in the `example-repo` repository\.
 
 ```
 {
@@ -191,7 +191,7 @@ The following policy grants account 123456789012 permission to publish versions 
             "Principal": {
                 "AWS": "arn:aws:iam::123456789012:root"
             },
-            "Resource": "arn:aws:codeartifact:region-id:123456789012:package/example-domain/example-repo/npm/parity/ui"
+            "Resource": "arn:aws:codeartifact:region-id:123456789012:package/my-domain/example-repo/npm/parity/ui"
         }
     ]
 }

@@ -1,6 +1,6 @@
 # Using Maven checksums<a name="maven-checksums"></a>
 
- When a Maven artifact is published to an AWS CodeArtifact repository, the checksum associated with each *asset* or file in the package is used to validate the upload\. Assets are *jar*, *pom*, and *war* files\. For each asset, the Maven artifact contains multiple checksum files that use the asset name with an additional extension, such as `md5` or `sha1`\. For example, the checksum files for a file named `my-maven-package.jar` might be `my-maven-package.jar.md5` and `my-maven-package.jar.sh1`\. 
+ When a Maven artifact is published to an AWS CodeArtifact repository, the checksum associated with each *asset* or file in the package is used to validate the upload\. Examples of assets are *jar*, *pom*, and *war* files\. For each asset, the Maven artifact contains multiple checksum files that use the asset name with an additional extension, such as `md5` or `sha1`\. For example, the checksum files for a file named `my-maven-package.jar` might be `my-maven-package.jar.md5` and `my-maven-package.jar.sh1`\. 
 
 **Note**  
  Maven uses the term `artifact`\. In this guide, a Maven package is the same as a Maven artifact\. For more information, see [AWS CodeArtifact package](https://docs.aws.amazon.com/codeartifact/latest/ug/welcome.html#welcome-concepts-package)\. 

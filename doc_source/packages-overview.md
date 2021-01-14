@@ -8,7 +8,7 @@ A *package* in AWS CodeArtifact is a bundle of software and the metadata that is
 
 ## Package publishing<a name="package-publishing"></a>
 
- You can publish new versions of any supported package type to an CodeArtifact repository using tools like `npm`, `twine`, `Maven`, and `Gradle`\. 
+ You can publish new versions of any supported package type to a CodeArtifact repository using tools like `npm`, `twine`, `Maven`, and `Gradle`\. 
 
 ### Publishing permissions<a name="package-publishing-permissions"></a>
 

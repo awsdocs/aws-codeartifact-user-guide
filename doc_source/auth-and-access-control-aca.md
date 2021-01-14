@@ -21,7 +21,7 @@ For security reasons, we recommend that you use the root credentials only to cre
 
 ## Access control<a name="access-control"></a>
 
-You can have valid credentials to authenticate your requests, but unless you have permissions, you cannot create or access AWS CodeArtifact resources\. For example, you must have permissions to create, view, or delete repositories, associate a connection to an external public repository to an CodeArtifact repository, and to delete package versions\.
+You can have valid credentials to authenticate your requests, but unless you have permissions, you cannot create or access AWS CodeArtifact resources\. For example, you must have permissions to create, view, or delete repositories, associate a connection to an external public repository to a CodeArtifact repository, and to delete package versions\.
 
 The following sections describe how to manage permissions for CodeArtifact\. We recommend that you read the overview first\.
 + [Overview of managing access permissions to your AWS CodeArtifact resources](auth-and-access-control-iam-access-control-identity-based.md)

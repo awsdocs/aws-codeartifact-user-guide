@@ -2,7 +2,13 @@
 
  To call CodeArtifact commands from the AWS Command Line Interface \(AWS CLI\) on a local development machine, you must install the AWS CLI\. 
 
- If you have an older version of the AWS CLI installed, you must upgrade it so the CodeArtifact commands are available\. CodeArtifact commands are available in AWS CLI version 2\.0\.21 and newer\. To check the version, use the `aws --version` command\.
+ If you have an older version of the AWS CLI installed, you must upgrade it so the CodeArtifact commands are available\. CodeArtifact commands are available in the following AWS CLI versions\.
+
+1. **AWS CLI 1:** 1\.18\.77 and newer
+
+1. **AWS CLI 2:** 2\.0\.21 and newer
+
+To check the version, use the `aws --version` command\.
 
 **To install and configure the AWS CLI**
 

@@ -5,7 +5,7 @@
 +  The actions that can be performed\. 
 +  The resources that can have actions performed on them\. 
 
- The following example policy specifies that principals in the account 123456789012 can call the `GetAuthorizationToken` API and fetch packages from an CodeArtifact repository\. 
+ The following example policy specifies that principals in the account 123456789012 can call the `GetAuthorizationToken` API and fetch packages from a CodeArtifact repository\. 
 
 ```
 {

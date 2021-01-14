@@ -17,7 +17,7 @@ The following sections summarize the pip commands that are supported, by CodeArt
 
 ### Supported commands that interact with a repository<a name="supported-pip-commands-that-interact-with-a-repository"></a>
 
-This section lists `pip` commands where the `pip` client makes one or more requests to the registry it's been configured with\. These commands have been verified to function correctly when invoked against an CodeArtifact repository\.
+This section lists `pip` commands where the `pip` client makes one or more requests to the registry it's been configured with\. These commands have been verified to function correctly when invoked against a CodeArtifact repository\.
 
 
 ****  
@@ -46,6 +46,6 @@ These commands don't require any direct interaction with a repository, so CodeAr
 |   [config](https://pip.pypa.io/en/stable/reference/pip_config/)   |  Manage local and global configuration\.  | 
 |   [wheel](https://pip.pypa.io/en/stable/reference/pip_wheel/)   |  Build wheels from your requirements\.  | 
 |   [hash](https://pip.pypa.io/en/stable/reference/pip_hash/)   |  Compute hashes of package archives\.  | 
-|   [completion](https://pip.pypa.io/en/stable/user_guide/#command-completion)   |  A helper command used for command completion\.  | 
+|   [completion](https://pip.pypa.io/en/stable/user_guide/#command-completion)   |  Helps with command completion\.  | 
 |   [debug](https://pip.pypa.io/en/stable/reference/pip_debug/)   |  Show information useful for debugging\.  | 
 |  help  |  Show help for commands\.  | 

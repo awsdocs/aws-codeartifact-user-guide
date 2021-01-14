@@ -1,6 +1,8 @@
 # Run pip<a name="python-run-pip"></a>
 
-After you configure `pip`, you can run `pip` commands\. Assuming that a package is present in your repository or one of its upstream repositories, you can install it with `pip install`\. For example, use the following command to install the `requests` package\.
+To run `pip` commands, you must configure `pip` with CodeArtifact\. For more information, see [Configure clients with the login command](python-configure.md)\.
+
+Assuming that a package is present in your repository or one of its upstream repositories, you can install it with `pip install`\. For example, use the following command to install the `requests` package\.
 
 ```
 pip install requests

@@ -21,10 +21,10 @@ In AWS CodeArtifact, the primary resource is a domain\. In a policy, you use an 
 
 | Resource type | ARN format | 
 | --- | --- | 
-| Domain |  `arn:aws:codeartifact:region-ID:account-ID:domain/domain-name`  | 
-| Repository |  `arn:aws:codeartifact:region-ID:account-ID:repository/domain-name/repository-name`  | 
-| Package with a namespace |  arn:aws:codeartifact:region\-ID:account\-ID:package/domain\-name/repository\-name/package\-format/namespace/package\-name  | 
-| Package without a namespace |  arn:aws:codeartifact:region\-ID:account\-ID:package/domain\-name/repository\-name/package\-format//package\-name  | 
+| Domain |  `arn:aws:codeartifact:region-ID:account-ID:domain/my-domain`  | 
+| Repository |  `arn:aws:codeartifact:region-ID:account-ID:repository/my-domain/my-repo`  | 
+| Package with a namespace |  `arn:aws:codeartifact:region-ID:account-ID:package/my-domain/my-repo/package-format/namespace/package-name`  | 
+| Package without a namespace |  `arn:aws:codeartifact:region-ID:account-ID:package/my-domain/my-repo/package-format//package-name`  | 
 |  All CodeArtifact resources  |  `arn:aws:codeartifact:*`  | 
 |  All CodeArtifact resources owned by the specified account in the specified AWS Region  |  `arn:aws:codeartifact:region-ID:account-ID:*`  | 
 
@@ -68,7 +68,7 @@ A permissions policy describes who has access to which resources\.
 **Note**  
 This section discusses the use of IAM in AWS CodeArtifact\. It doesn't provide detailed information about the IAM service\. For complete IAM documentation, see [What Is IAM?](https://docs.aws.amazon.com/IAM/latest/UserGuide/introduction.html) in the *IAM User Guide*\. For information about IAM policy syntax and descriptions, see [IAM JSON Policy Reference](https://docs.aws.amazon.com/IAM/latest/UserGuide/reference_policies.html) in the *IAM User Guide*\.
 
-Policies attached to an IAM identity are referred to as* identity\-based policies* \(IAM policies\)\. Policies attached to a resource are referred to as *resource\-based policies*\. CodeArtifact supports identity\-based \(IAM policies\) only\.
+Policies attached to an IAM identity are referred to as* identity\-based policies* \(IAM policies\)\. Policies attached to a resource are referred to as *resource\-based policies*\. CodeArtifact supports identity\-based \(IAM policies\) and resource\-based policies\.
 
 ### Identity\-based policies<a name="identity-based-policies"></a>
 
@@ -84,7 +84,7 @@ You can attach policies to IAM identities\.
 
   For more information about using IAM to delegate permissions, see [Access Management](https://docs.aws.amazon.com/IAM/latest/UserGuide/access.html) in the *IAM User Guide*\.
 
-In CodeArtifact, identity\-based policies are used to manage permissions to the resources related to artifact management\. For example, you can control access to domain\.
+In CodeArtifact, identity\-based policies are used to manage permissions to the resources related to artifact management\. For example, you can control access to a domain\.
 
 You can create IAM policies to restrict the calls and resources that users in your account have access to, and then attach those policies to IAM users\. For more information about how to create IAM roles and to explore example IAM policy statements for CodeArtifact, see [Overview of managing access permissions to your AWS CodeArtifact resources](#auth-and-access-control-iam-access-control-identity-based)\. 
 

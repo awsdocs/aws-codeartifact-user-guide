@@ -6,22 +6,100 @@ This topic provides examples of identity\-based policies that demonstrate how an
 We recommend that you first review the introductory topics that explain the basic concepts and options available to manage access to your CodeArtifact resources\. For more information, see [Overview of managing access permissions to your AWS CodeArtifact resources](auth-and-access-control-iam-access-control-identity-based.md)\.
 
 **Topics**
++ [Policy examples](#policy-examples)
 + [Permissions required to use the AWS CodeArtifact console](#console-permissions)
 + [AWS managed \(predefined\) policies for AWS CodeArtifact](#managed-policies)
 + [Limit authorization token duration](#limit-token-duration)
 
-The following shows an example of a permissions policy that allows a user to get information about domains only in the `us-east-2` Region for account `123456789012` for any domain that starts with the name `my`\.
+## Policy examples<a name="policy-examples"></a>
+
+The following IAM policy examples provide access to specific CodeArtifact actions and resources\. Some policies include the `sts:GetServiceBearerToken` permission, which is required to call the `GetAuthorizationToken` API\.
+
+**Allow a user to get information about repositories and domains**
+
+The following policy allows an IAM user or role to list and describe any type of CodeArtifact resource, including domains, repositories, packages, and assets\. The policy also includes the `codeArtifact:ReadFromRepository` permission, which allows the principal to fetch packages from a CodeArtifact repository\. It does not allow creating new domains or repositories and does not allow publishing new packages\.
+
+The `codeartifact:GetAuthorizationToken` and `sts:GetServiceBearerToken` permissions are required to call the `GetAuthorizationToken` API\.
 
 ```
 {
-  "Version": "2012-10-17",
-  "Statement": [
-    {
-      "Effect": "Allow",
-      "Action": "codeartifact:ListDomains",
-      "Resource": "arn:aws:codeartifact:us-east-2:123456789012:domain/my*"      
-    }
-  ]
+   "Version": "2012-10-17",
+   "Statement": [
+      {
+         "Effect": "Allow",
+         "Action": [
+            "codeartifact:List*",
+            "codeartifact:Describe*",
+            "codeartifact:Get*",
+            "codeartifact:Read*"
+         ],
+         "Resource": "*"      
+      },
+      {
+         "Effect": "Allow",
+         "Action": "sts:GetServiceBearerToken",
+         "Resource": "*",
+         "Condition": {
+            "StringEquals": {
+               "sts:AWSServiceName": "codeartifact.amazonaws.com"
+            }
+         }
+      }
+   ]
+}
+```
+
+**Allow a user to get information about specific domains**
+
+The following shows an example of a permissions policy that allows a user to list domains only in the `us-east-2` region for account `123456789012` for any domain that starts with the name `my`\.
+
+```
+{
+   "Version": "2012-10-17",
+   "Statement": [
+      {
+         "Effect": "Allow",
+         "Action": "codeartifact:ListDomains",
+         "Resource": "arn:aws:codeartifact:us-east-2:123456789012:domain/my*"      
+      }
+   ]
+}
+```
+
+**Allow a user to get information about specific repositories**
+
+The following shows an example of a permissions policy that allows a user to get information about repositories that end with `test`, including the packages stored in them\. The user will not be able to publish, create, or delete resources\.
+
+```
+{
+   "Version": "2012-10-17",
+   "Statement": [
+      {
+         "Effect": "Allow",
+         "Action": [
+            "codeartifact:List*",
+            "codeartifact:Describe*",
+            "codeartifact:Get*",
+            "codeartifact:Read*"
+         ],
+         "Resource": "arn:aws:codeartifact:*:*:repository/*/*test"      
+      },
+      {
+         "Effect": "Allow",
+         "Action": "sts:GetServiceBearerToken",
+         "Resource": "*",
+         "Condition": {
+            "StringEquals": {
+               "sts:AWSServiceName": "codeartifact.amazonaws.com"
+            }
+         }
+      },
+      {
+         "Effect": "Allow",
+         "Action": "codeartifact:GetAuthorizationToken",
+         "Resource": "*"
+      }
+   ]
 }
 ```
 
@@ -39,7 +117,60 @@ AWS addresses many common use cases by providing standalone IAM policies that ar
 
 The following AWS managed policies, which you can attach to users in your account, are specific to AWS CodeArtifact\.
 + `AWSCodeArtifactAdminAccess` – Provides full access to CodeArtifact including permissions to administrate CodeArtifact domains\. 
+
+  ```
+  {
+     "Version": "2012-10-17",
+     "Statement": [
+        {
+           "Action": [
+              "codeartifact:*"
+           ],
+           "Effect": "Allow",
+           "Resource": "*"
+        },
+        {
+           "Effect": "Allow",
+           "Action": "sts:GetServiceBearerToken",
+           "Resource": "*",
+           "Condition": {
+              "StringEquals": {
+                 "sts:AWSServiceName": "codeartifact.amazonaws.com"
+              }
+           }
+        }
+     ]
+  }
+  ```
 + `AWSCodeArtifactReadOnlyAccess` – Provides read\-only access to CodeArtifact\.
+
+  ```
+  {
+     "Version": "2012-10-17",
+     "Statement": [
+        {
+           "Action": [
+              "codeartifact:Describe*",
+              "codeartifact:Get*",
+              "codeartifact:List*",
+              "codeartifact:ReadFromRepository"
+           ],
+           "Effect": "Allow",
+           "Resource": "*"
+        },
+        {
+           "Effect": "Allow",
+           "Action": "sts:GetServiceBearerToken",
+           "Resource": "*",
+           "Condition": {
+              "StringEquals": {
+                 "sts:AWSServiceName": "codeartifact.amazonaws.com"
+              }
+           }
+        }  
+     ]
+  }
+  ```
 
 To create and manage CodeArtifact service roles, you must also attach the AWS managed policy named `IAMFullAccess`\.
 

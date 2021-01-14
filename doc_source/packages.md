@@ -7,6 +7,7 @@ These topics show you how to list, copy, delete, and search for packages using t
 + [List package names](list-packages.md)
 + [List package versions](list-packages-versions.md)
 + [List package version assets](list-assets.md)
++ [Download package version assets](download-assets.md)
 + [Copy packages between repositories](copy-package.md)
 + [Delete a package version](delete-package.md)
 + [View and update package version details and dependencies](describe-package-version.md)

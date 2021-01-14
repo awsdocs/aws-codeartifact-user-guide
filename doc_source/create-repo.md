@@ -1,6 +1,6 @@
 # Create a repository<a name="create-repo"></a>
 
-You can create a repository using the CodeArtifact console or the AWS Command Line Interface \(AWS CLI\)\. When you create a repository, it does not contain any packages\. Each repository is associated with the AWS account that you use when you create it\. An AWS account can have up to 10000 repositories, for more information on CodeArtifact service limits, see [Quotas in AWS CodeArtifact](service-limits.md)\. You can delete repositories to make room for more\. 
+You can create a repository using the CodeArtifact console or the AWS Command Line Interface \(AWS CLI\)\. When you create a repository, it does not contain any packages\. Each repository is associated with the AWS account that you use when you create it\. An AWS account can have up to 10,000 repositories\. For more information on CodeArtifact service limits, see [Quotas in AWS CodeArtifact](service-limits.md)\. You can delete repositories to make room for more\. 
 
 A repository can have one or more CodeArtifact repositories associated with it as upstream repositories\. This allows a package manager client to access the packages contained in more than one repository using a single URL endpoint\. For more information, see [Working with upstream repositories in CodeArtifact](repos-upstream.md)\. 
 

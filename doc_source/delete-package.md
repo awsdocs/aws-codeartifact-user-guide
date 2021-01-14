@@ -7,6 +7,28 @@ aws codeartifact delete-package-versions --domain my-domain --domain-owner domai
   --format npm --package my-package --versions 4.0.0 4.0.1 5.0.0
 ```
 
+Sample output:
+
+```
+{
+   "successfulVersions": {
+      "4.0.0": {
+         "revision": "oxwwYC9dDeuBoCt6+PDSwL6OMZ7rXeiXy44BM32Iawo=",
+            "status": "Deleted"
+      },
+      "4.0.1": {
+         "revision": "byaaQR748wrsdBaT+PDSwL6OMZ7rXeiBKM0551aqWmo=",
+            "status": "Deleted"
+      },
+      "5.0.0": {
+         "revision": "yubm34QWeST345ts+ASeioPI354rXeiSWr734PotwRw=",
+            "status": "Deleted"
+      }
+   },
+   "failedVersions": {}
+}
+```
+
 You can confirm that the versions were deleted by running `list-package-versions` for the same package name:
 
 ```

@@ -1,6 +1,6 @@
 # Add an external connection<a name="external-connection"></a>
 
-You can add a connection between an CodeArtifact repository and an external, public repository such as [https://npmjs\.com](https://npmjs.com) or the [Maven Central repository](https://repo.maven.apache.org/maven2/)\. Then, when you request a package from the CodeArtifact repository that's not already present in the repository, the package can be fetched from the external connection\. This makes it possible to consume open\-source dependencies used by your application\.
+You can add a connection between a CodeArtifact repository and an external, public repository such as [https://npmjs\.com](https://npmjs.com) or the [Maven Central repository](https://repo.maven.apache.org/maven2/)\. Then, when you request a package from the CodeArtifact repository that's not already present in the repository, the package can be fetched from the external connection\. This makes it possible to consume open\-source dependencies used by your application\.
 
 **Topics**
 + [Add an external connection to a repository](#adding-an-external-connection)
@@ -14,7 +14,7 @@ You can add a connection between an CodeArtifact repository and an external, pub
 
 ## Add an external connection to a repository<a name="adding-an-external-connection"></a>
 
-To add an external connection to an CodeArtifact repository, use `associate-external-connection`\.
+To add an external connection to a CodeArtifact repository, use `associate-external-connection`\.
 
 ```
 aws codeartifact associate-external-connection --external-connection public:npmjs \
@@ -49,7 +49,7 @@ A repository is limited to a single external connection only\.
 
 ## Supported external connection repositories<a name="supported-public-repositories"></a>
 
- CodeArtifact supports an external connection to the following public repositories\. To use the CodeArtifact CLI to specify an external connection, use the value in the **Name** column for the `--external-connection-name` parameter when you run the `associate-external-connection-to-repository` command\. 
+ CodeArtifact supports an external connection to the following public repositories\. To use the CodeArtifact CLI to specify an external connection, use the value in the **Name** column for the `--external-connection` parameter when you run the `associate-external-connection` command\. 
 
 
 | Repository type | Description | Name | 
@@ -60,6 +60,7 @@ A repository is limited to a single external connection only\.
 | Maven | Google Android repository | public:maven\-googleandroid | 
 | Maven | Gradle plugins repository | public:maven\-gradleplugins | 
 | Maven | CommonsWare Android repository | public:maven\-commonsware | 
+| NuGet | NuGet Gallery | public:nuget\-org | 
 
 ## Remove an external connection<a name="removing-an-external-connection"></a>
 
@@ -82,13 +83,7 @@ Example output:
         "arn": "arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/my-repo",
         "description": "A description of my-repo",
         "upstreams": [],
-        "externalConnections": [
-            {
-                "externalConnectionName": "public:npmjs",
-                "packageFormat": "npm",
-                "status": "AVAILABLE"
-            }
-        ]
+        "externalConnections": []
     }
 }
 ```
@@ -98,11 +93,10 @@ Example output:
 After you add an external connection, configure your package manager to use your CodeArtifact repository\. Use the following for **`npm`**\.
 
 ```
-aws codeartifact login --tool npm --domain my-domain \
-    --domain-owner domain-owner-id --repository my-repo
+aws codeartifact login --tool npm --domain my-domain --domain-owner domain-owner-id --repository my-repo
 ```
 
-Then, request the package from the public repository, as follows\.
+Then, request the package from the public repository\.
 
 ```
 npm install lodash
@@ -111,8 +105,7 @@ npm install lodash
 After the package has been copied into your CodeArtifact repository, you can use the `list-packages` and `list-package-versions` commands to view it\.
 
 ```
-aws codeartifact list-packages --domain my-domain --domain-owner domain-owner-id \
-            --repository my-repo
+aws codeartifact list-packages --domain my-domain --domain-owner domain-owner-id --repository my-repo
 ```
 
 Example output:
@@ -131,8 +124,7 @@ Example output:
 The `list-package-versions` command lists all versions of the package copied into your CodeArtifact repository\. In some cases, this is all of the versions of the package in the external repository\. In other cases, this is a subset of those versions\. For more information, see [npm ingestion behavior](#npm-ingestion-behavior)\.
 
 ```
-aws codeartifact list-package-versions --domain my-domain --domain-owner domain-owner-id \
-            --repository my-repo --format npm --package lodash
+aws codeartifact list-package-versions --domain my-domain --domain-owner domain-owner-id --repository my-repo --format npm --package lodash
 ```
 
 Example output:
@@ -142,6 +134,7 @@ Example output:
     "defaultDisplayVersion: "1.2.5"
     "format": "npm",
     "package": "lodash",
+    "namespace": null,
     "versions": [
         {
             "version": "0.6.0", 
@@ -171,7 +164,7 @@ Example output:
 
  After you add an external connection, configure your build tool to use your CodeArtifact repository\. For more information, see [Use CodeArtifact with mvn](maven-mvn.md) and [Use CodeArtifact with Gradle](maven-gradle.md)\. If you run either tool \(for example, `gradle build`\), packages are requested from Maven Central and stored in your CodeArtifact repository\. 
 
-### Restrict Maven dependency downloads to an CodeArtifact repository<a name="restrict-maven-downloads"></a>
+### Restrict Maven dependency downloads to a CodeArtifact repository<a name="restrict-maven-downloads"></a>
 
  If a package cannot be fetched from a configured repository, by default, the `mvn` command fetches it from Maven Central\. Add the `mirrors` element to `settings.xml` to make `mvn` always use your CodeArtifact repository\.
 
@@ -187,10 +180,10 @@ Example output:
       </mirror>
     </mirrors>
   ...
-  </settings>
+</settings>
 ```
 
-If you add a `mirrors` element, you must also have a `pluginRepository` element in your `settings.xml` or `pom.xml`\. The following example fetches application dependencies and Maven plugins from an CodeArtifact repository\. 
+If you add a `mirrors` element, you must also have a `pluginRepository` element in your `settings.xml` or `pom.xml`\. The following example fetches application dependencies and Maven plugins from a CodeArtifact repository\. 
 
 ```
 <settings>
@@ -216,7 +209,7 @@ If you add a `mirrors` element, you must also have a `pluginRepository` element 
 </settings>
 ```
 
-The following example fetches application dependencies from an CodeArtifact repository and fetches Maven plugins from Maven Central\.
+The following example fetches application dependencies from a CodeArtifact repository and fetches Maven plugins from Maven Central\.
 
 ```
 <profiles>

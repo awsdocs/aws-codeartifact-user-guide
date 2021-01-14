@@ -8,8 +8,4 @@ You specify the actions in the policy's `Action` field\. To specify an action, u
 
 **Using wildcard characters**
 
-You specify an ARN, with or without a wildcard character \(\*\), as the resource value in the policy's `Resource` field\. You can use a wildcard to specify multiple actions or resources\. For example, `codeartifact:*` specifies all CodeArtifact actions and `codeartifact:Describe*` specifies all CodeArtifact actions that begin with the word `Describe`\. The following example refers to all repositories in the `myDomain` domain with names that begin with `my`\.
-
-```
-arn:aws:codeartifact:us-east-2:123456789012:repository/mydomain/my*
-```
+You specify an ARN, with or without a wildcard character \(\*\), as the resource value in the policy's `Resource` field\. You can use a wildcard to specify multiple actions or resources\. For example, `codeartifact:*` specifies all CodeArtifact actions and `codeartifact:Describe*` specifies all CodeArtifact actions that begin with the word `Describe`\.

@@ -9,7 +9,7 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
 1. Use the following `curl` command to publish the JAR to a CodeArtifact repository:
 
    ```
-   curl --request PUT https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/com/mycompany/app/my-app/1.0/my-app-1.0.jar \
+   curl --request PUT https://my-domain-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/my-repo/com/mycompany/app/my-app/1.0/my-app-1.0.jar \
         --user "aws:$CODEARTIFACT_TOKEN" --header "Content-Type: application/octet-stream" \
         --data-binary @target/my-app-1.0.jar
    ```
@@ -17,7 +17,7 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
 1. Use the following `curl` command to publish the POM to a CodeArtifact repository:
 
    ```
-   curl --request PUT https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/com/mycompany/app/my-app/1.0/my-app-1.0.pom \
+   curl --request PUT https://my-domain-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/my-repo/com/mycompany/app/my-app/1.0/my-app-1.0.pom \
         --user "aws:$CODEARTIFACT_TOKEN" --header "Content-Type: application/octet-stream" \
         --data-binary @target/my-app-1.0.pom
    ```
@@ -27,7 +27,7 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
    1.  Option 1: Use the following `curl` command to add a `maven-metadata.xml` file to your package: 
 
       ```
-      curl --request PUT https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/com/mycompany/app/my-app/maven-metadata.xml \
+      curl --request PUT https://my-domain-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/my-repo/com/mycompany/app/my-app/maven-metadata.xml \
            --user "aws:$CODEARTIFACT_TOKEN" --header "Content-Type: application/octet-stream" \
            --data-binary @target/maven-metadata.xml
       ```
@@ -55,7 +55,7 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
       aws codeartifact update-package-versions-status \
           --domain my-domain \
           --domain-owner domain-owner-id \
-          --repository repo-name \
+          --repository my-repo \
           --format maven \
           --namespace com.mycompany.app \
           --package my-app \

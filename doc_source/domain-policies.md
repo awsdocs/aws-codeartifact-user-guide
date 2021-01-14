@@ -40,7 +40,7 @@ Because the policy is evaluated only for operations against the domain it's atta
 
 To access packages in a domain owned by another account, a principal must be granted the `GetAuthorizationToken` permission on the *domain resource*\. This allows the domain owner to exercise control over which accounts can read the contents of repositories in the domain\.
 
-For example, the following resource policy grants the account 123456789012 permission to retrieve an auth token for any repository in the domain\.
+For example, the following resource policy grants the account `123456789012` permission to retrieve an auth token for any repository in the domain\.
 
 ```
 {

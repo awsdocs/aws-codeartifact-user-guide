@@ -1,9 +1,10 @@
 # Use CodeArtifact with Gradle<a name="maven-gradle"></a>
 
-After you have the CodeArtifact auth token in an environment variable as described in [Pass an auth token using an environment variable](tokens-authentication.md#env-var), follow these instructions to consume Maven packages from, and publish new packages to, an CodeArtifact repository\.
+After you have the CodeArtifact auth token in an environment variable as described in [Pass an auth token using an environment variable](tokens-authentication.md#env-var), follow these instructions to consume Maven packages from, and publish new packages to, a CodeArtifact repository\.
 
 **Topics**
 + [Fetch dependencies](#fetching-dependencies)
++ [Fetch plugins](#fetching-plugins)
 + [Publish artifacts](#publishing-artifacts)
 + [Run a Gradle build in IntelliJ IDEA](#gradle-intellij)
 
@@ -16,12 +17,12 @@ maven {
          url 'https://my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/maven/my-repo/'
          credentials {
              username "aws"
-             password System.env.CODEARTIFACT_TOKEN
+             password System.env.CODEARTIFACT_AUTH_TOKEN
          }
 }
 ```
 
-For example, with a repository named `myrepo`, the URL should be the following:
+For example, with a repository named `my-repo`, the URL should be the following:
 
 ```
 url 'https://my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/maven/my-repo/'
@@ -39,9 +40,30 @@ dependencies {
 }
 ```
 
+## Fetch plugins<a name="fetching-plugins"></a>
+
+By default Gradle will resolve plugins from the public [Gradle Plugin Portal](https://plugins.gradle.org/)\. To pull plugins from a CodeArtifact repository, add a `pluginManagement` block to your `settings.gradle` file\. The The `pluginManagement` block must appear before any other statements in `settings.gradle`:
+
+```
+pluginManagement {
+    repositories {
+        maven {
+            name 'repository-name'
+            url 'https://domain-name-domain-owner-id.codeartifact.us-west-2.amazonaws.com/maven/repository-name/'
+            credentials {
+                username 'aws'
+                password System.env.CODEARTIFACT_AUTH_TOKEN
+            }
+        }
+    }
+}
+```
+
+This will ensure that Gradle resolves plugins from the specified repository\. The repository must have an upstream repository with an external connection to the Gradle Plugin Portal \(e\.g\. `gradle-plugins-store`\) so that commonly\-required Gradle plugins are available to the build\. For more information, see the [Gradle documentation](https://docs.gradle.org/current/userguide/plugins.html#sec:custom_plugin_repositories)\.
+
 ## Publish artifacts<a name="publishing-artifacts"></a>
 
-This section describes how to publish a Java library built with Gradle to an CodeArtifact repository\.
+This section describes how to publish a Java library built with Gradle to a CodeArtifact repository\.
 
 First, add the `maven-publish` plugin to the `plugins` section of the project's `build.gradle` file\.
 
@@ -127,7 +149,7 @@ The example shows the `gradle.properties` file located in `GRADLE_USER_HOME`\.
    ```
    repositories {
        maven {
-                url 'https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/'
+                url 'https://my-domain-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/my-repo/'
                 credentials {
                     username "aws"
                     password "$codeartifactToken"
@@ -139,7 +161,7 @@ The example shows the `gradle.properties` file located in `GRADLE_USER_HOME`\.
 1. Fetch a CodeArtifact auth token:
 
    ```
-   export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain domain-name --domain-owner domain-owner-id --query authorizationToken --output text --profile profile-name`
+   export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text --profile profile-name`
    ```
 
 1. Write the auth token into the `gradle.properties` file:
@@ -161,7 +183,7 @@ Use this method if you do not want to modify your `gradle.properties` file\.
    repositories {
    
        maven {
-                url 'https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/'
+                url 'https://my-domain-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/my-repo/'
                 credentials {
                     username "aws"
                     password props.getProperty("codeartifactToken")
@@ -173,7 +195,7 @@ Use this method if you do not want to modify your `gradle.properties` file\.
 1. Fetch a CodeArtifact auth token:
 
    ```
-   export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain domain-name --domain-owner domain-owner-id --query authorizationToken --output text --profile profile-name`
+   export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text --profile profile-name`
    ```
 
 1. Write the auth token into the file that was specified in your `build.gradle` file:

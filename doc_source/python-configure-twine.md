@@ -20,5 +20,5 @@ If you are accessing a repository in a domain that you own, you do not need to i
 ```
 export TWINE_USERNAME=aws
 export TWINE_PASSWORD=`aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text`
-export TWINE_REPOSITORY_URL=`aws codeartifact get-repository-endpoint --domain domain-name --domain-owner domain-owner-id --repository repo-name --format pypi --query repositoryEndpoint --output text`
+export TWINE_REPOSITORY_URL=`aws codeartifact get-repository-endpoint --domain my-domain --domain-owner domain-owner-id --repository my-repo --format pypi --query repositoryEndpoint --output text`
 ```

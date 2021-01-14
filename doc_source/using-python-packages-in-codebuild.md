@@ -1,4 +1,4 @@
-# Using Python Packages in CodeBuild<a name="using-python-packages-in-codebuild"></a>
+# Using Python packages in CodeBuild<a name="using-python-packages-in-codebuild"></a>
 
 The steps below have been tested with the operating systems listed in the [Docker images provided by CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html)\.
 

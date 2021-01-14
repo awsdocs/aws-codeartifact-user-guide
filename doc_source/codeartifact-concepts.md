@@ -24,11 +24,11 @@ Although an organization can have multiple domains, we recommend a single produc
 
 ## Repository<a name="welcome-concepts-repository"></a>
 
-An CodeArtifact *repository* contains a set of [package versions](#welcome-concepts-package-version), each of which maps to a set of [assets](#welcome-concepts-asset)\. Repositories are polyglot—a single repository can contain packages of any supported type\. Each repository exposes endpoints for fetching and publishing packages using tools like the **`npm` ** CLI, the Maven CLI \(**`mvn`**\), and **`pip`**\. You can create up to 1000 repositories per domain\.
+A CodeArtifact *repository* contains a set of [package versions](#welcome-concepts-package-version), each of which maps to a set of [assets](#welcome-concepts-asset)\. Repositories are polyglot—a single repository can contain packages of any supported type\. Each repository exposes endpoints for fetching and publishing packages using tools like the **`nuget`** CLI, the **`npm` ** CLI, the Maven CLI \(**`mvn`**\), and **`pip`**\. You can create up to 1000 repositories per domain\.
 
 ## Package<a name="welcome-concepts-package"></a>
 
-A *package* is a bundle of software and the metadata that is required to resolve dependencies and install the software\. AWS CodeArtifact supports [npm](using-npm.md), [PyPI](using-python.md), [Maven](using-maven.md), and [NuGet](using-NuGet.md) package formats\.
+A *package* is a bundle of software and the metadata that is required to resolve dependencies and install the software\. AWS CodeArtifact supports [npm](using-npm.md), [PyPI](using-python.md), [Maven](using-maven.md), and [NuGet](using-nuget.md) package formats\.
 
 In CodeArtifact, a package consists of:
 + A *name* \(for example, `webpack` is the name of a popular npm package\)

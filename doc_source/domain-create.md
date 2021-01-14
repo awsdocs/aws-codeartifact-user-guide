@@ -43,7 +43,8 @@ aws codeartifact create-domain --domain my-domain
         "status": "Active",
         "encryptionKey": "arn:aws:kms:us-west-2:123456789012:key/your-kms-key",
         "repositoryCount": 0,
-        "assetSizeBytes": 0
+        "assetSizeBytes": 0,
+        "createdTime": "2020-10-12T16:51:18.039000-04:00"
     }
 }
 ```
@@ -65,7 +66,8 @@ aws codeartifact create-domain --domain my-domain --encryption-key arn:aws:kms:u
         "status": "Active",
         "encryptionKey": "arn:aws:kms:us-west-2:123456789012:key/your-kms-key",
         "repositoryCount": 0,
-        "assetSizeBytes": 0
+        "assetSizeBytes": 0,
+        "createdTime": "2020-10-12T16:51:18.039000-04:00"
     }
 }
 ```

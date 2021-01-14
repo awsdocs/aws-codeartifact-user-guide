@@ -1,7 +1,7 @@
 # CodeArtifact CodeArtifact User Guide
 
 -----
-*****Copyright &copy; 2020 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; 2021 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -44,6 +44,7 @@ Amazon's trademarks and trade dress may not be used in
    + [List package names](list-packages.md)
    + [List package versions](list-packages-versions.md)
    + [List package version assets](list-assets.md)
+   + [Download package version assets](download-assets.md)
    + [Copy packages between repositories](copy-package.md)
    + [Delete a package version](delete-package.md)
    + [View and update package version details and dependencies](describe-package-version.md)
@@ -71,10 +72,15 @@ Amazon's trademarks and trade dress may not be used in
    + [Publishing with curl](maven-curl.md)
    + [Using Maven checksums](maven-checksums.md)
    + [Use Maven snapshots](maven-snapshots.md)
++ [Using CodeArtifact with NuGet](using-nuget.md)
+   + [Use CodeArtifact with Visual Studio](nuget-visual-studio.md)
+   + [Use CodeArtifact with the nuget or dotnet CLI](nuget-cli.md)
+   + [NuGet compatibility](nuget-compatibility.md)
 + [Using CodeArtifact with CodeBuild](codebuild.md)
    + [Using npm packages in CodeBuild](using-npm-packages-in-codebuild.md)
-   + [Using Python Packages in CodeBuild](using-python-packages-in-codebuild.md)
+   + [Using Python packages in CodeBuild](using-python-packages-in-codebuild.md)
    + [Using Maven packages in CodeBuild](using-maven-packages-in-codebuild.md)
+   + [Using NuGet packages in CodeBuild](using-nuget-packages-in-codebuild.md)
    + [Dependency caching](dependency-caching.md)
 + [Working with CodeArtifact events](working-with-service-events.md)
    + [CodeArtifact event format and example](service-event-format-example.md)

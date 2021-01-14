@@ -74,7 +74,7 @@ After you configure the npm client, you can run `npm` commands\. Assuming that a
 npm install lodash
 ```
 
-Use the following command to publish a new npm package to an CodeArtifact repository\.
+Use the following command to publish a new npm package to a CodeArtifact repository\.
 
 ```
 npm publish

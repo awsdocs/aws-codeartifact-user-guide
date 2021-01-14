@@ -148,7 +148,7 @@ aws codeartifact get-package-version-readme --domain my-domain --domain-owner do
 
 ## Update package version status<a name="update-package-version-status"></a>
 
-You can update the status of a package version using both the CLI and console\.For more information on package version status, see [Package version status](packages-overview.md#package-version-status)\.
+You can update the status of a package version using both the CLI and console\. For more information on package version status, see [Package version status](packages-overview.md#package-version-status)\.
 
 ### Update package version status \(CLI\)<a name="update-package-version-status-cli"></a>
 

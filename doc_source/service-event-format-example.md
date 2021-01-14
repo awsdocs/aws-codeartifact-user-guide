@@ -1,6 +1,6 @@
 # CodeArtifact event format and example<a name="service-event-format-example"></a>
 
-The following are event fields and descriptions along with an example of an CodeArtifact event\.
+The following are event fields and descriptions along with an example of a CodeArtifact event\.
 
 ## CodeArtifact event format<a name="service-event-format"></a>
 
@@ -12,7 +12,10 @@ The following are event fields and descriptions along with an example of an Code
 | version | The version of the event format\. There is currently only a single version, 0\. | 
 | id | A unique identifier for the event\. | 
 | detail\-type | The type of event\. This determines the fields in the detail object\. The one detail\-type currently supported is CodeArtifact Package Version State Change\. | 
+| source | The source of the event\. For CodeArtifact, it will be aws\.codeartifact\. | 
 | account | The account that owns the domain and repository that triggered the event\. | 
+| time | The exact time the event was triggered\. | 
+| region | The region where the event was triggered\. | 
 | resources | A list that contains the ARN of the package that changed\. The list contains one entry\. For information about package ARN format, see [Grant write access to packages](repo-policies.md#granting-write-access-to-specific-packages)\. | 
 | domainName | The domain that contains the repository that contains the package\. | 
 | domainOwner | The AWS account ID of the owner of the domain\. | 
@@ -34,7 +37,7 @@ The following are event fields and descriptions along with an example of an Code
 
 ## CodeArtifact event example<a name="service-event-sample"></a>
 
- The following is an example of an CodeArtifact event that might be triggered when an npm package is published\. 
+ The following is an example of a CodeArtifact event that might be triggered when an npm package is published\. 
 
 ```
 {
@@ -45,9 +48,9 @@ The following are event fields and descriptions along with an example of an Code
   "account":"123456789012",
   "time":"2019-11-21T23:19:54Z",
   "region":"us-west-2",
-  "resources":["arn:aws:codeartifact:us-west-2:123456789012:package/mydomain/myrepo/npm//mypackage"],
+  "resources":["arn:aws:codeartifact:us-west-2:123456789012:package/my-domain/myrepo/npm//mypackage"],
   "detail":{
-    "domainName":"mydomain",
+    "domainName":"my-domain",
     "domainOwner":"123456789012",
     "repositoryName":"myrepo",
     "packageFormat":"npm",

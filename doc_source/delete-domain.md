@@ -33,7 +33,8 @@ aws codeartifact delete-domain --domain my-domain --domain-owner domain-owner-id
         "status": "Active",
         "encryptionKey": "arn:aws:kms:us-west-2:123456789012:key/your-kms-key",
         "repositoryCount": 0,
-        "assetSizeBytes": 0
+        "assetSizeBytes": 0,
+        "createdTime": "2020-10-12T16:51:18.039000-04:00"
     }
 }
 ```

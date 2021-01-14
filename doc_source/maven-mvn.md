@@ -1,8 +1,8 @@
 # Use CodeArtifact with mvn<a name="maven-mvn"></a>
 
-You use the `mvn` command to execute Maven builds\. This section shows how to configure `mvn` to use an CodeArtifact repository\.
+You use the `mvn` command to execute Maven builds\. This section shows how to configure `mvn` to use a CodeArtifact repository\.
 
-After you have the CodeArtifact auth token in an environment variable as described in [Passing an Auth Token Using an Environment Variable](tokens-authentication.md#env-var), follow these instructions to consume Maven packages from, and publish new packages to, an CodeArtifact repository\.
+After you have the CodeArtifact auth token in an environment variable as described in [Passing an Auth Token Using an Environment Variable](tokens-authentication.md#env-var), follow these instructions to consume Maven packages from, and publish new packages to, a CodeArtifact repository\.
 
 **Topics**
 + [Fetch dependencies](#fetching-dependencies)
@@ -11,9 +11,9 @@ After you have the CodeArtifact auth token in an environment variable as describ
 
 ## Fetch dependencies<a name="fetching-dependencies"></a>
 
-To configure `mvn` to fetch dependencies from an CodeArtifact repository, you must edit the Maven configuration file, `settings.xml`, and optionally, your project's POM\.
+To configure `mvn` to fetch dependencies from a CodeArtifact repository, you must edit the Maven configuration file, `settings.xml`, and optionally, your project's POM\.
 
-1. In `settings.xml` \(typically found at `~/.m2/settings.xml`\), add a `<servers>` section with a reference to the `CODEARTIFACT_TOKEN` environment variable so that Maven passes the token in HTTP requests\.
+1. In `settings.xml` \(typically found at `~/.m2/settings.xml`\), add a `<servers>` section with a reference to the `CODEARTIFACT_AUTH_TOKEN` environment variable so that Maven passes the token in HTTP requests\.
 
    ```
    <settings>
@@ -22,7 +22,7 @@ To configure `mvn` to fetch dependencies from an CodeArtifact repository, you mu
            <server>
                <id>codeartifact</id>
                <username>aws</username>
-               <password>${env.CODEARTIFACT_TOKEN}</password>
+               <password>${env.CODEARTIFACT_AUTH_TOKEN}</password>
            </server>
        </servers>
    ...
@@ -96,9 +96,9 @@ Downloaded from codeartifact: https://<domain>.d.codeartifact.us-west-2.amazonaw
 
 ## Publish artifacts<a name="publishing-artifacts"></a>
 
-To publish a Maven artifact with `mvn` to an CodeArtifact repository, you must also edit `~/.m2/settings.xml` and the project POM\.
+To publish a Maven artifact with `mvn` to a CodeArtifact repository, you must also edit `~/.m2/settings.xml` and the project POM\.
 
-1. Add a `<servers>` section to `settings.xml` with a reference to the `CODEARTIFACT_AUTH_TOKEN` environment variable so that Maven passes the token in HTTP requests\.
+1. Add a `<servers>` section to `settings.xml` with a reference to the `CODEARTIFACT_TOKEN` environment variable so that Maven passes the token in HTTP requests\.
 
    ```
    <settings>
@@ -107,7 +107,7 @@ To publish a Maven artifact with `mvn` to an CodeArtifact repository, you must a
            <server>
                <id>codeartifact</id>
                <username>aws</username>
-               <password>${env.CODEARTIFACT_AUTH_TOKEN}</password>
+               <password>${env.CODEARTIFACT_TOKEN}</password>
            </server>
        </servers>
    ...
@@ -147,6 +147,7 @@ Sample output:
 
 ```
 {
+    "defaultDisplayVersion": null,
     "format": "maven",
     "namespace": "com.company.framework",
     "package": "my-package-name",
@@ -162,9 +163,9 @@ Sample output:
 
 ## Publish third\-party artifacts<a name="publishing-third-party-artifacts"></a>
 
-You can publish third\-party Maven artifacts to a CodeArtifact repository with `mvn deploy:deploy-file`\. This can be helpful to users that want to publish artifacts and only have `JAR` files and don't have access to package source code or `POM` files\.
+You can publish third\-party Maven artifacts to a CodeArtifact repository with `mvn deploy:deploy-file`\. This can be helpful to users that want to publish artifacts and only have JAR files and don't have access to package source code or POM files\.
 
-The `mvn deploy:deploy-file` command will generate a `POM` file based on the information passed in the command line\.
+The `mvn deploy:deploy-file` command will generate a POM file based on the information passed in the command line\.
 
 **Publish third\-party Maven artifacts**
 
@@ -185,7 +186,7 @@ The `mvn deploy:deploy-file` command will generate a `POM` file based on the inf
 1. Fetch a CodeArtifact authorization token:
 
    ```
-   export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain domain-name --domain-owner domain-owner-id --query authorizationToken --output text --profile profile-name
+   export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text --profile profile-name
    ```
 
 1. Run the `mvn deploy:deploy-file` command:
@@ -197,7 +198,7 @@ The `mvn deploy:deploy-file` command will generate a `POM` file based on the inf
    -Dfile=./commons-cli-1.4.jar   \
    -Dpackaging=jar                \
    -DrepositoryId=codeartifact    \
-   -Durl=https://domain-name-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/
+   -Durl=https://my-domain-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/
    ```
 **Note**  
 The example above publishes `commons-cli 1.4`\. Modify the groupId, artifactID, version, and file arguments to publish a different JAR\.

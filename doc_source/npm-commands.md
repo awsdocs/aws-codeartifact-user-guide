@@ -9,7 +9,7 @@ The following sections summarize the `npm` commands that are supported, by CodeA
 
 ## Supported commands that interact with a repository<a name="supported-commands-that-interact-with-a-repository"></a>
 
-This section lists `npm` commands where the `npm` client makes one or more requests to the registry it's been configured with \(for example, with `npm config set registry` \)\. These commands have been verified to function correctly when invoked against an CodeArtifact repository\.
+This section lists `npm` commands where the `npm` client makes one or more requests to the registry it's been configured with \(for example, with `npm config set registry` \)\. These commands have been verified to function correctly when invoked against a CodeArtifact repository\.
 
 
 ****  
@@ -50,8 +50,8 @@ These commands don't require any direct interaction with a repository, so CodeAr
 |   [explore](https://docs.npmjs.com/cli/explore)   |  Browses an installed package\. Spawns a subshell in the directory of the installed package specified\. If a command is specified, then it is run in the subshell, which then immediately terminates\.  | 
 |   [help](https://docs.npmjs.com/cli/help)   |  Gets help on npm\.  | 
 |   [help\-search](https://docs.npmjs.com/cli/help-search)   |  Searches npm help documentation\.  | 
-|   [init](https://docs.npmjs.com/cli/init)   |  Interactively creates a `package.json` file\.  | 
-|   [link](https://docs.npmjs.com/cli/link)   |  Symlink a package folder\.  | 
+|   [init](https://docs.npmjs.com/cli/init)   |  Creates a `package.json` file\.  | 
+|   [link](https://docs.npmjs.com/cli/link)   |  Symlinks a package folder\.  | 
 |   [ls](https://docs.npmjs.com/cli/ls)   |  Lists installed packages\.  | 
 |   [pack](https://docs.npmjs.com/cli/pack)   |  Creates a tarball from a package\.  | 
 |   [prefix](https://docs.npmjs.com/cli/prefix)   |  Displays prefix\. This is the closest parent directory to contain a `package.json` file unless `-g` is also specified\.  | 
@@ -75,14 +75,14 @@ These `npm` commands are not supported by CodeArtifact repositories\.
 |   [access](https://docs.npmjs.com/cli/access)   |  Sets the access level on published packages\.  |  CodeArtifact uses a permission model that is different from the public npmjs repository\.  | 
 |   [adduser](https://docs.npmjs.com/cli/adduser)   |  Adds a registry user account  |  CodeArtifact uses a user model that is different from the public npmjs repository\.  | 
 |   [audit](https://docs.npmjs.com/cli/audit)   |  Runs a security audit\.  |  CodeArtifact does not currently vend security vulnerability data\.  | 
-|   [hook](https://docs.npmjs.com/cli/hook)   |  Allows you to manage npm hooks, including adding, removing, listing, and updating\.  |  CodeArtifact does not currently support any kind of change notification mechanism\.  | 
+|   [hook](https://docs.npmjs.com/cli/hook)   |  Manages npm hooks, including adding, removing, listing, and updating\.  |  CodeArtifact does not currently support any kind of change notification mechanism\.  | 
 |   [login](https://docs.npmjs.com/cli-commands/adduser.html)   |  Authenticates a user\. This is an alias for `npm adduser`\.   |  CodeArtifact uses an authentication model that is different from the public npmjs repository\. For information, see [Authentication with npm](npm-auth.md)\.  | 
-|   [logout](https://docs.npmjs.com/cli/logout)   |  Signs out of the registry\.  |  CodeArtifact uses an authentication model that is different from the public npmjs repository\. There is no way to sign out from an CodeArtifact repository, but authentication tokens expire after their configurable expiration time\. The default token duration is 12 hours\.   | 
+|   [logout](https://docs.npmjs.com/cli/logout)   |  Signs out of the registry\.  |  CodeArtifact uses an authentication model that is different from the public npmjs repository\. There is no way to sign out from a CodeArtifact repository, but authentication tokens expire after their configurable expiration time\. The default token duration is 12 hours\.   | 
 |   [owner](https://docs.npmjs.com/cli/owner)   |  Manages package owners\.  |  CodeArtifact uses a permissions model that is different from the public npmjs repository\.  | 
 |   [profile](https://docs.npmjs.com/cli/profile)   |  Changes settings on your registry profile\.  |  CodeArtifact uses a user model that is different from the public npmjs repository\.  | 
 |   [search](https://docs.npmjs.com/cli/search)   |  Searches the registry for packages matching the search terms\.  |  CodeArtifact supports limited search functionality with the [list\-packages](list-packages.md) command\.  | 
 |   [star](https://docs.npmjs.com/cli/star)   |  Marks your favorite packages\.  |  CodeArtifact currently does not support any kind of favorites mechanism\.  | 
-|   [stars](https://docs.npmjs.com/cli/stars)   |  View packages marked as favorites\.  |  CodeArtifact currently does not support any kind of favorites mechanism\.  | 
+|   [stars](https://docs.npmjs.com/cli/stars)   |  Views packages marked as favorites\.  |  CodeArtifact currently does not support any kind of favorites mechanism\.  | 
 |   [team](https://docs.npmjs.com/cli/team)   |  Manages organization teams and team memberships\.  |  CodeArtifact uses a user and group membership model that is different from the public npmjs repository\. For information, see [Identities \(Users, Groups, and Roles\)](https://docs.aws.amazon.com/IAM/latest/UserGuide/id.html) in the *IAM User Guide*\.  | 
 |   [token](https://docs.npmjs.com/cli/token)   |  Manages your authentication tokens\.  |  CodeArtifact uses a different model for getting authentication tokens\. For information, see [Authentication with npm](npm-auth.md)\.  | 
 |   [unpublish](https://docs.npmjs.com/cli/unpublish)   |  Removes a package from the registry\.  |  CodeArtifact does not support removing a package version from a repository using the npm client\. You can use the [delete\-package\-version](delete-package.md) command\.  | 

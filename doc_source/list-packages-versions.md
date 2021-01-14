@@ -56,7 +56,7 @@ You can add the `--status` parameter to the `list-package-versions` call to filt
 
 ```
 aws codeartifact list-package-versions --domain my-domain --domain-owner domain-owner-id --repository my-repository  \
---format npm --package webpack --max-results 5 --sort-by PUBLISH_TIME
+--format npm --package webpack --max-results 5 --sort-by PUBLISHED_TIME
 ```
 
  Sample output: 
