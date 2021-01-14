@@ -28,7 +28,7 @@ An CodeArtifact *repository* contains a set of [package versions](#welcome-conce
 
 ## Package<a name="welcome-concepts-package"></a>
 
-A *package* is a bundle of software and the metadata that is required to resolve dependencies and install the software\. AWS CodeArtifact supports [npm](using-npm.md), [PyPI](using-python.md), and [Maven](using-maven.md) package formats\.
+A *package* is a bundle of software and the metadata that is required to resolve dependencies and install the software\. AWS CodeArtifact supports [npm](using-npm.md), [PyPI](using-python.md), [Maven](using-maven.md), and [NuGet](using-NuGet.md) package formats\.
 
 In CodeArtifact, a package consists of:
 + A *name* \(for example, `webpack` is the name of a popular npm package\)
