@@ -126,14 +126,14 @@ For manual configuration, you must add a repository endpoint and authorization t
 #### [ dotnet ]
 
    ```
-   dotnet nuget add source https://my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/nuget/my-repo/v3/index.json --name packageSourceName --password eyJ2I...viOw -username aws
+   dotnet nuget add source https://my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/nuget/my-repo/v3/index.json --name packageSourceName --password eyJ2I...viOw --username aws
    ```
 
 ------
 #### [ nuget ]
 
    ```
-   nuget sources add -name domain_name/repo_name -Source https://my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/nuget/my-repo/v3/index.json -password eyJ2I...viOw -username aws
+   nuget sources add -name domain_name/repo_name -Source https://my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/nuget/my-repo/v3/index.json -password eyJ2I...viOw --username aws
    ```
 
 ------
