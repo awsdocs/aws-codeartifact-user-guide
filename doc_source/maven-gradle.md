@@ -203,3 +203,25 @@ Use this method if you do not want to modify your `gradle.properties` file\.
    ```
    echo "codeartifactToken=$CODEARTIFACT_AUTH_TOKEN" > file
    ```
+  
+**Method 3: Execute `aws` as an inline script**
+
+Use this method if you want the gradle script to fetch a new token on each run\.
+
+1. Update your `build.gradle` file with the following snippet:
+
+   ```
+    def awsToken = "aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text --profile profile-name".execute().text
+   repositories {
+   
+       maven {
+                url 'https://my-domain-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/my-repo/'
+                credentials {
+                    username "aws"
+                    password awsToken
+                }
+       }
+   }
+   ```
+   
+This way the token is never stored on the local file system.
