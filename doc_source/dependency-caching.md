@@ -21,3 +21,4 @@ For other tools, use the cache folders shown in this table\.
 |   ** `gradle` **   |   `/root/.gradle/caches/**/*`   | 
 |   ** `pip` **   |   `/root/.cache/pip/**/*`   | 
 |   ** `npm` **   |   `/root/.npm/**/*`   | 
+|   ** `nuget` **   |   `/root/.nuget/**/*`   | 
