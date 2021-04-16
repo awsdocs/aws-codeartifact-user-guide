@@ -18,6 +18,14 @@ This command makes the following changes to your `~/.npmrc` file:
 
 The default authorization period after calling `login` is 12 hours, and `login` must be called to periodically refresh the token\. For more information about the authorization token created with the `login` command, see [Tokens created with the `login` command](tokens-authentication.md#auth-token-login)\.
 
+## Changing back to default NPM Registry
+
+Run the following command to set NPM back to its default registry when you're done connecting to CodeArtifact.
+
+```
+npm config set registry https://registry.npmjs.com/
+```
+
 ## Verify npm authentication and authorization<a name="verifying-npm-authentication-and-authorization"></a>
 
 Invoking the `npm ping` command is an easy way to verify the following:
