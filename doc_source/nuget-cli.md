@@ -45,7 +45,7 @@ To use the credential provider, ensure that any existing AWS CodeArtifact creden
 ------
 #### [ nuget ]
 
-Follow the steps below to use the NuGet CLI to install the CodeArtifact Credential Provider from an Amazon S3 bucket and configure it\. The credential provider will use the default AWS CLI profile, for more information on profiles, see [Named profiles](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)\.
+Perform the following steps to use the NuGet CLI to install the CodeArtifact Credential Provider from an Amazon S3 bucket and configure it\. The credential provider will use the default AWS CLI profile, for more information on profiles, see [Named profiles](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)\.
 
 1. Download [AWS\.CodeArtifact\.NuGet\.CredentialProvider\.zip](https://a.co/dbGqKq7) from an Amazon S3 bucket\.
 
@@ -67,15 +67,30 @@ The `codeartifact login` command in the AWS CLI adds a repository endpoint and a
 
 1. Configure your AWS credentials for use with the AWS CLI, as described in [Getting started with CodeArtifact](getting-started.md)\.
 
-1. On Windows, ensure that `nuget.exe` has been added to your `PATH`\. On MacOS, create an alias for nuget by running the `alias nuget="mono /usr/local/bin/nuget.exe"` command\.
+1. Ensure that the NuGet CLI tool \(`nuget` or `dotnet`\) has been properly installed and configured\. For instructions, see the [nuget](https://docs.microsoft.com/en-us/nuget/reference/nuget-exe-cli-reference) or [dotnet](https://docs.microsoft.com/en-us/dotnet/core/install/) documentation\.
 
 1. Use the CodeArtifact `login` command to fetch credentials for use with NuGet\.
 **Note**  
 If you are accessing a repository in a domain that you own, you don't need to include `--domain-owner`\. For more information, see [Cross\-account domains](domain-overview.md#domain-overview-cross-account)\.
 
+------
+#### [ dotnet ]
+
+**Important**  
+**Linux and MacOS users:** Because encryption is not supported on non\-Windows platforms, your fetched credentials will be stored as plain text in your configuration file\.
+
    ```
-   aws codeartifact login --tool nuget --domain my-domain --domain-owner domain-owner-id --repository my-repo
+   aws codeartifact login --tool dotnet --domain my_domain --domain-owner 111122223333 --repository my_repo
    ```
+
+------
+#### [ nuget ]
+
+   ```
+   aws codeartifact login --tool nuget --domain my_domain --domain-owner 111122223333 --repository my_repo
+   ```
+
+------
 
 The login command will:
 + Fetch an authorization token from CodeArtifact using your AWS credentials\. 
@@ -94,21 +109,21 @@ For manual configuration, you must add a repository endpoint and authorization t
 1. Determine your CodeArtifact repository endpoint by using the `get-repository-endpoint` AWS CLI command\.
 
    ```
-   aws codeartifact get-repository-endpoint --domain my-domain --domain-owner domain-owner-id --repository my-repo --format nuget
+   aws codeartifact get-repository-endpoint --domain my_domain --domain-owner 111122223333 --repository my_repo --format nuget
    ```
 
    Example output:
 
    ```
    {
-      "repositoryEndpoint": "https://my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/nuget/my-repo/"
+      "repositoryEndpoint": "https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/nuget/my_repo/"
    }
    ```
 
 1. Get an authorization token to connect to your repository from your package manager by using the `get-authorization-token` AWS CLI command\.
 
    ```
-   aws codeartifact get-authorization-token --domain my-domain
+   aws codeartifact get-authorization-token --domain my_domain
    ```
 
    Example output:
@@ -125,15 +140,17 @@ For manual configuration, you must add a repository endpoint and authorization t
 ------
 #### [ dotnet ]
 
+   **Linux and MacOS users:** Because encryption is not supported on non\-Windows platforms, you must add the `--store-password-in-clear-text` flag to the following command\. Note that this will store your password as plain text in your configuration file\.
+
    ```
-   dotnet nuget add source https://my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/nuget/my-repo/v3/index.json --name packageSourceName --password eyJ2I...viOw --username aws
+   dotnet nuget add source https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/nuget/my_repo/v3/index.json --name packageSourceName --password eyJ2I...viOw --username aws
    ```
 
 ------
 #### [ nuget ]
 
    ```
-   nuget sources add -name domain_name/repo_name -Source https://my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/nuget/my-repo/v3/index.json -password eyJ2I...viOw --username aws
+   nuget sources add -name domain_name/repo_name -Source https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/nuget/my_repo/v3/index.json -password eyJ2I...viOw --username aws
    ```
 
 ------
@@ -154,7 +171,7 @@ To consume a package version from a CodeArtifact repository or one of its upstre
 #### [ dotnet ]
 
 ```
-dotnet add packageName --source packageSourceName
+dotnet add package packageName --source packageSourceName
 ```
 
 ------
@@ -172,7 +189,7 @@ nuget install packageName -Source packageSourceName
 #### [ dotnet ]
 
 ```
-dotnet add packageName --version 1.0.0 --source packageSourceName
+dotnet add package packageName --version 1.0.0 --source packageSourceName
 ```
 
 ------
@@ -196,6 +213,9 @@ Once you have [configured NuGet with CodeArtifact](https://docs.aws.amazon.com/c
 
 To push a package version to a CodeArtifact repository, run the following command with the full path to your `.nupkg` file and the source name for your CodeArtifact repository in your NuGet configuration file\. If you used the `login` command to configure your NuGet configuration, the source name is `domain_name/repo_name`\.
 
+**Note**  
+You can create a NuGet package if you do not have one to publish\. For more information, see [Package creation workflow](https://docs.microsoft.com/en-us/nuget/create-packages/overview-and-workflow) in the *Microsoft documentation*\.
+
 ------
 #### [ dotnet ]
 
@@ -218,7 +238,7 @@ The CodeArtifact Credential Provider makes it easy to configure and authenticate
 
 ### CodeArtifact Credential Provider commands<a name="nuget-cred-provider-reference-commands"></a>
 
-Below is the list of commands for the CodeArtifact Credential Provider\. These commands must be prefixed with `dotnet codeartifact-creds` like the following example\.
+This section includes the list of commands for the CodeArtifact Credential Provider\. These commands must be prefixed with `dotnet codeartifact-creds` like the following example\.
 
 ```
 dotnet codeartifact-creds command

@@ -13,12 +13,12 @@
 
 ## Create the EventBridge rule<a name="configure-service-events-codepipeline-create-rule"></a>
 
- To create the rule, use the `put-rule` command with the `--name` and `--event-pattern` parameters\. The event pattern specifies values that are matched against the contents of each event\. The target is triggered if the pattern matches the event\. For example, the following pattern matches CodeArtifact events from the `myrepo` repository in the `my-domain` domain\. 
+ To create the rule, use the `put-rule` command with the `--name` and `--event-pattern` parameters\. The event pattern specifies values that are matched against the contents of each event\. The target is triggered if the pattern matches the event\. For example, the following pattern matches CodeArtifact events from the `myrepo` repository in the `my_domain` domain\. 
 
 ```
 aws events put-rule --name MyCodeArtifactRepoRule --event-pattern \
     '{"source":["aws.codeartifact"],"detail-type":["CodeArtifact Package Version State Change"],
-    "detail":{"domainName":["my-domain"],"domainOwner":["domain-owner-id"],"repositoryName":["myrepo"]}}'
+    "detail":{"domainName":["my_domain"],"domainOwner":["111122223333"],"repositoryName":["myrepo"]}}'
 ```
 
 ## Create the EventBridge rule target<a name="configure-service-events-codepipeline-create-rule-target"></a>
@@ -27,6 +27,6 @@ aws events put-rule --name MyCodeArtifactRepoRule --event-pattern \
 
 ```
 aws events put-targets --rule MyCodeArtifactRepoRule --targets \
-  'Id=1,Arn=arn:aws:codepipeline:us-west-2:domain-owner-id:pipeline-name,
+  'Id=1,Arn=arn:aws:codepipeline:us-west-2:111122223333:pipeline-name,
   RoleArn=arn:aws:iam::123456789012:role/MyRole'
 ```

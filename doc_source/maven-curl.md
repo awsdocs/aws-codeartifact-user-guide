@@ -9,16 +9,18 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
 1. Use the following `curl` command to publish the JAR to a CodeArtifact repository:
 
    ```
-   curl --request PUT https://my-domain-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/my-repo/com/mycompany/app/my-app/1.0/my-app-1.0.jar \
-        --user "aws:$CODEARTIFACT_TOKEN" --header "Content-Type: application/octet-stream" \
+   curl --request PUT https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/maven/my_repo/com/mycompany/app/my-app/1.0/my-app-1.0.jar \
+        --user "aws:$CODEARTIFACT_AUTH_TOKEN" --header "Content-Type: application/octet-stream" \
         --data-binary @target/my-app-1.0.jar
    ```
+
+   In the sample above, `my_domain` is the name of your domain, `111122223333` is the ID of AWS account that owns the domain, and `my_repo` is the name of your repository\.
 
 1. Use the following `curl` command to publish the POM to a CodeArtifact repository:
 
    ```
-   curl --request PUT https://my-domain-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/my-repo/com/mycompany/app/my-app/1.0/my-app-1.0.pom \
-        --user "aws:$CODEARTIFACT_TOKEN" --header "Content-Type: application/octet-stream" \
+   curl --request PUT https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/maven/my_repo/com/mycompany/app/my-app/1.0/my-app-1.0.pom \
+        --user "aws:$CODEARTIFACT_AUTH_TOKEN" --header "Content-Type: application/octet-stream" \
         --data-binary @target/my-app-1.0.pom
    ```
 
@@ -27,12 +29,12 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
    1.  Option 1: Use the following `curl` command to add a `maven-metadata.xml` file to your package: 
 
       ```
-      curl --request PUT https://my-domain-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/my-repo/com/mycompany/app/my-app/maven-metadata.xml \
-           --user "aws:$CODEARTIFACT_TOKEN" --header "Content-Type: application/octet-stream" \
+      curl --request PUT https://my_domain-111122223333.d.codeartifact.region.amazonaws.com/maven/my_repo/com/mycompany/app/my-app/maven-metadata.xml \
+           --user "aws:$CODEARTIFACT_AUTH_TOKEN" --header "Content-Type: application/octet-stream" \
            --data-binary @target/maven-metadata.xml
       ```
 
-      Below is an example of the contents of a `maven-metadata.xml` file:
+      The following is an example of the contents of a `maven-metadata.xml` file:
 
       ```
       <metadata modelVersion="1.1.0">
@@ -53,9 +55,9 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
 
       ```
       aws codeartifact update-package-versions-status \
-          --domain my-domain \
-          --domain-owner domain-owner-id \
-          --repository my-repo \
+          --domain my_domain \
+          --domain-owner 111122223333 \
+          --repository my_repo \
           --format maven \
           --namespace com.mycompany.app \
           --package my-app \

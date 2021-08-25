@@ -1,5 +1,11 @@
 # Run twine<a name="python-run-twine"></a>
 
+Before using `twine` to publish Python package assets, you must first configure CodeArtifact permissions and resources\.
+
+1. Follow the steps in the [Setting up with AWS CodeArtifact](get-set-up-for-codeartifact.md) section to configure your AWS account, tools, and permissions\.
+
+1. Configure `twine` by following the steps in [Configure clients with the login command](python-configure.md)\.
+
 After you configure `twine`, you can run `twine` commands\. Use the following command to publish Python package assets\.
 
 ```

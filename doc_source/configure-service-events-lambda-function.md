@@ -2,7 +2,7 @@
 
  This example shows you how to configure an EventBridge rule that starts an AWS Lambda function when a package version in a CodeArtifact repository is published, modified, or deleted\. 
 
-For more information, see [Tutorial: Schedule AWS Lambda Functions Using EventBridge](https://docs.aws.amazon.com/eventbridge/latest/userguide/run-lambda-schedule.html) in the *Amazon CloudWatch Events User Guide*\. 
+For more information, see [Tutorial: Schedule AWS Lambda Functions Using EventBridge](https://docs.aws.amazon.com/eventbridge/latest/userguide/run-lambda-schedule.html) in the *Amazon EventBridge User Guide*\. 
 
 **Topics**
 + [Create the EventBridge rule](#configure-service-events-lambda-create-rule)
@@ -11,12 +11,12 @@ For more information, see [Tutorial: Schedule AWS Lambda Functions Using EventBr
 
 ## Create the EventBridge rule<a name="configure-service-events-lambda-create-rule"></a>
 
- To create a rule that starts a Lambda function, use the `put-rule` command with the `--name` and `--event-pattern` options\. The following pattern specifies npm packages in the `@types` scope in any repository in the `my-domain` domain\.
+ To create a rule that starts a Lambda function, use the `put-rule` command with the `--name` and `--event-pattern` options\. The following pattern specifies npm packages in the `@types` scope in any repository in the `my_domain` domain\.
 
 ```
 aws events put-rule --name "MyCodeArtifactRepoRule" --event-pattern \
   '{"source":["aws.codeartifact"],"detail-type":["CodeArtifact Package Version State Change"],
-  "detail":{"domainName":["my-domain"],"domainOwner":["domain-owner-id"],"packageNamespace":["types"],"packageFormat":["npm"]}}'
+  "detail":{"domainName":["my_domain"],"domainOwner":["111122223333"],"packageNamespace":["types"],"packageFormat":["npm"]}}'
 ```
 
 ## Create the EventBridge rule target<a name="configure-service-events-lambda-create-rule-target"></a>
@@ -25,7 +25,7 @@ aws events put-rule --name "MyCodeArtifactRepoRule" --event-pattern \
 
 ```
 aws events put-targets --rule MyCodeArtifactRepoRule --targets \
-  Id=1,Arn=arn:aws:lambda:us-west-2:domain-owner-id:function:MyLambdaFunction
+  Id=1,Arn=arn:aws:lambda:us-west-2:111122223333:function:MyLambdaFunction
 ```
 
 ## Configure EventBridge permissions<a name="configure-service-events-lambda-permissions"></a>
@@ -36,5 +36,5 @@ aws events put-targets --rule MyCodeArtifactRepoRule --targets \
 aws lambda add-permission --function-name MyLambdaFunction \\
   --statement-id my-statement-id --action 'lambda:InvokeFunction' \\
   --principal events.amazonaws.com \\
-  --source-arn arn:aws:events:us-west-2:domain-owner-id:rule/MyCodeArtifactRepoRule
+  --source-arn arn:aws:events:us-west-2:111122223333:rule/MyCodeArtifactRepoRule
 ```

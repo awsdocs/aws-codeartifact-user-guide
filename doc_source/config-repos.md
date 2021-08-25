@@ -42,7 +42,7 @@ After you create a repository, you cannot change its name, associated AWS accoun
 To view a repository's current configuration in CodeArtifact, use the `describe-repository` command\.
 
 ```
-aws codeartifact describe-repository --domain my-domain --domain-owner domain-owner-id --repository my-repo
+aws codeartifact describe-repository --domain my_domain --domain-owner 111122223333 --repository my_repo
 ```
 
 Example output:
@@ -50,11 +50,11 @@ Example output:
 ```
 {
     "repository": {
-        "name": "my-repo",
+        "name": "my_repo",
         "administratorAccount": "123456789012,
-        "domainName": "my-domain",
-        "domainOwner": "123456789012",
-        "arn": "arn:aws:codeartifact:region-id:544120495673:repository/my-domain/my-repo"
+        "domainName": "my_domain",
+        "domainOwner": "111122223333",
+        "arn": "arn:aws:codeartifact:region-id:111122223333:repository/my_domain/my_repo"
         "upstreams": [],
         "externalConnections": []
     }
@@ -66,7 +66,7 @@ Example output:
 An upstream repository allows a package manager client to access the packages contained in more than one repository using a single URL endpoint\. To add or change a repository's upstream relationship, use the `update-repository` command\.
 
 ```
-aws codeartifact update-repository --domain my-domain --domain-owner domain-owner-id --repository my-repo \
+aws codeartifact update-repository --domain my_domain --domain-owner 111122223333 --repository my_repo \
        --upstreams repositoryName=my-upstream-repo
 ```
 
@@ -75,11 +75,11 @@ Example output:
 ```
 {
     "repository": {
-        "name": "my-repo",
+        "name": "my_repo",
         "administratorAccount": "123456789012,
-        "domainName": "my-domain",
-        "domainOwner": "123456789012",
-        "arn": "arn:aws:codeartifact:region-id:544120495673:repository/my-domain/my-repo"
+        "domainName": "my_domain",
+        "domainOwner": "111122223333",
+        "arn": "arn:aws:codeartifact:region-id:111122223333:repository/my_domain/my_repo"
         "upstreams": [
             {
                 "repositoryName": "my-upstream-repo"
@@ -96,7 +96,7 @@ To add an upstream repository, you must have permission for the `AssociateWithDo
 To remove a repository's upstream relationship, use an empty list as the argument to the `--upstreams` option\.
 
 ```
-aws codeartifact update-repository --domain my-domain --domain-owner domain-owner-id --repository my-repo --upstreams []
+aws codeartifact update-repository --domain my_domain --domain-owner 111122223333 --repository my_repo --upstreams []
 ```
 
 Example output:
@@ -104,11 +104,11 @@ Example output:
 ```
 {
     "repository": {
-        "name": "my-repo",
+        "name": "my_repo",
         "administratorAccount": "123456789012,
-        "domainName": "my-domain",
-        "domainOwner": "123456789012",
-        "arn": "arn:aws:codeartifact:region-id:544120495673:repository/my-domain/my-repo"
+        "domainName": "my_domain",
+        "domainOwner": "111122223333",
+        "arn": "arn:aws:codeartifact:region-id:111122223333:repository/my_domain/my_repo"
         "upstreams": [],
         "externalConnections": []
     }

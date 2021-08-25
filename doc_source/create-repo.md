@@ -45,7 +45,7 @@ After you create a repository, you cannot change its name, associated AWS accoun
 1.  In **Review and create**, review what CodeArtifact is creating for you\. 
    +  **Package flow** shows how your domain and repositories are connected\.
    +  **Step 1: Create repository** shows details about the repository and optional upstream repositories that will be created\. 
-   +  **Step 2: Select domain** shows details about `my-domain`\. 
+   +  **Step 2: Select domain** shows details about `my_domain`\. 
 
     When you're ready, choose **Create repository**\. 
 
@@ -54,7 +54,7 @@ After you create a repository, you cannot change its name, associated AWS accoun
 Use the `create-repository` command to create a repository in your domain\.
 
 ```
-aws codeartifact create-repository --domain my-domain --domain-owner domain-owner-id --repository my-repo --description "My new repository"
+aws codeartifact create-repository --domain my_domain --domain-owner 111122223333 --repository my_repo --description "My new repository"
 ```
 
 Example output:
@@ -62,11 +62,11 @@ Example output:
 ```
 {
     "repository": {
-        "name": "my-repo",
-        "administratorAccount": "123456789012
-        "domainName": "my-domain",
-        "domainOwner": "123456789012",
-        "arn": "arn:aws:codeartifact:region-id:123456789012:repository/my-domain/my-repo",
+        "name": "my_repo",
+        "administratorAccount": "123456789012",
+        "domainName": "my_domain",
+        "domainOwner": "111122223333",
+        "arn": "arn:aws:codeartifact:region-id:111122223333:repository/my_domain/my_repo",
         "description": "My new repository",
         "upstreams": "[]",
         "externalConnections"" "[]"
@@ -81,7 +81,7 @@ A new repository doesn't contain any packages\. Each repository is associated wi
 To create a repository with tags, add the `--tags` parameter to your `create-domain` command\.
 
 ```
-aws codeartifact create-repository --domain my-domain --domain-owner domain-owner-id --repository my-repo --tags key=k1,value=v1 key=k2,value=v2
+aws codeartifact create-repository --domain my_domain --domain-owner 111122223333 --repository my_repo --tags key=k1,value=v1 key=k2,value=v2
 ```
 
 ## Create a repository with an upstream repository<a name="creating-a-repository-with-an-upstream"></a>
@@ -89,7 +89,7 @@ aws codeartifact create-repository --domain my-domain --domain-owner domain-owne
 You can specify one or more upstream repositories when you create a repository\. 
 
 ```
-aws codeartifact create-repository --domain my-domain --domain-owner domain-owner-id --repository my-repo \
+aws codeartifact create-repository --domain my_domain --domain-owner 111122223333 --repository my_repo \
   --upstreams repositoryName=my-upstream-repo --repository-description "My new repository"
 ```
 
@@ -98,11 +98,11 @@ Example output:
 ```
 {
     "repository": {
-        "name": "my-repo",
-        "administratorAccount": "123456789012
-        "domainName": "my-domain",
-        "domainOwner": "123456789012",
-        "arn": "arn:aws:codeartifact:region-id:123456789012:repository/my-domain/my-repo",
+        "name": "my_repo",
+        "administratorAccount": "123456789012",
+        "domainName": "my_domain",
+        "domainOwner": "111122223333",
+        "arn": "arn:aws:codeartifact:region-id:111122223333:repository/my_domain/my_repo",
         "description": "My new repository",
         "upstreams": [
             {

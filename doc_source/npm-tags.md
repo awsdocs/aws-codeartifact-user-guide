@@ -28,7 +28,7 @@ If you need to change tags after copying, use the `npm dist-tag` command to modi
 
 ## npm tags and upstream repositories<a name="tags-and-upstreams"></a>
 
-When `npm` requests the tags for a package and versions of that package are also present in an upstream repository, CodeArtifact merges the tags before returning them to the client\. For example, a repository named R has an upstream repository named U\. The following table shows the tags for a package named `web-helper` that's present in both repositories\.
+When npm requests the tags for a package and versions of that package are also present in an upstream repository, CodeArtifact merges the tags before returning them to the client\. For example, a repository named R has an upstream repository named U\. The following table shows the tags for a package named `web-helper` that's present in both repositories\.
 
 
 ****  
@@ -62,7 +62,7 @@ Using the tag in the upstream repository can be problematic when publishing new 
 |  R  |  `web-helper`  |   *latest* \(alias for version 1\.0\.1\)  | 
 |  U  |  `web-helper`  |   *latest* \(alias for version 1\.0\.1\)  | 
 
-When version 1\.0\.2 is published to R, `npm` updates the *latest* tag to 1\.0\.2\.
+When version 1\.0\.2 is published to R, npm updates the *latest* tag to 1\.0\.2\.
 
 
 ****  
@@ -72,7 +72,7 @@ When version 1\.0\.2 is published to R, `npm` updates the *latest* tag to 1\.0\.
 |  R  |  `web-helper`  |   *latest* \(alias for version 1\.0\.2\)  | 
 |  U  |  `web-helper`  |   *latest* \(alias for version 1\.0\.1\)  | 
 
-However, the `npm` client never sees this tag value because the value of *latest* in U is 1\.0\.1\. Running `npm install` against repository R immediately after publishing 1\.0\.2 installs 1\.0\.1 instead of the version that was just published\. To install the most recently published version, you must specify the exact package version, as follows\.
+However, the npm client never sees this tag value because the value of *latest* in U is 1\.0\.1\. Running `npm install` against repository R immediately after publishing 1\.0\.2 installs 1\.0\.1 instead of the version that was just published\. To install the most recently published version, you must specify the exact package version, as follows\.
 
 ```
 npm install web-helper@1.0.2

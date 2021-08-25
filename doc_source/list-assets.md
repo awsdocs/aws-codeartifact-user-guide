@@ -10,7 +10,7 @@ Run the `list-package-version-assets` command to return the following informatio
 For example, use the following command to list the assets of the Python package `flatten-json`, version `0.1.7`\.
 
 ```
-aws codeartifact list-package-version-assets --domain my-domain --domain-owner domain-owner-id --repository my-repo\
+aws codeartifact list-package-version-assets --domain my_domain --domain-owner 111122223333 --repository my_repo\
     --format pypi --package flatten-json --package-version 0.1.7
 ```
 
@@ -50,7 +50,7 @@ The following shows the output\.
 To list the assets of the Maven package `commons-cli:commons-cli`:
 
 ```
-aws codeartifact list-package-version-assets --domain my-domain --domain-owner domain-owner-id --repository my-repo \
+aws codeartifact list-package-version-assets --domain my_domain --domain-owner 111122223333 --repository my_repo \
     --format maven --package commons-cli --namespace commons-cli --package-version 1.0
 ```
 
@@ -101,7 +101,7 @@ The following shows the output\.
 An npm package always has a single asset with a name of `package.tgz`\.
 
 ```
-aws codeartifact list-package-version-assets --domain my-domain --domain-owner domain-owner-id --repository my-repo \
+aws codeartifact list-package-version-assets --domain my_domain --domain-owner 111122223333 --repository my_repo \
     --format npm --package webpack --package-version 4.9.2
 ```
 

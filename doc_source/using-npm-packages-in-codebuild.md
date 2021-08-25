@@ -1,6 +1,6 @@
 # Using npm packages in CodeBuild<a name="using-npm-packages-in-codebuild"></a>
 
-The steps below have been tested with the operating systems listed in [Docker images provided by CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html)\.
+The following steps have been tested with the operating systems listed in [Docker images provided by CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html)\.
 
 ## Set up permissions with IAM roles<a name="npm-packages-in-codebuild-iam"></a>
 
@@ -55,7 +55,7 @@ It is only necessary to upgrade the AWS CLI with `pip3 install awscli --upgrade 
 pre_build:
   commands:
     - pip3 install awscli --upgrade --user
-    - aws codeartifact login --tool npm --domain my-domain --domain-owner domain-owner-id --repository my-repo
+    - aws codeartifact login --tool npm --domain my_domain --domain-owner 111122223333 --repository my_repo
 build:
   commands:
     - npm install
@@ -72,7 +72,7 @@ phases:
       - Start-Process -Wait msiexec "/i $env:TEMP\AWSCLIV2.msi /quiet /norestart"
   pre_build:
     commands:
-      - '&"C:\Program Files\Amazon\AWSCLIV2\aws" codeartifact login --tool npm --domain my-domain --domain-owner domain-owner-id --repository my-repo'
+      - '&"C:\Program Files\Amazon\AWSCLIV2\aws" codeartifact login --tool npm --domain my_domain --domain-owner 111122223333 --repository my_repo'
   build:
     commands:
       - npm install

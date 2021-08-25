@@ -1,6 +1,6 @@
 # Logging CodeArtifact API calls with AWS CloudTrail<a name="codeartifact-information-in-cloudtrail"></a>
 
-CodeArtifact is integrated with [AWS CloudTrail](https://aws.amazon.com/cloudtrail), a service that provides a record of actions taken by a user, role, or an AWS service in CodeArtifact\. CloudTrail captures all API calls for CodeArtifact as events, including calls from the ** `npm` ** client\.
+CodeArtifact is integrated with [AWS CloudTrail](https://aws.amazon.com/cloudtrail), a service that provides a record of actions taken by a user, role, or an AWS service in CodeArtifact\. CloudTrail captures all API calls for CodeArtifact as events, including calls from package manager clients\.
 
 If you create a trail, you can enable continuous delivery of CloudTrail events to an Amazon Simple Storage Service \(Amazon S3\) bucket, including events for CodeArtifact\. If you don't configure a trail, you can still view the most recent events in the CloudTrail console in **Event history**\. Using the information collected by CloudTrail, you can determine the request that was made to CodeArtifact, the IP address from which the request was made, who made the request, when it was made, and additional details\.
 
@@ -123,12 +123,12 @@ Requests made by the ** `npm` ** client have additional data logged including th
        "repositoryName": "example-repo",
        "packageName": "lodash",
        "packageFormat": "npm",
-       "packageVersion": "4.17.11"
+       "packageVersion": "4.17.20"
    },
    "responseElements": null,
    "additionalEventData": {
        "httpMethod": "GET",
-       "requestUri": "/npm/lodash/-/lodash-4.17.11.tgz"
+       "requestUri": "/npm/lodash/-/lodash-4.17.20.tgz"
    },
    "requestID": "9f74b4f5-3607-4bb4-9229-ffffffffffff",
    "eventID": "c74e40dd-8847-4058-a14d-ffffffffffff",

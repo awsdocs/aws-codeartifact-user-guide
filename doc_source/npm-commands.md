@@ -1,15 +1,15 @@
 # npm command support<a name="npm-commands"></a>
 
-The following sections summarize the `npm` commands that are supported, by CodeArtifact repositories, in addition to specific commands that are not supported\.
+The following sections summarize the npm commands that are supported, by CodeArtifact repositories, in addition to specific commands that are not supported\.
 
-**Topics**
+**Contents**
 + [Supported commands that interact with a repository](#supported-commands-that-interact-with-a-repository)
 + [Supported client\-side commands](#supported-client-side-commands)
 + [Unsupported commands](#unsupported-commands)
 
 ## Supported commands that interact with a repository<a name="supported-commands-that-interact-with-a-repository"></a>
 
-This section lists `npm` commands where the `npm` client makes one or more requests to the registry it's been configured with \(for example, with `npm config set registry` \)\. These commands have been verified to function correctly when invoked against a CodeArtifact repository\.
+This section lists npm commands where the npm client makes one or more requests to the registry it's been configured with \(for example, with `npm config set registry` \)\. These commands have been verified to function correctly when invoked against a CodeArtifact repository\.
 
 
 ****  
@@ -41,7 +41,7 @@ These commands don't require any direct interaction with a repository, so CodeAr
 | Command | Description | 
 | --- | --- | 
 |   [bin](https://docs.npmjs.com/cli/bin)   |  Displays the npm `bin` folder\.  | 
-|   [build](https://docs.npmjs.com/cli/build)   |  Builds a package\.  | 
+|   [build](https://docs.npmjs.com/cli/v6/commands/npm-build)   |  Builds a package\.  | 
 |   [cache](https://docs.npmjs.com/cli/cache)   |  Manipulates the packages cache\.  | 
 |   [completion](https://docs.npmjs.com/cli/completion)   |  Enables tab completion in all npm commands\.  | 
 |   [config](https://docs.npmjs.com/cli/config)   |  Updates the contents of the user and global `npmrc` files\.  | 
@@ -65,7 +65,7 @@ These commands don't require any direct interaction with a repository, so CodeAr
 
 ## Unsupported commands<a name="unsupported-commands"></a>
 
-These `npm` commands are not supported by CodeArtifact repositories\.
+These npm commands are not supported by CodeArtifact repositories\.
 
 
 ****  

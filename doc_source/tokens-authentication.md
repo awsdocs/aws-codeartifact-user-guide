@@ -33,29 +33,29 @@ The following table describes the parameters for the `login` command\.
 The following example shows how to fetch an authorization token with the `login` command\.
 
 ```
-aws codeartifact login --tool npm | pip | twine --domain my-domain --domain-owner domain-owner-id --repository my-repo
+aws codeartifact login --tool npm | pip | twine --domain my_domain --domain-owner 111122223333 --repository my_repo
 ```
 
-For specific guidance on how to use the `login` command with npm, see [Authentication with npm](npm-auth.md)\. For Python, see [Configure clients with the login command](python-configure.md)\.
+For specific guidance on how to use the `login` command with npm, see [Configure and use npm with CodeArtifact](npm-auth.md)\. For Python, see [Configure clients with the login command](python-configure.md)\.
 
 ## Tokens created with the `GetAuthorizationToken` API<a name="get-auth-token-api"></a>
 
 You can call `get-authorization-token` to fetch an authorization token from CodeArtifact\.
 
 ```
-aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text
+aws codeartifact get-authorization-token --domain my_domain --domain-owner 111122223333 --query authorizationToken --output text
 ```
 
 You can change how long a token is valid using the `--duration-seconds` argument\. The minimum value is 900 and the maximum value is 43200\. The following example creates a token that will last for 1 hour \(3600 seconds\)\. 
 
 ```
-aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text --duration-seconds 3600
+aws codeartifact get-authorization-token --domain my_domain --domain-owner 111122223333 --query authorizationToken --output text --duration-seconds 3600
 ```
 
 If calling `get-authorization-token` while assuming a role the token lifetime is independent of the maximum session duration of the role\. You can configure the token to expire when the assumed role's session duration expires by setting `--duration-seconds` to 0\.
 
 ```
-aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text --duration-seconds 0
+aws codeartifact get-authorization-token --domain my_domain --domain-owner 111122223333 --query authorizationToken --output text --duration-seconds 0
 ```
 
 See the following documentation for more information:
@@ -74,23 +74,23 @@ For security reasons, this approach is preferable to storing the token in a file
 
 1. Configure your AWS credentials as described in [Install or upgrade and then configure the AWS CLI](get-set-up-install-cli.md)\. 
 
-1. Set the `CODEARTIFACT_TOKEN` environment variable:
+1. Set the `CODEARTIFACT_AUTH_TOKEN` environment variable:
 **Note**  
 In some scenarios, you don't need to include the `--domain-owner` argument\. For more information, see [Cross\-account domains](domain-overview.md#domain-overview-cross-account)\.
    + macOS or Linux:
 
      ```
-     export CODEARTIFACT_TOKEN=`aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text`
+     export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain my_domain --domain-owner 111122223333 --query authorizationToken --output text`
      ```
    + Windows \(using default command shell\):
 
      ```
-     for /f %i in ('aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text') do set CODEARTIFACT_TOKEN=%i
+     for /f %i in ('aws codeartifact get-authorization-token --domain my_domain --domain-owner 111122223333 --query authorizationToken --output text') do set CODEARTIFACT_AUTH_TOKEN=%i
      ```
    + Windows PowerShell:
 
      ```
-     $env:CODEARTIFACT_TOKEN = aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text
+     $env:CODEARTIFACT_AUTH_TOKEN = aws codeartifact get-authorization-token --domain my_domain --domain-owner 111122223333 --query authorizationToken --output text
      ```
 
 ## Revoking CodeArtifact authorization tokens<a name="revoke-access"></a>

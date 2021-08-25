@@ -20,7 +20,7 @@ To use the credential provider, ensure that any existing AWS CodeArtifact creden
 
 **Use CodeArtifact in Visual Studio with the AWS Toolkit for Visual Studio**
 
-1. Install the AWS Toolkit for Visual Studio using the steps below\. The toolkit is compatible with Visual Studio 2017 and 2019 using the steps below\. AWS CodeArtifact does not support Visual Studio 2015 and earlier\.
+1. Install the AWS Toolkit for Visual Studio using the following steps\. The toolkit is compatible with Visual Studio 2017 and 2019 using these steps\. AWS CodeArtifact does not support Visual Studio 2015 and earlier\.
 
    1.  The Toolkit for Visual Studio for Visual Studio 2017 and Visual Studio 2019 is distributed in the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=AmazonWebServices.AWSToolkitforVisualStudio2017)\. You can also install and update the toolkit within Visual Studio by using **Tools** ≫ **Extensions and Updates** \(Visual Studio 2017\) or **Extensions** ≫ **Manage Extensions** \(Visual Studio 2019\)\. 
 

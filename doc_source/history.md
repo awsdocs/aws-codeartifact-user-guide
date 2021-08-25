@@ -1,9 +1,12 @@
 # AWS CodeArtifact user guide document history<a name="history"></a>
 
-**Latest documentation update: **November 19, 2020
+**Latest documentation update: **August 25, 2021
 
 | Change | Description | Date | 
 | --- |--- |--- |
+| [Updated the copy package versions documentation with more in\-depth permissions information](#history) |  Added more information about the required IAM and resource\-based policy permissions for calling the `aws codeartifact copy-package-versions` command to copy package versions from one repository to another within the same domain in CodeArtifact\. Along with more information, there are now examples of the required resource\-based policies for the source and destination repository\. See [Required IAM permissions to copy packages](copy-package.md#copypackageversions-iam-actions) for more information\.  | August 25, 2021 | 
+| [Updated documentation for running a Gradle build in IntelliJ IDEA](#history) |  Updated the documentation for running a Gradle build in IntelliJ IDEA with steps for configuring Gradle to fetch plugins from CodeArtifact\. Also added an option to create a new CodeArtifact authorization token for each new run with an inline call to `aws codeartifact get-authorization-token`\. See [Run a Gradle build in IntelliJ IDEA](maven-gradle.md#gradle-intellij) for more information\.  | August 23, 2021 | 
+| [Added documentation for configuring and using Yarn with AWS CodeArtifact](#history) |  Added documentation for configuring and using Yarn 1\.X and Yarn 2\.X to manage npm packages with CodeArtifact\. See [Configure and use Yarn with CodeArtifact](npm-yarn.md) for more information\.  | July 30, 2021 | 
 | [AWS CodeArtifact now supports NuGet packages](#history) |  CodeArtifact users can now publish and consume NuGet packages\. Added documentation for configuring and using both Visual Studio and NuGet command line tools like `nuget` and `dotnet` with CodeArtifact repositories\. See [Using CodeArtifact with NuGet](using-nuget.md) for more information\.  | November 19, 2020 | 
 | [Tagging resources in AWS CodeArtifact](#history) |  Added documentation about tagging repositories and domains in AWS CodeArtifact\. See [Tagging resources](tag-resources.md)\.  | October 30, 2020 | 
 | [CodeArtifact now supports AWS CloudFormation](#history) |  CodeArtifact users can now use AWS CloudFormation templates to create CodeArtifact repositories and domains\. See [Creating CodeArtifact resources with AWS CloudFormation](cloudformation-codeartifact.md) for more information and to get started\.  | October 8, 2020 | 

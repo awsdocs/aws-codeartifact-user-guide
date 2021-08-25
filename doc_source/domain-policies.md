@@ -16,7 +16,7 @@ For more information, see [Policies and Permissions](https://docs.aws.amazon.com
 
 A resource policy is a text file in JSON format\. The file must specify a principal \(actor\), one or more actions, and an effect \(`Allow` or `Deny`\)\. To create a repository in a domain owned by another account, the principal must be granted the `CreateRepository` permission on the *domain* resource\.
 
-For example, the following resource policy grants the account 123456789012 permission to create a repository in the domain\.
+For example, the following resource policy grants the account `123456789012` permission to create a repository in the domain\.
 
 ```
 {
@@ -35,6 +35,8 @@ For example, the following resource policy grants the account 123456789012 permi
     ]
 }
 ```
+
+To allow creating repositories with tags, you must include the `codeartifact:TagResource` permission\. This will also give the account access to add tags to the domain and all repositories in it\.
 
 Because the policy is evaluated only for operations against the domain it's attached to, you do not need to specify a resource\. Because the resource is implied, the `Resource` can be set to `*`\.
 
@@ -127,7 +129,7 @@ For more information about using the `aws:PrincipalOrgID` condition key, see [AW
 You can use the `put-domain-permissions-policy` command to attach a policy to a domain\.
 
 ```
-aws codeartifact put-domain-permissions-policy --domain my-domain --domain-owner domain-owner-id \
+aws codeartifact put-domain-permissions-policy --domain my_domain --domain-owner 111122223333 \
  --policy-document file://</PATH/TO/policy.json>
 ```
 
@@ -141,7 +143,7 @@ Sample output:
 ```
 {
     "policy": {
-        "resourceArn": "arn:aws:codeartifact:region-id:123456789012:domain/my-domain",
+        "resourceArn": "arn:aws:codeartifact:region-id:111122223333:domain/my_domain",
         "document": "{ ...policy document content...}",
         "revision": "MQlyyTQRASRU3HB58gBtSDHXG7Q3hvxxxxxxx="
     }
@@ -155,7 +157,7 @@ The output of the command contains the Amazon Resource Name \(ARN\) of the domai
 To read an existing version of a policy document, use the `get-domain-permissions-policy` command\. To format the output for readability, use the `--output` and `--query policy.document` together with the Python `json.tool` module, as follows\.
 
 ```
-aws codeartifact get-domain-permissions-policy --domain my-domain --domain-owner domain-owner-id \
+aws codeartifact get-domain-permissions-policy --domain my_domain --domain-owner 111122223333 \
    --output text --query policy.document | python -m json.tool
 ```
 
@@ -176,7 +178,7 @@ Sample output:
             "Effect": "Allow",
             "Resource": "*",
             "Principal": {
-                "AWS": "arn:aws:iam::123456789012:root"
+                "AWS": "arn:aws:iam::111122223333:root"
             }
         }
     ]
@@ -188,7 +190,7 @@ Sample output:
 Use the `delete-domain-permissions-policy` command to delete a policy from a domain\.
 
 ```
-aws codeartifact delete-domain-permissions-policy --domain my-domain --domain-owner domain-owner-id
+aws codeartifact delete-domain-permissions-policy --domain my_domain --domain-owner 111122223333
 ```
 
 The format of the output is the same as that of the `get-domain-permissions-policy` and `delete-domain-permissions-policy` commands\.

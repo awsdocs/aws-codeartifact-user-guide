@@ -19,7 +19,7 @@ You can delete a repository using the CodeArtifact console or the AWS CLI\. Afte
 Use the `delete-repository` command to delete a repository\.
 
 ```
-aws codeartifact delete-repository --domain my-domain --domain-owner domain-owner-id --repository my-repo
+aws codeartifact delete-repository --domain my_domain --domain-owner 111122223333 --repository my_repo
 ```
 
 Example output:
@@ -27,11 +27,11 @@ Example output:
 ```
 {
     "repository": {
-        "name": "my-repo",
+        "name": "my_repo",
         "administratorAccount": "123456789012",
-        "domainName": "my-domain",            
+        "domainName": "my_domain",            
         "domainOwner": "123456789012",
-        "arn": "arn:aws:codeartifact:region-id:123456789012:repository/my-domain/my-repo",
+        "arn": "arn:aws:codeartifact:region-id:123456789012:repository/my_domain/my_repo",
         "description": "My new repository",
         "upstreams": [],
         "externalConnections": []

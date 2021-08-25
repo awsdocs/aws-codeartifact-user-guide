@@ -48,10 +48,10 @@ The following are event fields and descriptions along with an example of a CodeA
   "account":"123456789012",
   "time":"2019-11-21T23:19:54Z",
   "region":"us-west-2",
-  "resources":["arn:aws:codeartifact:us-west-2:123456789012:package/my-domain/myrepo/npm//mypackage"],
+  "resources":["arn:aws:codeartifact:us-west-2:111122223333:package/my_domain/myrepo/npm//mypackage"],
   "detail":{
-    "domainName":"my-domain",
-    "domainOwner":"123456789012",
+    "domainName":"my_domain",
+    "domainOwner":"111122223333",
     "repositoryName":"myrepo",
     "packageFormat":"npm",
     "packageNamespace":null,

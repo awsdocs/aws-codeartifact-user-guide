@@ -7,8 +7,16 @@ First, configure your AWS credentials for use with the AWS CLI, as described in 
 **Note**  
 If you are accessing a repository in a domain that you own, you don't need to include `--domain-owner`\. For more information, see [Cross\-account domains](domain-overview.md#domain-overview-cross-account)\.
 
+To configure pip, run the following command\.
+
 ```
-aws codeartifact login --tool pip | twine --domain my-domain --domain-owner domain-owner-id --repository my-repo
+aws codeartifact login --tool pip --domain my_domain --domain-owner 111122223333 --repository my_repo
+```
+
+To configure twine, run the following command\.
+
+```
+aws codeartifact login --tool twine --domain my_domain --domain-owner 111122223333 --repository my_repo
 ```
 
  `login` fetches an authorization token from CodeArtifact using your AWS credentials\. 

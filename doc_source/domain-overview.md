@@ -17,20 +17,20 @@ Although an organization can have multiple domains, the recommendation is to hav
 
 ## Cross\-account domains<a name="domain-overview-cross-account"></a>
 
-Domain names only need to be unique within an account, which means there could be multiple domains within a region that have the same name\. Because of this, if you want to access a domain that is owned by an account you are not authenticated to, you must provide the domain owner ID along with the domain name in both the CLI and the console\. See the CLI examples below\.
+Domain names only need to be unique within an account, which means there could be multiple domains within a region that have the same name\. Because of this, if you want to access a domain that is owned by an account you are not authenticated to, you must provide the domain owner ID along with the domain name in both the CLI and the console\. See the following CLI examples\.
 
 **Access a domain owned by an account you are authenticated to:**
 
-When accessing a domain within the account you're authenticated to, you only need to specify the domain name\. The example below lists packages in the *my\-repo* repository in the *my\-domain* domain that is owned by your account\.
+When accessing a domain within the account you're authenticated to, you only need to specify the domain name\. The following example lists packages in the *my\_repo* repository in the *my\_domain* domain that is owned by your account\.
 
 ```
-aws codeartifact list-packages --domain my-domain --repository my-repo
+aws codeartifact list-packages --domain my_domain --repository my_repo
 ```
 
 **Access a domain owned by an account that you are not authenticated to:**
 
-When accessing a domain that is owned by an account that you're not authenticated to, you need to specify the domain owner as well as the domain name\. The example below lists packages in the *other\-repo* repository in the *other\-domain* domain that is owned by an account that you are not authenticated to\. Notice the addition of the `--domain-owner` parameter\.
+When accessing a domain that is owned by an account that you're not authenticated to, you need to specify the domain owner as well as the domain name\. The following example lists packages in the *other\-repo* repository in the *other\-domain* domain that is owned by an account that you are not authenticated to\. Notice the addition of the `--domain-owner` parameter\.
 
 ```
-aws codeartifact list-packages --domain other-domain --domain-owner domain-owner-id --repository other-repo
+aws codeartifact list-packages --domain other-domain --domain-owner 111122223333 --repository other-repo
 ```

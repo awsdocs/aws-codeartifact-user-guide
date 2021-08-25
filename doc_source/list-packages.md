@@ -3,7 +3,7 @@
 Use the `list-packages` command in CodeArtifact to get a list of all the package names in a repository\. This command returns only the package names, not the versions\.
 
 ```
-aws codeartifact list-packages --domain my-domain --domain-owner domain-owner-id --repository my-repo
+aws codeartifact list-packages --domain my_domain --domain-owner 111122223333 --repository my_repo
 ```
 
 Sample output:
@@ -47,7 +47,7 @@ Sample output:
 To list only the names of npm packages, set the value of the `--format` option to `npm`\.
 
 ```
-aws codeartifact list-packages --domain my-domain --domain-owner domain-owner-id --repository my-repo  \
+aws codeartifact list-packages --domain my_domain --domain-owner 111122223333 --repository my_repo  \
     --format npm
 ```
 
@@ -57,7 +57,7 @@ To list npm packages in a namespace \(npm *scope*\), use the `--namespace` and `
 The value for the `--namespace` option should not include the leading `@`\. To search for the namespace `@types`, set the value to *types*\.
 
 ```
-aws codeartifact list-packages --domain my-domain --domain-owner domain-owner-id --repository my-repo  \
+aws codeartifact list-packages --domain my_domain --domain-owner 111122223333 --repository my_repo  \
     --format npm --namespace types
 ```
 
@@ -94,7 +94,7 @@ Sample output:
 To list only the names of Maven packages, set the value of the `--format` option to `maven`\. You must also specify the Maven group in the `--namespace` option\.
 
 ```
-aws codeartifact list-packages --domain my-domain --domain-owner domain-owner-id --repository my-repo  \
+aws codeartifact list-packages --domain my_domain --domain-owner 111122223333 --repository my_repo  \
     --format maven --namespace org.apache.commons
 ```
 
@@ -128,11 +128,11 @@ Sample output:
 
 ## List Python package names<a name="list-packages-python"></a>
 
-To list only the names of Python packages, set the value of the `--format` option to `python`\.
+To list only the names of Python packages, set the value of the `--format` option to `pypi`\.
 
 ```
-aws codeartifact list-packages --domain my-domain --domain-owner domain-owner-id --repository my-repo  \
-    --format python
+aws codeartifact list-packages --domain my_domain --domain-owner 111122223333 --repository my_repo  \
+    --format pypi
 ```
 
 ## Filter by package name prefix<a name="list-packages-package-prefix"></a>
@@ -140,7 +140,7 @@ aws codeartifact list-packages --domain my-domain --domain-owner domain-owner-id
  To return packages that begin with a specified string, you can use the `--package-prefix` option\. 
 
 ```
-aws codeartifact list-packages --domain my-domain --domain-owner domain-owner-id --repository my-repo  \
+aws codeartifact list-packages --domain my_domain --domain-owner 111122223333 --repository my_repo  \
     --format npm --package-prefix pat
 ```
 
@@ -180,7 +180,7 @@ You can use the `--format`, `--namespace`, and `--package-prefix` options in any
  You can use parameters that are available to all AWS CLI commands to make the `list-packages` response compact and more readable\. Use the `--query` parameter to specify the format of each returned package version\. Use the `--output` parameter to format the response as plaintext\. 
 
 ```
-aws codeartifact list-packages --domain my-domain --domain-owner domain-owner-id --repository my-repo \
+aws codeartifact list-packages --domain my_domain --domain-owner 111122223333 --repository my_repo \
   --output text --query 'packages[*].[package]'
 ```
 
@@ -204,12 +204,12 @@ cookie-signature
  By default, the maximum number of results returned by `list-packages` is 100\. You can change this result limit by using the `--max-results` option\.
 
 ```
-aws codeartifact list-packages --domain my-domain --domain-owner domain-owner-id --repository my-repo --max-results 20
+aws codeartifact list-packages --domain my_domain --domain-owner 111122223333 --repository my_repo --max-results 20
 ```
 
 The maximum allowed value of `--max-results` is 1,000\. To allow listing packages in repositories with more than 1,000 packages, `list-packages` supports pagination using the `nextToken` field in the response\. If the number of packages in the repository is more than the value of `--max-results`, you can pass the value of `nextToken` to another invocation of `list-packages` to get the next page of results\.
 
 ```
-aws codeartifact list-packages --domain my-domain --domain-owner domain-owner-id --repository my-repo \
+aws codeartifact list-packages --domain my_domain --domain-owner 111122223333 --repository my_repo \
   --next-token rO0ABXNyAEdjb...
 ```

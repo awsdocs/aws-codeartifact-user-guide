@@ -5,10 +5,10 @@
 **Note**  
 This guide contains information about configuring other CodeArtifact repositories as upstream repositories\. For information about configuring an external connection to public repositories like npmjs\.com, Maven Central, or PyPI, see [Add an external connection](https://docs.aws.amazon.com/codeartifact/latest/ug/external-connection.html)\.
 
- The following command adds two upstream repositories to a repository named `my-repo` that is in a domain named `my-domain`\. The order of the upstream repositories in the `--upstreams` parameter determines their search priority when CodeArtifact requests a package from the `my-repo` repository\. For more information, see [Upstream repository priority order](repo-upstream-search-order.md)\. 
+ The following command adds two upstream repositories to a repository named `my_repo` that is in a domain named `my_domain`\. The order of the upstream repositories in the `--upstreams` parameter determines their search priority when CodeArtifact requests a package from the `my_repo` repository\. For more information, see [Upstream repository priority order](repo-upstream-search-order.md)\. 
 
 ```
-aws codeartifact update-repository --repository my-repo --domain my-domain --domain-owner domain-owner-id --upstreams repositoryName=upstream-1 repositoryName=upstream-2
+aws codeartifact update-repository --repository my_repo --domain my_domain --domain-owner 111122223333 --upstreams repositoryName=upstream-1 repositoryName=upstream-2
 ```
 
  The output contains the upstream repositories, as follows\.
@@ -16,11 +16,11 @@ aws codeartifact update-repository --repository my-repo --domain my-domain --dom
 ```
 {
     "repository": {
-        "name": "my-repo",
+        "name": "my_repo",
         "administratorAccount": "123456789012",
-        "domainName": "my-domain",
-        "domainOwner": "123456789012",
-        "arn": "arn:aws:codeartifact:us-east-2:123456789012:repository/my-domain/my-repo",
+        "domainName": "my_domain",
+        "domainOwner": "111122223333",
+        "arn": "arn:aws:codeartifact:us-east-2:111122223333:repository/my_domain/my_repo",
         "upstreams": [
             {
                 "repositoryName": "upstream-1"
@@ -34,10 +34,10 @@ aws codeartifact update-repository --repository my-repo --domain my-domain --dom
 }
 ```
 
- To remove all upstream repositories from a repository, use the `update-repository` command and include `--upstreams` without an argument\. The following removes upstream repositories from a repository named `my-repo` that is contained in a domain named `my-domain`\.
+ To remove all upstream repositories from a repository, use the `update-repository` command and include `--upstreams` without an argument\. The following removes upstream repositories from a repository named `my_repo` that is contained in a domain named `my_domain`\.
 
 ```
-aws codeartifact update-repository --repository my-repo --domain my-domain --domain-owner domain-owner-id --upstreams
+aws codeartifact update-repository --repository my_repo --domain my_domain --domain-owner 111122223333 --upstreams
 ```
 
  The output shows that the list of `upstreams` is empty\.
@@ -45,11 +45,11 @@ aws codeartifact update-repository --repository my-repo --domain my-domain --dom
 ```
 {
     "repository": {
-        "name": "my-repo",
+        "name": "my_repo",
         "administratorAccount": "123456789012",
-        "domainName": "my-domain",
-        "domainOwner": "123456789012",
-        "arn": "arn:aws:codeartifact:us-east-2:123456789012:repository/my-domain/my-repo",
+        "domainName": "my_domain",
+        "domainOwner": "111122223333",
+        "arn": "arn:aws:codeartifact:us-east-2:111122223333:repository/my_domain/my_repo",
         "upstreams": [],
         "externalConnections": []
     }

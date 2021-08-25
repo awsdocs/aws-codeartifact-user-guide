@@ -31,6 +31,20 @@ To configure `mvn` to fetch dependencies from a CodeArtifact repository, you mus
 
 1. Add the URL endpoint for your CodeArtifact repository in a `<repository>` element\. You can do this in `settings.xml` or your project's POM file\.
 
+   You can retrieve your repository's endpoint by using the `get-repository-endpoint` AWS CLI command\.
+
+   For example, with a repository named *my\_repo* inside a domain named *my\_domain*, the command is as follows:
+
+   ```
+   aws codeartifact get-repository-endpoint --domain my_domain --repository my_repo --format maven
+   ```
+
+   The `get-repository-endpoint` command will return the repository endpoint:
+
+   ```
+   url 'https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/maven/my_repo/'
+   ```
+
    Add the repository endpoint to `settings.xml` as follows\.
 
    ```
@@ -42,7 +56,7 @@ To configure `mvn` to fetch dependencies from a CodeArtifact repository, you mus
                <repositories>
                    <repository>
                        <id>codeartifact</id>
-                       <url>https://my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/maven/my-repo/</url>
+                       <url>https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/maven/my_repo/</url>
                    </repository>
                </repositories>
            </profile>
@@ -63,7 +77,7 @@ To configure `mvn` to fetch dependencies from a CodeArtifact repository, you mus
            <repository>
                <id>codeartifact</id>
                <name>codeartifact</name>
-               <url>https://my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/maven/my-repo/</url>
+               <url>https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/maven/my_repo/</url>
            </repository>
        </repositories>
    ...
@@ -98,7 +112,7 @@ Downloaded from codeartifact: https://<domain>.d.codeartifact.us-west-2.amazonaw
 
 To publish a Maven artifact with `mvn` to a CodeArtifact repository, you must also edit `~/.m2/settings.xml` and the project POM\.
 
-1. Add a `<servers>` section to `settings.xml` with a reference to the `CODEARTIFACT_TOKEN` environment variable so that Maven passes the token in HTTP requests\.
+1. Add a `<servers>` section to `settings.xml` with a reference to the `CODEARTIFACT_AUTH_TOKEN` environment variable so that Maven passes the token in HTTP requests\.
 
    ```
    <settings>
@@ -107,7 +121,7 @@ To publish a Maven artifact with `mvn` to a CodeArtifact repository, you must al
            <server>
                <id>codeartifact</id>
                <username>aws</username>
-               <password>${env.CODEARTIFACT_TOKEN}</password>
+               <password>${env.CODEARTIFACT_AUTH_TOKEN}</password>
            </server>
        </servers>
    ...
@@ -123,7 +137,7 @@ To publish a Maven artifact with `mvn` to a CodeArtifact repository, you must al
             <repository>
                 <id>codeartifact</id>
                 <name>codeartifact</name>
-                <url>https://my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/maven/my-repo/</url>
+                <url>https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/maven/my_repo/</url>
             </repository>
         </distributionManagement>
    ...
@@ -139,7 +153,7 @@ mvn deploy
 Use `list-package-versions` to check that the package was successfully published\.
 
 ```
-aws codeartifact list-package-versions --domain my-domain --domain-owner domain-owner-id --repository my-repo --format maven \
+aws codeartifact list-package-versions --domain my_domain --domain-owner 111122223333 --repository my_repo --format maven \
   --namespace com.company.framework --package my-package-name
 ```
 
@@ -186,7 +200,7 @@ The `mvn deploy:deploy-file` command will generate a POM file based on the infor
 1. Fetch a CodeArtifact authorization token:
 
    ```
-   export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text --profile profile-name
+   export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain my_domain --domain-owner 111122223333 --query authorizationToken --output text --profile profile-name
    ```
 
 1. Run the `mvn deploy:deploy-file` command:
@@ -198,7 +212,7 @@ The `mvn deploy:deploy-file` command will generate a POM file based on the infor
    -Dfile=./commons-cli-1.4.jar   \
    -Dpackaging=jar                \
    -DrepositoryId=codeartifact    \
-   -Durl=https://my-domain-domain-owner-id.d.codeartifact.region.amazonaws.com/maven/repo-name/
+   -Durl=https://my_domain-111122223333.d.codeartifact.region.amazonaws.com/maven/repo-name/
    ```
 **Note**  
 The example above publishes `commons-cli 1.4`\. Modify the groupId, artifactID, version, and file arguments to publish a different JAR\.

@@ -49,12 +49,12 @@ It is only necessary to upgrade the AWS CLI with `pip3 install awscli --upgrade 
 pre_build:
   commands:
     - pip3 install awscli --upgrade --user
-    - export CODEARTIFACT_TOKEN=`aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text`
+    - export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain my_domain --domain-owner 111122223333 --query authorizationToken --output text`
 ```
 
  **To use Gradle:** 
 
-If you referenced the `CODEARTIFACT_TOKEN` variable in your Gradle `build.gradle` file as described in [Using CodeArtifact with Gradle](maven-gradle.md), you can invoke your Gradle build from the `buildspec.yaml` `build` section\.
+If you referenced the `CODEARTIFACT_AUTH_TOKEN` variable in your Gradle `build.gradle` file as described in [Using CodeArtifact with Gradle](maven-gradle.md), you can invoke your Gradle build from the `buildspec.yaml` `build` section\.
 
 ```
 build:

@@ -1,6 +1,6 @@
 # API behavior with upstream repositories<a name="upstream-repo-api-behavior"></a>
 
- When you call certain CodeArtifact APIs on repositories that are connected to upstream repositories, the behavior may be different depending on if the packages or package versions are stored in the target repository or the upstream repository\. The behavior of these APIs is documented below\. 
+ When you call certain CodeArtifact APIs on repositories that are connected to upstream repositories, the behavior may be different depending on if the packages or package versions are stored in the target repository or the upstream repository\. The behavior of these APIs is documented here\. 
 
 For more information on CodeArtifact APIs, see the [CodeArtifact API Reference](https://docs.aws.amazon.com/codeartifact/latest/APIReference/Welcome.html)\.
 

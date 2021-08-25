@@ -1,6 +1,8 @@
 # Compliance validation for AWS CodeArtifact<a name="codeartifact-compliance-validation"></a>
 
-Third\-party auditors assess the security and compliance of AWS CodeArtifact as part of multiple AWS compliance programs\. These include SOC, PCI, FedRAMP, HIPAA, and others\.
+Third\-party auditors assess the security and compliance of AWS services as part of multiple AWS compliance programs\.
+
+**At present, AWS CodeArtifact is not in scope of any specific compliance programs\.**
 
 For a list of AWS services in scope of specific compliance programs, see [AWS Services in Scope by Compliance Program](https://aws.amazon.com/compliance/services-in-scope/)\. For general information, see [AWS Compliance Programs](https://aws.amazon.com/compliance/programs/)\.
 

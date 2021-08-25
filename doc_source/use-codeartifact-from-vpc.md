@@ -25,7 +25,7 @@ $ aws ec2 describe-vpc-endpoints --filters Name=service-name,Values=com.amazonaw
 If you use the CodeArtifact AWS CLI, pass the hostname to the `--endpoint-url` parameter, as in the following example\.
 
 ```
-aws codeartifact login --tool npm --domain mydomain --domain-owner domain-owner-id --repository myrepo --endpoint-url VPC_endpoint
+aws codeartifact login --tool npm --domain mydomain --domain-owner 111122223333 --repository myrepo --endpoint-url VPC_endpoint
 ```
 
 If you use the SDK, consult your SDK documentation to learn how to override a hostname\. How to do this varies by the language that you use\.

@@ -1,9 +1,9 @@
 # Delete a package version<a name="delete-package"></a>
 
-You can delete one or more package versions at a time using the `delete-package-versions` command\. The following deletes versions `4.0.0`, `4.0.1`, and `5.0.0` of the npm package named `my-package` in the `my-repo` in the `my-domain` domain:
+You can delete one or more package versions at a time using the `delete-package-versions` command\. The following deletes versions `4.0.0`, `4.0.1`, and `5.0.0` of the npm package named `my-package` in the `my_repo` in the `my_domain` domain:
 
 ```
-aws codeartifact delete-package-versions --domain my-domain --domain-owner domain-owner-id --repository my-repo \
+aws codeartifact delete-package-versions --domain my_domain --domain-owner 111122223333 --repository my_repo \
   --format npm --package my-package --versions 4.0.0 4.0.1 5.0.0
 ```
 
@@ -32,6 +32,6 @@ Sample output:
 You can confirm that the versions were deleted by running `list-package-versions` for the same package name:
 
 ```
-aws codeartifact list-package-versions --domain my-domain --domain-owner domain-owner-id --repository my-repo \
+aws codeartifact list-package-versions --domain my_domain --domain-owner 111122223333 --repository my_repo \
    --format npm --package my-package
 ```

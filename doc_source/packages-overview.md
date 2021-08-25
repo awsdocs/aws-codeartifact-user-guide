@@ -1,6 +1,6 @@
 # Packages overview<a name="packages-overview"></a>
 
-A *package* in AWS CodeArtifact is a bundle of software and the metadata that is required to resolve dependencies and install the software\. CodeArtifact supports npm, PyPI, and Maven package formats\. This section provides a brief overview of packages, including publishing, permissions, and package version statuses\.
+A *package* in AWS CodeArtifact is a bundle of software and the metadata that is required to resolve dependencies and install the software\. CodeArtifact supports Maven, npm, NuGet, and PyPI package formats\. This section provides a brief overview of packages, including publishing, permissions, and package version statuses\.
 
 **Topics**
 + [Package publishing](#package-publishing)
@@ -8,11 +8,30 @@ A *package* in AWS CodeArtifact is a bundle of software and the metadata that is
 
 ## Package publishing<a name="package-publishing"></a>
 
- You can publish new versions of any supported package type to a CodeArtifact repository using tools like `npm`, `twine`, `Maven`, and `Gradle`\. 
+ You can publish new versions of any supported package type to a CodeArtifact repository using tools such as `npm`, `twine`, `Maven`, `Gradle`, `nuget`, and `dotnet`\. 
+
+**Contents**
++ [Publishing permissions](#package-publishing-permissions)
++ [Overwriting package assets](#package-publishing-overwrite-assets)
++ [Publishing and upstream repositories](#package-publishing-upstreams)
++ [Private packages and public repositories](#package-publishing-upstreams-direct)
++ [Publishing patched package versions](#package-publishing-patched-versions)
 
 ### Publishing permissions<a name="package-publishing-permissions"></a>
 
-Your AWS Identity and Access Management \(IAM\) user or role must have permissions to publish to the destination repository\. For npm and Python packages, this only requires the `codeartifact:PublishPackageVersion` permission\. For Maven packages, both` codeartifact:PublishPackageVersion` and `codeartifact:PutPackageMetadata` are required\. 
+Your AWS Identity and Access Management \(IAM\) user or role must have permissions to publish to the destination repository\. The following permissions are required to publish packages\.
+
+1. **Maven:** `codeartifact:PublishPackageVersion` and `codeartifact:PutPackageMetadata`
+
+1. **npm:** `codeartifact:PublishPackageVersion`
+
+1. **NuGet:** `codeartifact:PublishPackageVersion` and `codeartifact:ReadFromRepository`
+
+1. **Python:** `codeartifact:PublishPackageVersion`
+
+In the list of permissions above, your IAM policy must specify the `package` resource for the `codeartifact:PublishPackageVersion` and `codeartifact:PutPackageMetadata` permissions and it must specify the `repository` resource for the `codeartifact:ReadFromRepository` permission\.
+
+For more information about permissions in CodeArtifact, see [AWS CodeArtifact permissions reference](auth-and-access-control-permissions-reference.md)\.
 
 ### Overwriting package assets<a name="package-publishing-overwrite-assets"></a>
 
@@ -28,7 +47,7 @@ Your AWS Identity and Access Management \(IAM\) user or role must have permissio
 
 You can still publish different versions of a package name that exists in an upstream repository\. For example, if `com.mycompany.mypackage:1.0` is present in an upstream repository, but `com.mycompany.mypackage:1.1` is not, you can publish `com.mycompany.mypackage:1.1` to the downstream repository\.
 
-#### Private packages and public repositories<a name="package-publishing-upstreams-direct"></a>
+### Private packages and public repositories<a name="package-publishing-upstreams-direct"></a>
 
  CodeArtifact does not publish packages stored in CodeArtifact repositories to public repositories such as npmjs\.com or Maven Central\. CodeArtifact imports packages from public repositories to a CodeArtifact repository, but it never moves packages in the other direction\. Packages that you publish to CodeArtifact repositories remain private and are only available to the AWS accounts, roles, and users to which you have granted access\.
 

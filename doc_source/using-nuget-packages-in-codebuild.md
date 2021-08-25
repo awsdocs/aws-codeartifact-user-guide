@@ -1,6 +1,6 @@
 # Using NuGet packages in CodeBuild<a name="using-nuget-packages-in-codebuild"></a>
 
-The steps below have been tested with the operating systems listed in the [Docker images provided by CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html)\.
+The following steps have been tested with the operating systems listed in the [Docker images provided by CodeBuild](https://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref-available.html)\.
 
 **Topics**
 + [Set up permissions with IAM roles](#nuget-packages-in-codebuild-iam)
@@ -54,7 +54,7 @@ To consume NuGet packages from CodeBuild, include the following in your project'
 
 1. In the `pre-build` section, add your CodeArtifact repository to your NuGet configuration\.
 
-See the `buildspec.yaml` examples below\. For more information, see [Using CodeArtifact with NuGet](using-nuget.md)\.
+See the following `buildspec.yaml` examples\. For more information, see [Using CodeArtifact with NuGet](using-nuget.md)\.
 
 After the credential provider is installed and your repository source is added, you can run NuGet CLI tool commands from the `build` section to consume NuGet packages\.
 
@@ -75,7 +75,7 @@ phases:
       - dotnet codeartifact-creds install
   pre_build:
     commands:
-      -  dotnet nuget add source -n codeartifact $(aws codeartifact get-repository-endpoint --domain my-domain --domain-owner domain-owner-id --repository my-repo --format nuget --query repositoryEndpoint --output text)"v3/index.json"
+      -  dotnet nuget add source -n codeartifact $(aws codeartifact get-repository-endpoint --domain my_domain --domain-owner 111122223333 --repository my_repo --format nuget --query repositoryEndpoint --output text)"v3/index.json"
   build:
     commands:
       - dotnet add packageName --source packageSourceName
@@ -95,7 +95,7 @@ phases:
       - dotnet codeartifact-creds install
   pre_build:
     commands:
-      - dotnet nuget add source -n codeartifact "$(aws codeartifact get-repository-endpoint --domain my-domain --domain-owner domain-owner-id --repository my-repo --format nuget --query repositoryEndpoint --output text)v3/index.json"
+      - dotnet nuget add source -n codeartifact "$(aws codeartifact get-repository-endpoint --domain my_domain --domain-owner 111122223333 --repository my_repo --format nuget --query repositoryEndpoint --output text)v3/index.json"
   build:
     commands:
       - dotnet add packageName --source packageSourceName
@@ -109,7 +109,7 @@ To build with NuGet packages from CodeBuild, include the following in your proje
 
 1. In the `pre-build` section, add your CodeArtifact repository to your NuGet configuration\.
 
-See the `buildspec.yaml` examples below\. For more information, see [Using CodeArtifact with NuGet](using-nuget.md)\.
+See the following `buildspec.yaml` examples\. For more information, see [Using CodeArtifact with NuGet](using-nuget.md)\.
 
 After the credential provider is installed and your repository source is added, you can run NuGet CLI tool commands like `dotnet build` from the `build` section\.
 
@@ -130,7 +130,7 @@ phases:
       - dotnet codeartifact-creds install
   pre_build:
     commands:
-      -  dotnet nuget add source -n codeartifact $(aws codeartifact get-repository-endpoint --domain my-domain --domain-owner domain-owner-id --repository my-repo --format nuget --query repositoryEndpoint --output text)"v3/index.json"
+      -  dotnet nuget add source -n codeartifact $(aws codeartifact get-repository-endpoint --domain my_domain --domain-owner 111122223333 --repository my_repo --format nuget --query repositoryEndpoint --output text)"v3/index.json"
   build:
     commands:
       - dotnet build
@@ -151,7 +151,7 @@ phases:
       - dotnet codeartifact-creds install
   pre_build:
     commands:
-      - dotnet nuget add source -n codeartifact $(aws codeartifact get-repository-endpoint --domain my-domain --domain-owner domain-owner-id --repository my-repo --format nuget --query repositoryEndpoint --output text)"v3/index.json"
+      - dotnet nuget add source -n codeartifact $(aws codeartifact get-repository-endpoint --domain my_domain --domain-owner 111122223333 --repository my_repo --format nuget --query repositoryEndpoint --output text)"v3/index.json"
   build:
     commands:
       - msbuild -t:Rebuild -p:Configuration=Release
@@ -171,7 +171,7 @@ phases:
       - dotnet codeartifact-creds install
   pre_build:
     commands:
-      - dotnet nuget add source -n codeartifact "$(aws codeartifact get-repository-endpoint --domain my-domain --domain-owner domain-owner-id --repository my-repo --format nuget --query repositoryEndpoint --output text)v3/index.json"
+      - dotnet nuget add source -n codeartifact "$(aws codeartifact get-repository-endpoint --domain my_domain --domain-owner 111122223333 --repository my_repo --format nuget --query repositoryEndpoint --output text)v3/index.json"
   build:
     commands:
       - dotnet build
@@ -189,7 +189,7 @@ phases:
       - dotnet codeartifact-creds install
   pre_build:
     commands:
-      - dotnet nuget add source -n codeartifact "$(aws codeartifact get-repository-endpoint --domain my-domain --domain-owner domain-owner-id --repository my-repo --format nuget --query repositoryEndpoint --output text)v3/index.json"
+      - dotnet nuget add source -n codeartifact "$(aws codeartifact get-repository-endpoint --domain my_domain --domain-owner 111122223333 --repository my_repo --format nuget --query repositoryEndpoint --output text)v3/index.json"
   build:
     commands:
       - msbuild -t:Rebuild -p:Configuration=Release
@@ -203,7 +203,7 @@ To publish NuGet packages from CodeBuild, include the following in your project'
 
 1. In the `pre-build` section, add your CodeArtifact repository to your NuGet configuration\.
 
-See the `buildspec.yaml` examples below\. For more information, see [Using CodeArtifact with NuGet](using-nuget.md)\.
+See the following `buildspec.yaml` examples\. For more information, see [Using CodeArtifact with NuGet](using-nuget.md)\.
 
 After the credential provider is installed and your repository source is added, you can run NuGet CLI tool commands from the `build` section and publish your NuGet packages\.
 
@@ -224,7 +224,7 @@ phases:
       - dotnet codeartifact-creds install
   pre_build:
     commands:
-      - dotnet nuget add source -n codeartifact $(aws codeartifact get-repository-endpoint --domain my-domain --domain-owner domain-owner-id --repository my-repo --format nuget --query repositoryEndpoint --output text)"v3/index.json"
+      - dotnet nuget add source -n codeartifact $(aws codeartifact get-repository-endpoint --domain my_domain --domain-owner 111122223333 --repository my_repo --format nuget --query repositoryEndpoint --output text)"v3/index.json"
   build:
     commands:
       - dotnet pack -o .
@@ -245,7 +245,7 @@ phases:
       - dotnet codeartifact-creds install
   pre_build:
     commands:
-      - dotnet nuget add source -n codeartifact "$(aws codeartifact get-repository-endpoint --domain my-domain --domain-owner domain-owner-id --repository my-repo --format nuget --query repositoryEndpoint --output text)v3/index.json"
+      - dotnet nuget add source -n codeartifact "$(aws codeartifact get-repository-endpoint --domain my_domain --domain-owner 111122223333 --repository my_repo --format nuget --query repositoryEndpoint --output text)v3/index.json"
   build:
     commands:
       - dotnet pack -o .

@@ -7,7 +7,7 @@
 index-servers =
  codeartifact
 [codeartifact]
-repository = https://my-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/pypi/my-repo/
+repository = https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/pypi/my_repo/
 password = auth-token
 username = aws
 ```
@@ -19,6 +19,6 @@ If you are accessing a repository in a domain that you own, you do not need to i
 
 ```
 export TWINE_USERNAME=aws
-export TWINE_PASSWORD=`aws codeartifact get-authorization-token --domain my-domain --domain-owner domain-owner-id --query authorizationToken --output text`
-export TWINE_REPOSITORY_URL=`aws codeartifact get-repository-endpoint --domain my-domain --domain-owner domain-owner-id --repository my-repo --format pypi --query repositoryEndpoint --output text`
+export TWINE_PASSWORD=`aws codeartifact get-authorization-token --domain my_domain --domain-owner 111122223333 --query authorizationToken --output text`
+export TWINE_REPOSITORY_URL=`aws codeartifact get-repository-endpoint --domain my_domain --domain-owner 111122223333 --repository my_repo --format pypi --query repositoryEndpoint --output text`
 ```

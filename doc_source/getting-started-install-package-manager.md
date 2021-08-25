@@ -4,3 +4,4 @@
 + For npm, you can use the npm CLI or pnpm\.
 + For Maven, you can use either Maven \(`mvn`\) or Gradle\.
 + For Python, you can use `pip` to install packages and `twine` to upload packages to CodeArtifact\.
++ For NuGet, you can use the AWS Toolkit for Visual Studio Code in Visual Studio or the `nuget` or `dotnet ` CLIs\.

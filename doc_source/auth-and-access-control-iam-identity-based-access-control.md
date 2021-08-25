@@ -68,7 +68,7 @@ The following shows an example of a permissions policy that allows a user to lis
 
 **Allow a user to get information about specific repositories**
 
-The following shows an example of a permissions policy that allows a user to get information about repositories that end with `test`, including the packages stored in them\. The user will not be able to publish, create, or delete resources\.
+The following shows an example of a permissions policy that allows a user to get information about repositories that end with `test`, including information about the packages in them\. The user will not be able to publish, create, or delete resources\.
 
 ```
 {
@@ -83,6 +83,14 @@ The following shows an example of a permissions policy that allows a user to get
             "codeartifact:Read*"
          ],
          "Resource": "arn:aws:codeartifact:*:*:repository/*/*test"      
+      },
+      {
+         "Effect": "Allow",
+         "Action": [
+            "codeartifact:List*",
+            "codeartifact:Describe*"
+         ],
+         "Resource": "arn:aws:codeartifact:*:*:package/*/*test/*/*/*"   
       },
       {
          "Effect": "Allow",
@@ -184,7 +192,7 @@ When fetching a token, users can configure the lifetime of the token\. Valid val
 
 Administrators can limit the valid values for the lifetime of an authorization token by using the `sts:DurationSeconds` condition key in the permissions policy attached to the user or group\. If the user attempts to create an authorization token with a lifetime outside of the valid values, the token creation will fail\.
 
-Below are some examples of policies that limit the possible durations of an authorization token created by CodeArtifact users\.
+The following example policies limit the possible durations of an authorization token created by CodeArtifact users\.
 
 **Example policy: Limit token lifetime to exactly 12 hours \(43200 seconds\)**
 

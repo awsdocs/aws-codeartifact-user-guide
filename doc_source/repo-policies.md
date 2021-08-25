@@ -64,8 +64,8 @@ Because the only action specified in the repository is `ReadFromRepository`, use
 After you create a policy document, use the `put-repository-permissions-policy` command to attach it to a repository:
 
 ```
-aws codeartifact put-repository-permissions-policy --domain my-domain --domain-owner domain-owner-id \
-          --repository my-repo --policy-document file:///PATH/TO/policy.json
+aws codeartifact put-repository-permissions-policy --domain my_domain --domain-owner 111122223333 \
+          --repository my_repo --policy-document file:///PATH/TO/policy.json
 ```
 
 When you call `put-repository-permissions-policy`, the resource policy on the repository is ignored when evaluating permissions\. This ensures that the owner of a domain cannot lock themselves out of the repository, which would prevent them from being able to update the resource policy\.
@@ -78,7 +78,7 @@ Sample output:
 ```
 {
     "policy": {
-        "resourceArn": "arn:aws:codeartifact:region-id:123456789012:repository/my-domain/my-repo",
+        "resourceArn": "arn:aws:codeartifact:region-id:111122223333:repository/my_domain/my_repo",
         "document": "{ ...policy document content...}",
         "revision": "MQlyyTQRASRU3HB58gBtSDHXG7Q3hvxxxxxxx="
     }
@@ -92,8 +92,8 @@ The output of the command contains the Amazon Resource Name \(ARN\) of the repos
 Use the `get-repository-permissions-policy` command to read an existing version of a policy document\. To format the output for readability, use the `--output` and `--query policy.document` together with the Python `json.tool` module\.
 
 ```
-aws codeartifact get-repository-permissions-policy --domain my-domain --domain-owner domain-owner-id \
-          --repository my-repo --output text --query policy.document | python -m json.tool
+aws codeartifact get-repository-permissions-policy --domain my_domain --domain-owner 111122223333 \
+          --repository my_repo --output text --query policy.document | python -m json.tool
 ```
 
 Sample output:
@@ -129,8 +129,8 @@ Sample output:
 Use the `delete-repository-permissions-policy` command to delete a policy from a repository\.
 
 ```
-aws codeartifact delete-repository-permissions-policy --domain my-domain --domain-owner domain-owner-id \
-          --repository my-repo
+aws codeartifact delete-repository-permissions-policy --domain my_domain --domain-owner 111122223333 \
+          --repository my_repo
 ```
 
 The format of the output is the same as that of the `get-repository-permissions-policy` command\.
@@ -162,19 +162,19 @@ The format of the output is the same as that of the `get-repository-permissions-
  The `codeartifact:PublishPackageVersion` action is used to control permission to publish new versions of a package\. The resource used with this action must be a package\. The format of CodeArtifact package ARNs is as follows\.
 
 ```
-arn:aws:codeartifact:region-id:123456789012:package/my-domain/my-repo/package-format/package-namespace/package-name
+arn:aws:codeartifact:region-id:111122223333:package/my_domain/my_repo/package-format/package-namespace/package-name
 ```
 
-The following example shows the ARN for an npm package with scope `@parity` and name `ui` in the `example-repo` repository in domain `my-domain`\. 
+The following example shows the ARN for an npm package with scope `@parity` and name `ui` in the `example-repo` repository in domain `my_domain`\. 
 
 ```
-arn:aws:codeartifact:region-id:123456789012:package/my-domain/example-repo/npm/parity/ui
+arn:aws:codeartifact:region-id:111122223333:package/my_domain/example-repo/npm/parity/ui
 ```
 
-The ARN for an npm package without a scope has the empty string for the namespace field\. For example, the following is the ARN for a package without a scope and with name `react` in the `example-repo` repository in domain `my-domain`\.
+The ARN for an npm package without a scope has the empty string for the namespace field\. For example, the following is the ARN for a package without a scope and with name `react` in the `example-repo` repository in domain `my_domain`\.
 
 ```
-arn:aws:codeartifact:region-id:123456789012:package/my-domain/example-repo/npm//react
+arn:aws:codeartifact:region-id:111122223333:package/my_domain/example-repo/npm//react
 ```
 
 The following policy grants account `123456789012` permission to publish versions of `@parity/ui` in the `example-repo` repository\.
@@ -191,14 +191,16 @@ The following policy grants account `123456789012` permission to publish version
             "Principal": {
                 "AWS": "arn:aws:iam::123456789012:root"
             },
-            "Resource": "arn:aws:codeartifact:region-id:123456789012:package/my-domain/example-repo/npm/parity/ui"
+            "Resource": "arn:aws:codeartifact:region-id:111122223333:package/my_domain/example-repo/npm/parity/ui"
         }
     ]
 }
 ```
 
 **Important**  
- To grant permission to publish Maven package versions, add the **codeartifact:PutPackageMetadata** permission\. 
+To grant permission to publish Maven and NuGet package versions, add the following permissions in addition to `codeartifact:PublishPackageVersion`\.  
+NuGet: `codeartifact:ReadFromRepository` and specify the repository resource
+Maven: `codeartifact:PutPackageMetadata`
 
  Because this policy specifies a domain and repository as part of the resource, it allows publishing only when attached to that repository\. 
 

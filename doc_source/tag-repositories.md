@@ -32,13 +32,13 @@ At the terminal or command line, run the tag\-resource command, specifying the A
 To get the ARN of the repository, run the `describe-repository` command:  
 
 ```
-aws codeartifact describe-repository --domain my-domain --repository my-repo --query repository.arn
+aws codeartifact describe-repository --domain my_domain --repository my_repo --query repository.arn
 ```
 
-You can add more than one tag to a repository\. For example, to tag a repository named *my\-repo* in a domain named *my\-domain* with two tags, a tag key named *key1* with the tag value of *value1*, and a tag key named *key2* with the tag value of *value2*:
+You can add more than one tag to a repository\. For example, to tag a repository named *my\_repo* in a domain named *my\_domain* with two tags, a tag key named *key1* with the tag value of *value1*, and a tag key named *key2* with the tag value of *value2*:
 
 ```
-aws codeartifact tag-resource --resource-arn arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/my-repo --tags key=key1,value=value1 key=key2,value=value2
+aws codeartifact tag-resource --resource-arn arn:aws:codeartifact:us-west-2:111122223333:repository/my_domain/my_repo --tags key=key1,value=value1 key=key2,value=value2
 ```
 
 If successful, this command has no output\.
@@ -53,13 +53,13 @@ At the terminal or command line, run the list\-tags\-for\-resource command\.
 To get the ARN of the repository, run the `describe-repository` command:  
 
 ```
-aws codeartifact describe-repository --domain my-domain --repository my-repo --query repository.arn
+aws codeartifact describe-repository --domain my_domain --repository my_repo --query repository.arn
 ```
 
-For example, to view a list of tag keys and tag values for a repository named *my\-repo* in a domain named *my\-domain* with the `arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/my-repo` ARN value:
+For example, to view a list of tag keys and tag values for a repository named *my\_repo* in a domain named *my\_domain* with the `arn:aws:codeartifact:us-west-2:111122223333:repository/my_domain/my_repo` ARN value:
 
 ```
-aws codeartifact list-tags-for-resource --resource-arn arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/my-repo
+aws codeartifact list-tags-for-resource --resource-arn arn:aws:codeartifact:us-west-2:111122223333:repository/my_domain/my_repo
 ```
 
 If successful, this command returns information similar to the following:
@@ -83,11 +83,11 @@ At the terminal or command line, run the tag\-resource command, specifying the A
 To get the ARN of the repository, run the `describe-repository` command:  
 
 ```
-aws codeartifact describe-repository --domain my-domain --repository my-repo --query repository.arn
+aws codeartifact describe-repository --domain my_domain --repository my_repo --query repository.arn
 ```
 
 ```
-aws codeartifact tag-resource --resource-arn arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/my-repo --tags key=key1,value=newvalue1
+aws codeartifact tag-resource --resource-arn arn:aws:codeartifact:us-west-2:111122223333:repository/my_domain/my_repo --tags key=key1,value=newvalue1
 ```
 
 If successful, this command has no output\.
@@ -105,13 +105,13 @@ At the terminal or command line, run the untag\-resource command, specifying the
 To get the ARN of the repository, run the `describe-repository` command:  
 
 ```
-aws codeartifact describe-repository --domain my-domain --repository my-repo --query repository.arn
+aws codeartifact describe-repository --domain my_domain --repository my_repo --query repository.arn
 ```
 
-For example, to remove multiple tags on a repository named *my\-repo* in a domain named *my\-domain* with the tag keys *key1* and *key2*:
+For example, to remove multiple tags on a repository named *my\_repo* in a domain named *my\_domain* with the tag keys *key1* and *key2*:
 
 ```
-aws codeartifact untag-resource --resource-arn arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/my-repo --tag-keys key1 key2
+aws codeartifact untag-resource --resource-arn arn:aws:codeartifact:us-west-2:111122223333:repository/my_domain/my_repo --tag-keys key1 key2
 ```
 
 If successful, this command has no output\. After removing tags, you can view the remaining tags on the repository using the `list-tags-for-resource` command\.

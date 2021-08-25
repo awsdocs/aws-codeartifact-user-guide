@@ -19,7 +19,7 @@ You can delete a domain using the CodeArtifact console or the AWS Command Line I
 Use the delete\-domain command to delete a domain\. 
 
 ```
-aws codeartifact delete-domain --domain my-domain --domain-owner domain-owner-id
+aws codeartifact delete-domain --domain my_domain --domain-owner 111122223333
 ```
 
  JSON\-formatted data appears in the output with details about the deleted domain\.
@@ -27,11 +27,11 @@ aws codeartifact delete-domain --domain my-domain --domain-owner domain-owner-id
 ```
 {
     "domain": {
-        "name": "my-domain",
-        "owner": "123456789012",
-        "arn": "arn:aws:codeartifact:us-west-2:123456789012:domain/my-domain",
+        "name": "my_domain",
+        "owner": "111122223333",
+        "arn": "arn:aws:codeartifact:us-west-2:111122223333:domain/my_domain",
         "status": "Active",
-        "encryptionKey": "arn:aws:kms:us-west-2:123456789012:key/your-kms-key",
+        "encryptionKey": "arn:aws:kms:us-west-2:111122223333:key/your-kms-key",
         "repositoryCount": 0,
         "assetSizeBytes": 0,
         "createdTime": "2020-10-12T16:51:18.039000-04:00"

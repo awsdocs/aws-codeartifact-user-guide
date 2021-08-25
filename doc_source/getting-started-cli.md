@@ -1,6 +1,6 @@
 # Getting started using the AWS CLI<a name="getting-started-cli"></a>
 
- Run the following steps to get started with CodeArtifact using the AWS Command Line Interface \(AWS CLI\)\. For more information, see [Install or upgrade and then configure the AWS CLI](get-set-up-install-cli.md)\.
+ Run the following steps to get started with CodeArtifact using the AWS Command Line Interface \(AWS CLI\)\. For more information, see [Install or upgrade and then configure the AWS CLI](get-set-up-install-cli.md)\. This guide uses the `npm` package manager, if you are using a different package manager, you will need to modify some of the following steps\.
 
 1.  Use the AWS CLI to run the create\-domain command\. 
 
@@ -14,11 +14,11 @@
    {
        "domain": {
            "name": "my-domain",
-           "owner": "123456789012",
-           "arn": "arn:aws:codeartifact:us-west-2:123456789012:domain/my-domain",
+           "owner": "111122223333",
+           "arn": "arn:aws:codeartifact:us-west-2:111122223333:domain/my-domain",
            "status": "Active",
            "createdTime": "2020-10-07T15:36:35.194000-04:00",
-           "encryptionKey": "arn:aws:kms:us-west-2:123456789012:key/your-kms-key",
+           "encryptionKey": "arn:aws:kms:us-west-2:111122223333:key/your-kms-key",
            "repositoryCount": 0,
            "assetSizeBytes": 0
        }
@@ -30,7 +30,7 @@
 1.  Use the create\-repository command to create a repository in your domain\.
 
    ```
-   aws codeartifact create-repository --domain my-domain --domain-owner domain-owner-id --repository my-repo
+   aws codeartifact create-repository --domain my-domain --domain-owner 111122223333 --repository my-repo
    ```
 
     JSON\-formatted data appears in the output with details about your new repository\. 
@@ -39,10 +39,10 @@
    {
        "repository": {
            "name": "my-repo",
-           "administratorAccount": "123456789012",
+           "administratorAccount": "111122223333",
            "domainName": "my-domain",
-           "domainOwner": "123456789012",
-           "arn": "arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/my-repo",
+           "domainOwner": "111122223333",
+           "arn": "arn:aws:codeartifact:us-west-2:111122223333:repository/my-domain/my-repo",
            "upstreams": [],
            "externalConnections": []
        }
@@ -52,7 +52,7 @@
 1. Use the create\-repository command to create an upstream repository for your `my-repo` repository\.
 
    ```
-   aws codeartifact create-repository --domain my-domain --domain-owner domain-owner-id --repository npm-store
+   aws codeartifact create-repository --domain my-domain --domain-owner 111122223333 --repository npm-store
    ```
 
     JSON\-formatted data appears in the output with details about your new repository\.
@@ -61,10 +61,10 @@
    {
        "repository": {
            "name": "npm-store",
-           "administratorAccount": "123456789012",
+           "administratorAccount": "111122223333",
            "domainName": "my-domain",
-           "domainOwner": "123456789012",
-           "arn": "arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/npm-store",
+           "domainOwner": "111122223333",
+           "arn": "arn:aws:codeartifact:us-west-2:111122223333:repository/my-domain/npm-store",
            "upstreams": [],
            "externalConnections": []
        }
@@ -74,7 +74,7 @@
 1.  Use the associate\-external\-connection command to add an external connection to the npm public repository to your `npm-store` repository\. 
 
    ```
-   aws codeartifact associate-external-connection --domain my-domain --domain-owner domain-owner-id --repository npm-store --external-connection "public:npmjs"
+   aws codeartifact associate-external-connection --domain my-domain --domain-owner 111122223333 --repository npm-store --external-connection "public:npmjs"
    ```
 
     JSON\-formatted data appears in the output with details about the repository and its new external connection\.
@@ -83,10 +83,10 @@
    {
        "repository": {
            "name": "npm-store",
-           "administratorAccount": "123456789012",
+           "administratorAccount": "111122223333",
            "domainName": "my-domain",
-           "domainOwner": "123456789012",
-           "arn": "arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/npm-store",
+           "domainOwner": "111122223333",
+           "arn": "arn:aws:codeartifact:us-west-2:111122223333:repository/my-domain/npm-store",
            "upstreams": [],
            "externalConnections": [
                {
@@ -104,7 +104,7 @@
 1.  Use the update\-repository command to associate the `npm-store` repository as an upstream repository to the `my-repo` repository\. 
 
    ```
-   aws codeartifact update-repository --repository my-repo --domain my-domain --domain-owner domain-owner-id --upstreams repositoryName=npm-store
+   aws codeartifact update-repository --repository my-repo --domain my-domain --domain-owner 111122223333 --upstreams repositoryName=npm-store
    ```
 
     JSON\-formatted data appears in the output with details about your updated repository, including its new upstream repository\.
@@ -113,10 +113,10 @@
    {
        "repository": {
            "name": "my-repo",
-           "administratorAccount": "123456789012",
+           "administratorAccount": "111122223333",
            "domainName": "my-domain",
-           "domainOwner": "123456789012",
-           "arn": "arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/my-repo",
+           "domainOwner": "111122223333",
+           "arn": "arn:aws:codeartifact:us-west-2:111122223333:repository/my-domain/my-repo",
            "upstreams": [
                {
                    "repositoryName": "npm-store"
@@ -132,24 +132,22 @@
 1. Use the login command to configure your npm package manager with your `my-repo` repository\. 
 
    ```
-   aws codeartifact login --tool npm --repository my-repo --domain my-domain --domain-owner your-AWS-account-ID
+   aws codeartifact login --tool npm --repository my-repo --domain my-domain --domain-owner 111122223333
    ```
 
    You should receive output confirming your login succeeded\.
 
    ```
-   Successfully configured npm to use AWS CodeArtifact repository https://my-domain-123456789012.d.codeartifact.us-east-2.amazonaws.com/npm/my-repo/
+   Successfully configured npm to use AWS CodeArtifact repository https://my-domain-111122223333.d.codeartifact.us-east-2.amazonaws.com/npm/my-repo/
    Login expires in 12 hours at 2020-10-08 02:45:33-04:00
    ```
 
-    For more information, see [Authentication with npm](npm-auth.md)\. 
+    For more information, see [Configure and use npm with CodeArtifact](npm-auth.md)\. 
 
-1.  Use the npm CLI to install an npm library\. For example, install a library listed in [https://www\.npmjs\.com/](https://www.npmjs.com/)\. 
-**Note**  
-*lodash* is a popular package to use\.
+1.  Use the npm CLI to install an npm package\. For example, to install the popular npm package `lodash`, use the following command\. 
 
    ```
-   npm install library-name
+   npm install lodash
    ```
 
 1.  Use the list\-packages command to view the package you just installed in your `my-repo` repository\. 
@@ -167,7 +165,7 @@
        "packages": [
            {
                "format": "npm",
-               "package": "library-name"
+               "package": "lodash"
            }
        ]
    }
@@ -185,7 +183,7 @@
    1.  Use the delete\-repository command to delete the `npm-store` repository\. 
 
       ```
-      aws codeartifact delete-repository --domain my-domain --domain-owner domain-owner-id --repository my-repo
+      aws codeartifact delete-repository --domain my-domain --domain-owner 111122223333 --repository my-repo
       ```
 
        JSON\-formatted data appears in the output with details about the deleted repository\. 
@@ -194,10 +192,10 @@
       {
           "repository": {
               "name": "my-repo",
-              "administratorAccount": "123456789012",
+              "administratorAccount": "111122223333",
               "domainName": "my-domain",
-              "domainOwner": "123456789012",
-              "arn": "arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/my-repo",
+              "domainOwner": "111122223333",
+              "arn": "arn:aws:codeartifact:us-west-2:111122223333:repository/my-domain/my-repo",
               "upstreams": [
                   {
                       "repositoryName": "npm-store"
@@ -211,7 +209,7 @@
    1.  Use the delete\-repository command to delete the `npm-store` repository\. 
 
       ```
-      aws codeartifact delete-repository --domain my-domain --domain-owner domain-owner-id --repository npm-store
+      aws codeartifact delete-repository --domain my-domain --domain-owner 111122223333 --repository npm-store
       ```
 
        JSON\-formatted data appears in the output with details about the deleted repository\.
@@ -220,10 +218,10 @@
       {
           "repository": {
               "name": "npm-store",
-              "administratorAccount": "123456789012",
+              "administratorAccount": "111122223333",
               "domainName": "my-domain",
-              "domainOwner": "123456789012",
-              "arn": "arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/npm-store",
+              "domainOwner": "111122223333",
+              "arn": "arn:aws:codeartifact:us-west-2:111122223333:repository/my-domain/npm-store",
               "upstreams": [],
               "externalConnections": [
                   {
@@ -239,7 +237,7 @@
    1. Use the delete\-domain command to delete the `my-domain` repository\. 
 
       ```
-      aws codeartifact delete-domain --domain my-domain --domain-owner domain-owner-id
+      aws codeartifact delete-domain --domain my-domain --domain-owner 111122223333
       ```
 
        JSON\-formatted data appears in the output with details about the deleted domain\.
@@ -248,11 +246,11 @@
       {
           "domain": {
               "name": "my-domain",
-              "owner": "123456789012",
-              "arn": "arn:aws:codeartifact:us-west-2:123456789012:domain/my-domain",
+              "owner": "111122223333",
+              "arn": "arn:aws:codeartifact:us-west-2:111122223333:domain/my-domain",
               "status": "Deleted",
               "createdTime": "2020-10-07T15:36:35.194000-04:00",
-              "encryptionKey": "arn:aws:kms:us-west-2:123456789012:key/your-kms-key",
+              "encryptionKey": "arn:aws:kms:us-west-2:111122223333:key/your-kms-key",
               "repositoryCount": 0,
               "assetSizeBytes": 0
           }

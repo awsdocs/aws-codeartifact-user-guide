@@ -32,13 +32,13 @@ At the terminal or command line, run the tag\-resource command, specifying the A
 To get the ARN of the domain, run the `describe-domain` command:  
 
 ```
-aws codeartifact describe-domain --domain my-domain --query domain.arn
+aws codeartifact describe-domain --domain my_domain --query domain.arn
 ```
 
-You can add more than one tag to a domain\. For example, to tag a domain named *my\-domain* with two tags, a tag key named *key1* with the tag value of *value1*, and a tag key named *key2* with the tag value of *value2*:
+You can add more than one tag to a domain\. For example, to tag a domain named *my\_domain* with two tags, a tag key named *key1* with the tag value of *value1*, and a tag key named *key2* with the tag value of *value2*:
 
 ```
-aws codeartifact tag-resource --resource-arn arn:aws:codeartifact:us-west-2:123456789012:domain/my-domain --tags key=key1,value=value1 key=key2,value=value2
+aws codeartifact tag-resource --resource-arn arn:aws:codeartifact:us-west-2:123456789012:domain/my_domain --tags key=key1,value=value1 key=key2,value=value2
 ```
 
 If successful, this command has no output\.
@@ -53,13 +53,13 @@ At the terminal or command line, run the list\-tags\-for\-resource command with 
 To get the ARN of the domain, run the `describe-domain` command:  
 
 ```
-aws codeartifact describe-domain --domain my-domain --query domain.arn
+aws codeartifact describe-domain --domain my_domain --query domain.arn
 ```
 
-For example, to view a list of tag keys and tag values for a domain named *my\-domain* with the `arn:aws:codeartifact:us-west-2:123456789012:domain/my-domain` ARN value:
+For example, to view a list of tag keys and tag values for a domain named *my\_domain* with the `arn:aws:codeartifact:us-west-2:123456789012:domain/my_domain` ARN value:
 
 ```
-aws codeartifact list-tags-for-resource --resource-arn arn:aws:codeartifact:us-west-2:123456789012:domain/my-domain
+aws codeartifact list-tags-for-resource --resource-arn arn:aws:codeartifact:us-west-2:123456789012:domain/my_domain
 ```
 
 If successful, this command returns information similar to the following:
@@ -83,11 +83,11 @@ At the terminal or command line, run the tag\-resource command, specifying the A
 To get the ARN of the domain, run the `describe-domain` command:  
 
 ```
-aws codeartifact describe-domain --domain my-domain --query domain.arn
+aws codeartifact describe-domain --domain my_domain --query domain.arn
 ```
 
 ```
-aws codeartifact tag-resource --resource-arn arn:aws:codeartifact:us-west-2:123456789012:domain/my-domain --tags key=key1,value=newvalue1
+aws codeartifact tag-resource --resource-arn arn:aws:codeartifact:us-west-2:123456789012:domain/my_domain --tags key=key1,value=newvalue1
 ```
 
 If successful, this command has no output\.
@@ -105,13 +105,13 @@ At the terminal or command line, run the untag\-resource command, specifying the
 To get the ARN of the domain, run the `describe-domain` command:  
 
 ```
-aws codeartifact describe-domain --domain my-domain --query domain.arn
+aws codeartifact describe-domain --domain my_domain --query domain.arn
 ```
 
 For example, to remove multiple tags on a domain named *mydomain* with the tag keys *key1* and *key2*:
 
 ```
-aws codeartifact untag-resource --resource-arn arn:aws:codeartifact:us-west-2:123456789012:domain/my-domain --tag-keys key1 key2
+aws codeartifact untag-resource --resource-arn arn:aws:codeartifact:us-west-2:123456789012:domain/my_domain --tag-keys key1 key2
 ```
 
 If successful, this command has no output\. After removing tags, you can view the remaining tags on the repository using the `list-tags-for-resource` command\.

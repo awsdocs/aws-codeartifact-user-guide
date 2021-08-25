@@ -19,4 +19,4 @@
 
 You can complete this tutorial using the AWS Management Console or the AWS Command Line Interface \(AWS CLI\)\. To follow the tutorial, you must first complete the following prerequisites: 
 +  Complete the steps in [Setting up with AWS CodeArtifact](get-set-up-for-codeartifact.md)\. 
-+  Install the npm CLI\. For more information, see [Installing the npm CLI](https://npme.npmjs.com/docs/cli/installation.html) on the npm website\. 
++  Install the npm CLI\. For more information, see [Downloading and installing Node\.js and npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm) in the npm documentation\. 

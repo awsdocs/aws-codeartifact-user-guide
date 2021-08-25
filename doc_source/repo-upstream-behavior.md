@@ -1,9 +1,9 @@
 # Requesting a package version with upstream repositories<a name="repo-upstream-behavior"></a>
 
- When a client \(for example, npm\) requests a package version from a CodeArtifact repository named `my-repo` that has multiple upstream repositories, the following can occur: 
-+  If `my-repo` contains the requested package version, it is returned to the client\. 
-+  If `my-repo` does not contain the requested package version, CodeArtifact looks for it in `my-repo`'s upstream repositories\. If the package version is found, a reference to it is copied to `my-repo`, and the package version is returned to the client\. 
-+  If neither `my-repo` nor its upstream repositories contain the package version, an HTTP 404 `Not Found` response is returned to the client\.
+ When a client \(for example, npm\) requests a package version from a CodeArtifact repository named `my_repo` that has multiple upstream repositories, the following can occur: 
++  If `my_repo` contains the requested package version, it is returned to the client\. 
++  If `my_repo` does not contain the requested package version, CodeArtifact looks for it in `my_repo`'s upstream repositories\. If the package version is found, a reference to it is copied to `my_repo`, and the package version is returned to the client\. 
++  If neither `my_repo` nor its upstream repositories contain the package version, an HTTP 404 `Not Found` response is returned to the client\.
 
  When you add upstream repositories using the `create-repository` or `update-repository` command, the order they are passed to the `--upstreams` parameter determines their priority when a package version is requested\. Specify upstream repositories with `--upstreams` in the order that you want CodeArtifact to use when a package version is requested\. For more information, see [Upstream repository priority order](repo-upstream-search-order.md)\. 
 
@@ -27,17 +27,17 @@ If `npm` is configured to use the `repo-A` repository, running `npm install` tri
 
 ```
 $ npm config get registry
-https://my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/npm/my-downstream-repo/
+https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/npm/my-downstream-repo/
 $ npm install lodash
-+ lodash@4.17.15
++ lodash@4.17.20
 added 1 package from 2 contributors in 6.933s
 ```
 
-After running `npm install`, `repo-A` contains just the latest version \(`lodash 4.17.15`\) because that's the version that was fetched by `npm` from `repo-A`\.
+After running `npm install`, `repo-A` contains just the latest version \(`lodash 4.17.20`\) because that's the version that was fetched by `npm` from `repo-A`\.
 
 ```
-aws codeartifact list-package-versions --repository repo-A --domain my-domain \
-            --domain-owner domain-owner-id --format npm --package lodash
+aws codeartifact list-package-versions --repository repo-A --domain my_domain \
+            --domain-owner 111122223333 --format npm --package lodash
 ```
 
 Example output:
@@ -61,8 +61,8 @@ Example output:
 The contents of `repo-B` provide a way to see all the packages and package versions imported from [https://npmjs\.com](https://npmjs.com) over time\. For example, to see all the versions of the `lodash` package imported over time, you can use `list-package-versions`, as follows\.
 
 ```
-aws codeartifact list-package-versions --repository repo-B --domain my-domain \
-            --domain-owner domain-owner-id --format npm --package lodash --max-results 5
+aws codeartifact list-package-versions --repository repo-B --domain my_domain \
+            --domain-owner 111122223333 --format npm --package lodash --max-results 5
 ```
 
 Example output:
@@ -110,7 +110,7 @@ Example output:
 
  When a package manager connects to repository `repo-A` and fetches a package version from repository `repo-C`, the package version will not be retained in repository `repo-B`\. The package version will only be retained in the most\-downstream repository, in this example, `repo-A`\. It will not be retained in any intermediate repositories\. This is also true for longer chains; for example if there were four repositories `repo-A`, `repo-B`, `repo-C`, and `repo-D` and a package manager connected to `repo-A` fetched a package version from `repo-D`, the package version would be retained in `repo-A` but not in `repo-B` or `repo-C`\. 
 
- Package retention behavior is similar when pulling a package version from an external repository, except that the package version is always retained in the repository that has the external connection attached\. For example, `repo-A` has `repo-B` as an upstream\. `repo-B` has `repo-C` as an upstream, and `repo-C` also has **npmjs\.com** configured as an external connection; see the diagram below\.
+ Package retention behavior is similar when pulling a package version from an external repository, except that the package version is always retained in the repository that has the external connection attached\. For example, `repo-A` has `repo-B` as an upstream\. `repo-B` has `repo-C` as an upstream, and `repo-C` also has **npmjs\.com** configured as an external connection; see the followng diagram\.
 
 ![\[Upstream repository diagram showing three repositories chained together with an external connection to npmjs.com.\]](http://docs.aws.amazon.com/codeartifact/latest/ug/)![\[Upstream repository diagram showing three repositories chained together with an external connection to npmjs.com.\]](http://docs.aws.amazon.com/codeartifact/latest/ug/)![\[Upstream repository diagram showing three repositories chained together with an external connection to npmjs.com.\]](http://docs.aws.amazon.com/codeartifact/latest/ug/)
 

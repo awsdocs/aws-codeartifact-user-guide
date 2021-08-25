@@ -18,26 +18,26 @@ Sample output:
         {
             "name": "repo1",
             "administratorAccount": "123456789012",
-            "domainName": "my-domain",
+            "domainName": "my_domain",
             "domainOwner": "123456789012",
-            "arn": "arn:aws:codeartifact:region-id:123456789012:repository/my-domain/repo1",
+            "arn": "arn:aws:codeartifact:region-id:123456789012:repository/my_domain/repo1",
             "description": "Description of repo1"
         },
         {
             "name": "repo2",
             "administratorAccount": "123456789012",
-            "domainName": "my-domain",
+            "domainName": "my_domain",
             "domainOwner": "123456789012",
-            "arn": "arn:aws:codeartifact:region-id:123456789012:repository/my-domain/repo2",
+            "arn": "arn:aws:codeartifact:region-id:123456789012:repository/my_domain/repo2",
             "description": "Description of repo2"    
             
         },
         {
             "name": "repo3",
             "administratorAccount": "123456789012",
-            "domainName": "my-domain2",
+            "domainName": "my_domain2",
             "domainOwner": "123456789012",
-            "arn": "arn:aws:codeartifact:region-id:123456789012:repository/my-domain2/repo3",
+            "arn": "arn:aws:codeartifact:region-id:123456789012:repository/my_domain2/repo3",
             "description": "Description of repo3"
         }
     ]
@@ -51,10 +51,10 @@ Sample output:
 Use `list-repositories-in-domain` to get a list of all the repositories in a domain\.
 
 ```
-aws codeartifact list-repositories-in-domain --domain my-domain --domain-owner 123456789012 --max-results 3
+aws codeartifact list-repositories-in-domain --domain my_domain --domain-owner 123456789012 --max-results 3
 ```
 
-The output shows that some of the repositories are owned by different AWS accounts\.
+The output shows that some of the repositories are administered by different AWS accounts\.
 
 ```
 {
@@ -62,25 +62,25 @@ The output shows that some of the repositories are owned by different AWS accoun
         {
             "name": "repo1",
             "administratorAccount": "123456789012",
-            "domainName": "my-domain",
-            "domainOwner": "123456789012",  
-            "arn": "arn:aws:codeartifact:region-id:123456789012:repository/my-domain/repo1",
+            "domainName": "my_domain",
+            "domainOwner": "111122223333",  
+            "arn": "arn:aws:codeartifact:region-id:111122223333:repository/my_domain/repo1",
             "description": "Description of repo1"
         },
         {
             "name": "repo2",
-            "administratorAccount": "123456789012",
-            "domainName": "my-domain",
-            "domainOwner": "123456789012",
-            "arn": "arn:aws:codeartifact:region-id:123456789012:repository/my-domain/repo2",
+            "administratorAccount": "444455556666",
+            "domainName": "my_domain",
+            "domainOwner": "111122223333",
+            "arn": "arn:aws:codeartifact:region-id:111122223333:repository/my_domain/repo2",
             "description": "Description of repo2"            
         },
         {
             "name": "repo3",
-            "administratorAccount": "123456789012",
-            "domainName": "my-domain",
-            "domainOwner": "123456789012",
-            "arn": "arn:aws:codeartifact:region-id:123456789012:repository/my-domain/repo3",
+            "administratorAccount": "444455556666",
+            "domainName": "my_domain",
+            "domainOwner": "111122223333",
+            "arn": "arn:aws:codeartifact:region-id:111122223333:repository/my_domain/repo3",
             "description": "Description of repo3"            
         }
     ]
@@ -92,7 +92,7 @@ The output shows that some of the repositories are owned by different AWS accoun
 To output the repository names in a more compact list, try the following command\.
 
 ```
-aws codeartifact list-repositories-in-domain --domain my-domain --domain-owner domain-owner-id \
+aws codeartifact list-repositories-in-domain --domain my_domain --domain-owner 111122223333 \
   --query 'repositories[*].[name]' --output text
 ```
 
@@ -107,7 +107,7 @@ repo3
 The following example outputs the account ID in addition to the repository name\.
 
 ```
-aws codeartifact list-repositories-in-domain --domain my-domain --domain-owner domain-owner-id  \
+aws codeartifact list-repositories-in-domain --domain my_domain --domain-owner 111122223333  \
   --query 'repositories[*].[name,administratorAccount]' --output text
 ```
 

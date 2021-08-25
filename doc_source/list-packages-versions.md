@@ -3,8 +3,8 @@
 Use the `list-package-versions` command in CodeArtifact to get a list of all of the versions of a package name in a repository\.
 
 ```
-aws codeartifact list-package-versions --package kind-of --domain my-domain --domain-owner domain-owner-id \
---repository my-repository --format npm
+aws codeartifact list-package-versions --package kind-of --domain my_domain --domain-owner 111122223333 \
+--repository my_repository --format npm
 ```
 
 Sample output:
@@ -55,7 +55,7 @@ You can add the `--status` parameter to the `list-package-versions` call to filt
  `list-package-versions` can output versions sorted in descending order based on publish time \(the most\-recently published versions are listed first\)\. Use the `--sort-by` parameter with a value of `PUBLISH_TIME`, as follows\.
 
 ```
-aws codeartifact list-package-versions --domain my-domain --domain-owner domain-owner-id --repository my-repository  \
+aws codeartifact list-package-versions --domain my_domain --domain-owner 111122223333 --repository my_repository  \
 --format npm --package webpack --max-results 5 --sort-by PUBLISHED_TIME
 ```
 
@@ -109,8 +109,8 @@ aws codeartifact list-package-versions --domain my-domain --domain-owner domain-
  You can use parameters that are available to all AWS CLI commands to make the `list-package-versions` response compact and more readable\. Use the `--query` parameter to specify the format of each returned package version\. Use `--output` parameter to format the response as plain text\. 
 
 ```
-aws codeartifact list-package-versions --package my-package-name --domain my-domain --domain-owner domain-owner-id \
---repository my-repo --format npm --output text --query 'versions[*].[version]'
+aws codeartifact list-package-versions --package my-package-name --domain my_domain --domain-owner 111122223333 \
+--repository my_repo --format npm --output text --query 'versions[*].[version]'
 ```
 
 Sample output:

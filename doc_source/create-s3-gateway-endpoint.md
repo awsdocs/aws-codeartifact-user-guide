@@ -17,9 +17,6 @@ The Amazon S3 gateway endpoint uses an IAM policy document to limit access to th
 
 The following table describes the Amazon S3 buckets you should reference in your policies to allow access to CodeArtifact in each region\.
 
-**Note**  
-This table is the current list of Amazon S3 buckets in each region that CodeArtifact requires access to\. Soon, CodeArtifact will provide an API to fetch the Amazon S3 bucket used by a CodeArtifact domain\.
-
 
 ****  
 
@@ -29,12 +26,37 @@ This table is the current list of Amazon S3 buckets in each region that CodeArti
 |  us\-east\-2  |  arn:aws:s3:::assets\-250872398865\-us\-east\-2  | 
 |  us\-west\-2  |  arn:aws:s3:::assets\-787052242323\-us\-west\-2  | 
 |  eu\-west\-1  |  arn:aws:s3:::assets\-438097961670\-eu\-west\-1  | 
+|  eu\-west\-2  |  arn:aws:s3:::assets\-247805302724\-eu\-west\-2  | 
+|  eu\-west\-3  |  arn:aws:s3:::assets\-762466490029\-eu\-west\-3  | 
 |  eu\-north\-1  |  arn:aws:s3:::assets\-611884512288\-eu\-north\-1  | 
+|  eu\-south\-1  |  arn:aws:s3:::assets\-484130244270\-eu\-south\-1  | 
 |  eu\-central\-1  |  arn:aws:s3:::assets\-769407342218\-eu\-central\-1  | 
 |  ap\-northeast\-1  |  arn:aws:s3:::assets\-660291247815\-ap\-northeast\-1  | 
 |  ap\-southeast\-1  |  arn:aws:s3:::assets\-421485864821\-ap\-southeast\-1  | 
 |  ap\-southeast\-2  |  arn:aws:s3:::assets\-860415559748\-ap\-southeast\-2  | 
 |  ap\-south\-1  |  arn:aws:s3:::assets\-681137435769\-ap\-south\-1  | 
+
+You can use the `aws codeartifact describe-domain` command to fetch the Amazon S3 bucket used by a CodeArtifact domain\.
+
+```
+aws codeartifact describe-domain --domain mydomain
+```
+
+```
+{
+  "domain": {
+    "name": "mydomain",
+    "owner": "111122223333",
+    "arn": "arn:aws:codeartifact:us-west-2:111122223333:domain/mydomain",
+    "status": "Active",
+    "createdTime": 1583075193.861,
+    "encryptionKey": "arn:aws:kms:us-west-2:111122223333:key/a73que8sq-ba...",
+    "repositoryCount": 13,
+    "assetSizeBytes": 513830295,
+    "s3BucketArn": "arn:aws:s3:::assets-787052242323-us-west-2"
+  }
+}
+```
 
 ### Example<a name="s3-gateway-policy-example"></a>
 

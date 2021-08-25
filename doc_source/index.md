@@ -1,7 +1,7 @@
 # CodeArtifact CodeArtifact User Guide
 
 -----
-*****Copyright &copy; 2021 Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
+*****Copyright &copy; Amazon Web Services, Inc. and/or its affiliates. All rights reserved.*****
 
 -----
 Amazon's trademarks and trade dress may not be used in 
@@ -55,7 +55,8 @@ Amazon's trademarks and trade dress may not be used in
    + [Domain policies](domain-policies.md)
    + [Tag a domain in CodeArtifact](tag-domains.md)
 + [Using CodeArtifact with npm](using-npm.md)
-   + [Authentication with npm](npm-auth.md)
+   + [Configure and use npm with CodeArtifact](npm-auth.md)
+   + [Configure and use Yarn with CodeArtifact](npm-yarn.md)
    + [npm command support](npm-commands.md)
    + [npm tag handling](npm-tags.md)
    + [Support for npm-compatible package managers](npm-other-clients.md)

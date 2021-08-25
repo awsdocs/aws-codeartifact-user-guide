@@ -18,7 +18,7 @@ To add an external connection to a CodeArtifact repository, use `associate-exter
 
 ```
 aws codeartifact associate-external-connection --external-connection public:npmjs \
-    --domain my-domain --domain-owner domain-owner-id --repository my-repo
+    --domain my_domain --domain-owner 111122223333 --repository my_repo
 ```
 
 Example output:
@@ -26,12 +26,12 @@ Example output:
 ```
 {
     "repository": {
-        "name": my-repo
+        "name": my_repo
         "administratorAccount": "123456789012",
-        "domainName": "my-domain",
-        "domainOwner": "123456789012",
-        "arn": "arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/my-repo",
-        "description": "A description of my-repo",
+        "domainName": "my_domain",
+        "domainOwner": "111122223333",
+        "arn": "arn:aws:codeartifact:us-west-2:111122223333:repository/my_domain/my_repo",
+        "description": "A description of my_repo",
         "upstreams": [],
         "externalConnections": [
             {
@@ -68,7 +68,7 @@ To remove an external connection, use `disassociate-external-connection`\.
 
 ```
 aws codeartifact disassociate-external-connection --external-connection public:npmjs \
-    --domain my-domain --domain-owner domain-owner-id --repository my-repo
+    --domain my_domain --domain-owner 111122223333 --repository my_repo
 ```
 
 Example output:
@@ -76,12 +76,12 @@ Example output:
 ```
 {
     "repository": {
-        "name": my-repo
+        "name": my_repo
         "administratorAccount": "123456789012",
-        "domainName": "my-domain",
-        "domainOwner": "123456789012",
-        "arn": "arn:aws:codeartifact:us-west-2:123456789012:repository/my-domain/my-repo",
-        "description": "A description of my-repo",
+        "domainName": "my_domain",
+        "domainOwner": "111122223333",
+        "arn": "arn:aws:codeartifact:us-west-2:111122223333:repository/my_domain/my_repo",
+        "description": "A description of my_repo",
         "upstreams": [],
         "externalConnections": []
     }
@@ -93,7 +93,7 @@ Example output:
 After you add an external connection, configure your package manager to use your CodeArtifact repository\. Use the following for **`npm`**\.
 
 ```
-aws codeartifact login --tool npm --domain my-domain --domain-owner domain-owner-id --repository my-repo
+aws codeartifact login --tool npm --domain my_domain --domain-owner 111122223333 --repository my_repo
 ```
 
 Then, request the package from the public repository\.
@@ -105,7 +105,7 @@ npm install lodash
 After the package has been copied into your CodeArtifact repository, you can use the `list-packages` and `list-package-versions` commands to view it\.
 
 ```
-aws codeartifact list-packages --domain my-domain --domain-owner domain-owner-id --repository my-repo
+aws codeartifact list-packages --domain my_domain --domain-owner 111122223333 --repository my_repo
 ```
 
 Example output:
@@ -124,7 +124,7 @@ Example output:
 The `list-package-versions` command lists all versions of the package copied into your CodeArtifact repository\. In some cases, this is all of the versions of the package in the external repository\. In other cases, this is a subset of those versions\. For more information, see [npm ingestion behavior](#npm-ingestion-behavior)\.
 
 ```
-aws codeartifact list-package-versions --domain my-domain --domain-owner domain-owner-id --repository my-repo --format npm --package lodash
+aws codeartifact list-package-versions --domain my_domain --domain-owner 111122223333 --repository my_repo --format npm --package lodash
 ```
 
 Example output:
@@ -175,7 +175,7 @@ Example output:
       <mirror>
         <id>central-mirror</id>
         <name>CodeArtifact Maven Central mirror</name>
-        <url>https://my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/maven/my-repo/</url>
+        <url>https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/maven/my_repo/</url>
         <mirrorOf>central</mirrorOf>
       </mirror>
     </mirrors>
@@ -194,7 +194,7 @@ If you add a `mirrors` element, you must also have a `pluginRepository` element 
         <pluginRepository>
           <id>codeartifact</id>
           <name>CodeArtifact Plugins</name>
-          <url>https://my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/maven/my-repo/</url>
+          <url>https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/maven/my_repo/</url>
           <releases>
             <enabled>true</enabled>
           </releases>
@@ -244,7 +244,7 @@ If ingestion of a package is not complete in 40 seconds, a 404 error is returned
 
 ```
 npm ERR! code E404
-npm ERR! 404 Not Found - GET https://my-domain-domain-owner-id.d.codeartifact.us-west-2.amazonaws.com/npm/my-repo/lodash - Ingestion is in progress. Please try again later.
+npm ERR! 404 Not Found - GET https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/npm/my_repo/lodash - Ingestion is in progress. Please try again later.
 npm ERR! 404
 npm ERR! 404  'lodash@^4.17.15' is not in the npm registry.
 npm ERR! 404 You should bug the author to publish it (or use the name yourself!)
@@ -270,8 +270,8 @@ When this occurs, CodeArtifact is still copying packages from the external repos
     Required by:
         project :
       > Could not resolve org.mockito:mockito-core:3.1.0.
-         > Could not get resource 'https://my-domain.codeartifact.aws.a2z.com/maven/my-domain/org/mockito/mockito-core/3.1.0/mockito-core-3.1.0.pom'.
-            > Could not GET 'https://my-domain.codeartifact.aws.a2z.com/maven/my-domain/org/mockito/mockito-core/3.1.0/mockito-core-3.1.0.pom'.
+         > Could not get resource 'https://my_domain.codeartifact.aws.a2z.com/maven/my_domain/org/mockito/mockito-core/3.1.0/mockito-core-3.1.0.pom'.
+            > Could not GET 'https://my_domain.codeartifact.aws.a2z.com/maven/my_domain/org/mockito/mockito-core/3.1.0/mockito-core-3.1.0.pom'.
 ```
 
  When this occurs, CodeArtifact is still copying packages from the external repository asynchronously\. Retry the same command to complete the ingestion of the entire dependency tree\. 

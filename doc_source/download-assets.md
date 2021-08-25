@@ -5,7 +5,7 @@ An *asset* is an individual file \(for example, an npm `.tgz` file or Maven POM 
 The following example downloads the *guava\-27\.1\-jre\.jar* asset from the Maven package *com\.google\.guava:guava* with version *27\.1\-jre*\.
 
 ```
-aws codeartifact get-package-version-asset --domain my-domain --domain-owner domain-owner-id --repository my-repo \
+aws codeartifact get-package-version-asset --domain my_domain --domain-owner 111122223333 --repository my_repo \
     --format maven --namespace com.google.guava --package guava --package-version 27.1-jre \
     --asset guava-27.1-jre.jar guava-27.1-jre.jar
 ```
