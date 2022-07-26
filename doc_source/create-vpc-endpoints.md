@@ -31,4 +31,8 @@ aws ec2 create-vpc-endpoint --vpc-id vpcid --vpc-endpoint-type Interface \
 ```
 
 **Note**  
- When you create a `codeartifact.repositories` endpoint, you must create a private DNS hostname using the `--private-dns-enabled` option\. However, because multiple private DNS hostnames are not currently supported for the `codeartifact.api` and `codeartifact.repositories` endpoints, use the `--no-private-dns-enabled` option for `codeartifact.api`\. 
+ When you create a `codeartifact.repositories` endpoint, you must create a private DNS hostname using the `--private-dns-enabled` option\. However, because multiple private DNS hostnames are not currently supported for the `codeartifact.api` and `codeartifact.repositories` endpoints, use the `--no-private-dns-enabled` option for `codeartifact.api`\. If you can't or do not want to create a private DNS hostname when you create the `codeartifact.repositories` endpoint, you must follow an extra configuration step to use your package manager with CodeArtifact from a VPC\. See [Use the `codeartifact.repositories` endpoint without private DNS](use-codeartifact-from-vpc.md#use-codeartifact-from-vpc-no-private-dns) for more information\.
+
+After creating VPC endpoints, you may need to do more configuration with security group rules to use the endpoints with CodeArtifact\. For more information about security groups in Amazon VPC, see [Security groups](https://docs.aws.amazon.com/vpc/latest/privatelink/vpc-endpoints-access.html#vpc-endpoints-security-groups)\.
+
+If you are having issues connecting to CodeArtifact, you can use the VPC Reachability Analyzer tool to debug the issue\. For more information, see [What is VPC Reachability Analyzer?](https://docs.aws.amazon.com/vpc/latest/reachability/what-is-reachability-analyzer.html)

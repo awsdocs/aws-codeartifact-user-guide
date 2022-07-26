@@ -22,11 +22,11 @@
 
 1.  Expand **Additional configuration**\. 
 
-1.  You must use a *customer master key* \(CMK\) to encrypt all assets in your domain\. You can use an AWS managed CMK or a CMK that you manage: 
-   +  Choose **AWS managed key** if you want to use the default AWS managed CMK\. 
-   +  Choose **Customer managed key** if you want to use a CMK that you manage\. If you use a CMK that you manage, in **Customer master key**, choose the CMK\. 
+1.  You must use an AWS KMS key \(KMS key\) to encrypt all assets in your domain\. You can use an AWS managed key or a KMS key that you manage: 
+   +  Choose **AWS managed key** if you want to use the default AWS managed key\. 
+   +  Choose **Customer managed key** if you want to use a KMS key that you manage\. To use a KMS key that you manage, in **Customer managed key ARN**, search for and choose the KMS key\. 
 
-    For more information, see [AWS managed CMKs](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk) and [Customer managed CMKs](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) in the *AWS Key Management Service Developer Guide*\. 
+    For more information, see [AWS managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk) and [Customer managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) in the *AWS Key Management Service Developer Guide*\. 
 
 1.  Choose **Next**\. 
 

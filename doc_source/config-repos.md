@@ -21,7 +21,7 @@ After you create a repository, you cannot change its name, associated AWS accoun
    +  The repository's domain\. Choose the domain name to learn more about it\. 
    +  The repository's resource policy\. Choose **Apply a repository policy** to add one\. 
    +  The repository's Amazon Resource Name \(ARN\)\. 
-   +  If your repository has an external connection, you can choose the connection to learn more about it\. A repository can have only one external connection\. For more information, see [Add an external connection](external-connection.md)\. 
+   +  If your repository has an external connection, you can choose the connection to learn more about it\. A repository can have only one external connection\. For more information, see [Connect a CodeArtifact repository to a public repository](external-connection.md)\. 
    +  If your repository has upstream repositories, you can choose one to see its details\. A repository can have up to 10 direct upstream repositories\. For more information, see [Working with upstream repositories in CodeArtifact](repos-upstream.md)\. 
 **Note**  
  A repository can have an external connection or upstream repositories, but not both\. 

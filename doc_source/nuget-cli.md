@@ -6,25 +6,26 @@ You can use CLI tools like `nuget` and `dotnet` to publish and consume packages 
 + [Configure the nuget or dotnet CLI](#nuget-configure-cli)
 + [Consume NuGet packages from CodeArtifact](#nuget-consume-cli)
 + [Publish NuGet packages to CodeArtifact](#nuget-publish-cli)
-+ [CodeArtifact Credential Provider reference](#nuget-cred-provider-reference)
++ [CodeArtifact NuGet Credential Provider reference](#nuget-cred-provider-reference)
++ [CodeArtifact NuGet Credential Provider versions](#nuget-cred-provider-history)
 
 ## Configure the nuget or dotnet CLI<a name="nuget-configure-cli"></a>
 
-You can configure the nuget or dotnet CLI with a CodeArtifact Credential Provider, with the AWS CLI, or manually\. Configuring NuGet with the credential provider is highly recommended for simplified setup and continued authentication\.
+You can configure the nuget or dotnet CLI with the CodeArtifact NuGet Credential Provider, with the AWS CLI, or manually\. Configuring NuGet with the credential provider is highly recommended for simplified setup and continued authentication\.
 
-### Method 1: Configure with the CodeArtifact Credential Provider<a name="nuget-configure-cli-cred-provider"></a>
+### Method 1: Configure with the CodeArtifact NuGet Credential Provider<a name="nuget-configure-cli-cred-provider"></a>
 
-The CodeArtifact Credential Provider simplifies the authentication and configuration of CodeArtifact with NuGet CLI tools\. CodeArtifact authentication tokens are valid for a maximum of 12 hours\. To avoid having to manually refresh the token while using the nuget or dotnet CLI, the credential provider periodically fetches a new token before the current token expires\. 
+The CodeArtifact NuGet Credential Provider simplifies the authentication and configuration of CodeArtifact with NuGet CLI tools\. CodeArtifact authentication tokens are valid for a maximum of 12 hours\. To avoid having to manually refresh the token while using the nuget or dotnet CLI, the credential provider periodically fetches a new token before the current token expires\. 
 
 **Important**  
 To use the credential provider, ensure that any existing AWS CodeArtifact credentials are cleared from your `nuget.config` file that may have been added manually or by running `aws codeartifact login` to configure NuGet previously\.
 
-**Install and configure the CodeArtifact Credential Provider for NuGet**
+**Install and configure the CodeArtifact NuGet Credential Provider**
 
 ------
 #### [ dotnet ]
 
-1. Download the [AWS\.CodeArtifact\.NuGet\.CredentialProvider tool from NuGet\.org](https://www.nuget.org/packages/AWS.CodeArtifact.NuGet.CredentialProvider) with the following `dotnet` command\.
+1. Download the latest version of the [AWS\.CodeArtifact\.NuGet\.CredentialProvider tool from NuGet\.org](https://www.nuget.org/packages/AWS.CodeArtifact.NuGet.CredentialProvider) with the following `dotnet` command\.
 
    ```
    dotnet tool install -g AWS.CodeArtifact.NuGet.CredentialProvider
@@ -45,9 +46,11 @@ To use the credential provider, ensure that any existing AWS CodeArtifact creden
 ------
 #### [ nuget ]
 
-Perform the following steps to use the NuGet CLI to install the CodeArtifact Credential Provider from an Amazon S3 bucket and configure it\. The credential provider will use the default AWS CLI profile, for more information on profiles, see [Named profiles](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)\.
+Perform the following steps to use the NuGet CLI to install the CodeArtifact NuGet Credential Provider from an Amazon S3 bucket and configure it\. The credential provider will use the default AWS CLI profile, for more information on profiles, see [Named profiles](https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-profiles.html)\.
 
-1. Download [AWS\.CodeArtifact\.NuGet\.CredentialProvider\.zip](https://a.co/dbGqKq7) from an Amazon S3 bucket\.
+1. Download the latest version of the [CodeArtifact NuGet Credential Provider \(codeartifact\-nuget\-credentialprovider\.zip\)](https://a.co/dbGqKq7) from an Amazon S3 bucket\.
+
+   To view and download earlier versions, see [CodeArtifact NuGet Credential Provider versions](#nuget-cred-provider-history)\.
 
 1. Unzip the file\.
 
@@ -146,11 +149,14 @@ For manual configuration, you must add a repository endpoint and authorization t
    dotnet nuget add source https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/nuget/my_repo/v3/index.json --name packageSourceName --password eyJ2I...viOw --username aws
    ```
 
+**Note**  
+To update an existing source, use the `dotnet nuget update source` command\.
+
 ------
 #### [ nuget ]
 
    ```
-   nuget sources add -name domain_name/repo_name -Source https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/nuget/my_repo/v3/index.json -password eyJ2I...viOw --username aws
+   nuget sources add -name domain_name/repo_name -Source https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/nuget/my_repo/v3/index.json -password eyJ2I...viOw -username aws
    ```
 
 ------
@@ -166,6 +172,9 @@ For manual configuration, you must add a repository endpoint and authorization t
 Once you have [configured NuGet with CodeArtifact](https://docs.aws.amazon.com/codeartifact/latest/ug/nuget-cli.html), you can consume NuGet packages that are stored in your CodeArtifact repository or one of its upstream repositories\.
 
 To consume a package version from a CodeArtifact repository or one of its upstream repositories with `nuget` or `dotnet`, run the following command replacing *packageName* with the name of the package you want to consume and *packageSourceName* with the source name for your CodeArtifact repository in your NuGet configuration file\. If you used the `login` command to configure your NuGet configuration, the source name is *domain\_name/repo\_name*\.
+
+**Note**  
+When a package is requested, the NuGet client caches which versions of that package exists\. Because of this behavior, an install may fail for a package that was requested before it was available\. To avoid this failure and successfully install a package that exists, you can either clear the NuGet cache ahead of an install with `nuget locals all --clear` or use the `--no-cache` option when running `nuget install` or `nuget restore`\.
 
 ------
 #### [ dotnet ]
@@ -205,7 +214,7 @@ See [Manage packages using the nuget\.exe CLI](https://docs.microsoft.com/en-us/
 
 ### Consume NuGet packages from NuGet\.org<a name="nuget-consume-nuget-gallery"></a>
 
-You can consume NuGet packages from [NuGet\.org](https://www.nuget.org/) through a CodeArtifact repository by configuring the repository with an external connection to **NuGet\.org**\. Packages consumed from **NuGet\.org** are ingested and stored in your CodeArtifact repository\. For more information about adding external connections, see [Add an external connection](external-connection.md)\.
+You can consume NuGet packages from [NuGet\.org](https://www.nuget.org/) through a CodeArtifact repository by configuring the repository with an external connection to **NuGet\.org**\. Packages consumed from **NuGet\.org** are ingested and stored in your CodeArtifact repository\. For more information about adding external connections, see [Connect a CodeArtifact repository to a public repository](external-connection.md)\.
 
 ## Publish NuGet packages to CodeArtifact<a name="nuget-publish-cli"></a>
 
@@ -232,13 +241,13 @@ nuget push path/to/nupkg/SamplePackage.1.0.0.nupkg -Source packageSourceName
 
 ------
 
-## CodeArtifact Credential Provider reference<a name="nuget-cred-provider-reference"></a>
+## CodeArtifact NuGet Credential Provider reference<a name="nuget-cred-provider-reference"></a>
 
-The CodeArtifact Credential Provider makes it easy to configure and authenticate NuGet with your CodeArtifact repositories\.
+The CodeArtifact NuGet Credential Provider makes it easy to configure and authenticate NuGet with your CodeArtifact repositories\.
 
-### CodeArtifact Credential Provider commands<a name="nuget-cred-provider-reference-commands"></a>
+### CodeArtifact NuGet Credential Provider commands<a name="nuget-cred-provider-reference-commands"></a>
 
-This section includes the list of commands for the CodeArtifact Credential Provider\. These commands must be prefixed with `dotnet codeartifact-creds` like the following example\.
+This section includes the list of commands for the CodeArtifact NuGet Credential Provider\. These commands must be prefixed with `dotnet codeartifact-creds` like the following example\.
 
 ```
 dotnet codeartifact-creds command
@@ -250,17 +259,27 @@ dotnet codeartifact-creds command
 + `uninstall`: Uninstalls the credential provider\. This does not remove the changes to the configuration file\.
 + `uninstall --delete-configuration`: Uninstalls the credential provider and removes all changes to the configuration file\.
 
-### CodeArtifact Credential Provider logs<a name="nuget-cred-provider-reference-logs"></a>
+### CodeArtifact NuGet Credential Provider logs<a name="nuget-cred-provider-reference-logs"></a>
 
-To enable logging for the CodeArtifact Credential Provider, you must set the log file in your environment\. The credential provider logs contain helpful debugging information such as:
+To enable logging for the CodeArtifact NuGet Credential Provider, you must set the log file in your environment\. The credential provider logs contain helpful debugging information such as:
 + The AWS profile used to make connections
 + Any authentication errors
 + If the endpoint provided is not a CodeArtifact URL
 
-**Set the CodeArtifact Credential Provider log file**
+**Set the CodeArtifact NuGet Credential Provider log file**
 
 ```
 export AWS_CODEARTIFACT_NUGET_LOGFILE=/path/to/file
 ```
 
 After the log file is set, any `codeartifact-creds` command will append its log output to the contents of that file\.
+
+## CodeArtifact NuGet Credential Provider versions<a name="nuget-cred-provider-history"></a>
+
+The following table contains version history information and download links for the CodeArtifact NuGet Credential Provider\.
+
+
+| Version | Changes | Date published | Download link \(S3\) | 
+| --- | --- | --- | --- | 
+|  1\.0\.1 \(latest\)  |  Added support for net5, net6, and SSO profiles  |  03/05/2022  |  [Download v1\.0\.1](https://a.co/cAIkhV1)  | 
+|  1\.0\.0  |  Initial CodeArtifact NuGet Credential Provider release  |  11/20/2020  |  [Download v1\.0\.0](https://a.co/8b2cENb)  | 

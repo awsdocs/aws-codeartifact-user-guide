@@ -7,8 +7,11 @@ The following example downloads the *guava\-27\.1\-jre\.jar* asset from the Mave
 ```
 aws codeartifact get-package-version-asset --domain my_domain --domain-owner 111122223333 --repository my_repo \
     --format maven --namespace com.google.guava --package guava --package-version 27.1-jre \
-    --asset guava-27.1-jre.jar guava-27.1-jre.jar
+    --asset guava-27.1-jre.jar \
+    guava-27.1-jre.jar
 ```
+
+ In this example, the file name was specified as *guava\-27\.1\-jre\.jar* by the last argument in the preceding command, so the downloaded asset will be named *guava\-27\.1\-jre\.jar*\. 
 
 The output of the command will be:
 
@@ -20,6 +23,7 @@ The output of the command will be:
 }
 ```
 
- In this example, the file name was specified as *guava\-27\.1\-jre\.jar* by the last argument in the command above, so the downloaded asset will be named *guava\-27\.1\-jre\.jar*\. 
+**Note**  
+To download assets from a scoped npm package, include the scope in the `--namespace` option\. The `@` symbol must be omitted when using `--namespace`\. For example, if the scope is `@types`, use `--namespace types`\.
 
  Downloading assets using `get-package-version-asset` requires `codeartifact:GetPackageVersionAsset` permission on the package resource\. For more information about resource\-based permission policies, see [Resource\-based policies](https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies.html#policies_resource-based) in the *AWS Identity and Access Management User Guide*\. 

@@ -61,10 +61,14 @@ The following policy limits this power and denies unauthorized users permission 
       "Action": [
         "codeartifact:TagResource",
         "codeartifact:UntagResource",
+        "codeartifact:DescribeDomain",
+        "codeartifact:DescribeRepository",
+        "codeartifact:PutDomainPermissionsPolicy",
+        "codeartifact:PutRepositoryPermissionsPolicy",
+        "codeartifact:ListRepositoriesInDomain",
+        "codeartifact:UpdateRepository",
+        "codeartifact:ReadFromRepository",
         "codeartifact:ListPackages",
-        "codeartifact:DeletePackageVersions",
-        "codeartifact:ListPackageVersions",
-        "codeartifact:DescribePackageVersion",
         "codeartifact:ListTagsForResource"
       ],
       "Resource": "*",

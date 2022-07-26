@@ -22,4 +22,4 @@ For other tools, use the cache folders shown in this table\.
 |   ** `pip` **   |   `/root/.cache/pip/**/*`   | 
 |   ** `npm` **   |   `/root/.npm/**/*`   | 
 |   ** `nuget` **   |   `/root/.nuget/**/*`   | 
-|   ** `yarn` (classic) |   `/root/.cache/yarn/**/*`   | 
+|   ** `yarn (classic)` **   |   `/root/.cache/yarn/**/*`   | 

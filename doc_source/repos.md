@@ -9,5 +9,4 @@ These topics show you how to use the CodeArtifact CLI and API to create, list, u
 + [List repositories](list-repos.md)
 + [View or modify a repository configuration](config-repos.md)
 + [Repository policies](repo-policies.md)
-+ [Add an external connection](external-connection.md)
 + [Tag a repository](tag-repositories.md)

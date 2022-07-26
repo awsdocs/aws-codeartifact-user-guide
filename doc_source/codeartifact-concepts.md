@@ -14,7 +14,7 @@
 
 ## Domain<a name="welcome-concepts-domain"></a>
 
-Repositories are aggregated into a higher\-level entity known as a *domain*\. All package assets and metadata are stored in the domain, but they are consumed through repositories\. A given package asset, such as a Maven JAR file, is stored once per domain, no matter how many repositories it's present in\. All of the assets and metadata in a domain are encrypted with the same customer master key \(CMK\) stored in AWS Key Management Service \(AWS KMS\)\.
+Repositories are aggregated into a higher\-level entity known as a *domain*\. All package assets and metadata are stored in the domain, but they are consumed through repositories\. A given package asset, such as a Maven JAR file, is stored once per domain, no matter how many repositories it's present in\. All of the assets and metadata in a domain are encrypted with the same AWS KMS key \(KMS key\) stored in AWS Key Management Service \(AWS KMS\)\.
 
 Each repository is a member of a single domain and can't be moved to a different domain\.
 
@@ -28,13 +28,9 @@ A CodeArtifact *repository* contains a set of [package versions](#welcome-concep
 
 ## Package<a name="welcome-concepts-package"></a>
 
-A *package* is a bundle of software and the metadata that is required to resolve dependencies and install the software\. AWS CodeArtifact supports [npm](using-npm.md), [PyPI](using-python.md), [Maven](using-maven.md), and [NuGet](using-nuget.md) package formats\.
+A *package* is a bundle of software and the metadata that is required to resolve dependencies and install the software\. In CodeArtifact, a package consists of a package name, an optional [namespace](#welcome-concepts-package-namespace) such as `@types` in `@types/node`, a set of package versions, and package\-level metadata such as npm tags\.
 
-In CodeArtifact, a package consists of:
-+ A *name* \(for example, `webpack` is the name of a popular npm package\)
-+ An optional [namespace](#welcome-concepts-package-namespace) \(for example, `@types` in `@types/node`\)
-+ A set of [versions](#welcome-concepts-package-version) \(for example, `1.0.0`, `1.0.1`, `1.0.2`, etc\.\)
-+  Package\-level metadata \(for example, npm tags\)
+AWS CodeArtifact supports [npm](using-npm.md), [PyPI](using-python.md), [Maven](using-maven.md), and [NuGet](using-nuget.md) package formats\.
 
 ## Package version<a name="welcome-concepts-package-version"></a>
 

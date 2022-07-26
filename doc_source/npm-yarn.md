@@ -87,7 +87,7 @@ The following command is for macOS or Linux machines\. For information on config
 1. Use the `yarn config set` command to add your CodeArtifact authentication token to your \.yarnrc\.yml file\. Replace the URL in the following command with your repository endpoint URL from Step 2\.
 
    ```
-   yarn config set 'npmRegistries["https://my_domain-111122223333.d.codeartifact.region.amazonaws.com/npm/my_repo/"].npmAuthToken' "${CODEARTIFACT_TOKEN}"
+   yarn config set 'npmRegistries["https://my_domain-111122223333.d.codeartifact.region.amazonaws.com/npm/my_repo/"].npmAuthToken' "${CODEARTIFACT_AUTH_TOKEN}"
    ```
 
 1. Use the `yarn config set` command to set the value of `npmAlwaysAuth` to `true`\. Replace the URL in the following command with your repository endpoint URL from Step 2\.

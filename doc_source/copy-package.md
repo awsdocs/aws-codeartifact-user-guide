@@ -93,13 +93,13 @@ Normally, `copy-package-versions` only looks in the repository specified by the 
 
 ```
 aws codeartifact copy-package-versions  --domain my_domain --domain-owner 111122223333 --source-repository repo-1 \
- --destination-repository repo-2 --format npm --namespace my-namespace \
- --package my-package --versions 0.12.2
+ --destination-repository repo-2 --format npm --namespace types \
+ --package react --versions 0.12.2
 ```
 
 ## Copy Maven package versions<a name="copying-a-maven-package"></a>
 
-To copy Maven package versions between repositories, specify the package to copy by passing the Maven groupID with the `--namespace` option and the Maven artifactID with the `--name` option\. For example, to copy a single version of `com.google.guava:guava`:
+To copy Maven package versions between repositories, specify the package to copy by passing the Maven group ID with the `--namespace` option and the Maven artifactID with the `--name` option\. For example, to copy a single version of `com.google.guava:guava`:
 
 ```
  aws codeartifact copy-package-versions --domain my_domain --domain-owner 111122223333  \

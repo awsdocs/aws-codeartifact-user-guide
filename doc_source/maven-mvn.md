@@ -8,6 +8,7 @@ After you have the CodeArtifact auth token in an environment variable as describ
 + [Fetch dependencies](#fetching-dependencies)
 + [Publish artifacts](#publishing-artifacts)
 + [Publish third\-party artifacts](#publishing-third-party-artifacts)
++ [Restrict Maven dependency downloads to a CodeArtifact repository](#restrict-maven-downloads)
 
 ## Fetch dependencies<a name="fetching-dependencies"></a>
 
@@ -218,6 +219,76 @@ The `mvn deploy:deploy-file` command will generate a POM file based on the infor
 The example above publishes `commons-cli 1.4`\. Modify the groupId, artifactID, version, and file arguments to publish a different JAR\.
 
 These instructions are based on examples in the [Guide to deploying 3rd party JARs to remote repository](https://maven.apache.org/guides/mini/guide-3rd-party-jars-remote.html) from the *Apache Maven documentation*\. 
+
+## Restrict Maven dependency downloads to a CodeArtifact repository<a name="restrict-maven-downloads"></a>
+
+ If a package cannot be fetched from a configured repository, by default, the `mvn` command fetches it from Maven Central\. Add the `mirrors` element to `settings.xml` to make `mvn` always use your CodeArtifact repository\.
+
+```
+<settings>
+  ...
+    <mirrors>
+      <mirror>
+        <id>central-mirror</id>
+        <name>CodeArtifact Maven Central mirror</name>
+        <url>https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/maven/my_repo/</url>
+        <mirrorOf>central</mirrorOf>
+      </mirror>
+    </mirrors>
+  ...
+</settings>
+```
+
+If you add a `mirrors` element, you must also have a `pluginRepository` element in your `settings.xml` or `pom.xml`\. The following example fetches application dependencies and Maven plugins from a CodeArtifact repository\. 
+
+```
+<settings>
+...
+  <profiles>
+    <profile>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>codeartifact</id>
+          <name>CodeArtifact Plugins</name>
+          <url>https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/maven/my_repo/</url>
+          <releases>
+            <enabled>true</enabled>
+          </releases>
+          <snapshots>
+            <enabled>true</enabled>
+          </snapshots>
+        </pluginRepository>
+      </pluginRepositories>
+    </profile>
+  </profiles>
+...
+</settings>
+```
+
+The following example fetches application dependencies from a CodeArtifact repository and fetches Maven plugins from Maven Central\.
+
+```
+<profiles>
+   <profile>
+     <id>default</id>
+     ...
+     <pluginRepositories>
+       <pluginRepository>
+         <id>central-plugins</id>
+         <name>Central Plugins</name>
+         <url>https://repo.maven.apache.org/maven2/</url>
+         <releases>
+             <enabled>true</enabled>
+         </releases>
+         <snapshots>
+             <enabled>true</enabled>
+         </snapshots>
+       </pluginRepository>
+     </pluginRepositories>
+   ....
+   </profile>
+ </profiles>
+```
 
  For more information, see these topics on the Apache Maven Project website:
 +  [Setting up Multiple Repositories](https://maven.apache.org/guides/mini/guide-multiple-repositories.html) 

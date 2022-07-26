@@ -10,8 +10,9 @@ Run the `list-package-version-assets` command to return the following informatio
 For example, use the following command to list the assets of the Python package `flatten-json`, version `0.1.7`\.
 
 ```
-aws codeartifact list-package-version-assets --domain my_domain --domain-owner 111122223333 --repository my_repo\
-    --format pypi --package flatten-json --package-version 0.1.7
+aws codeartifact list-package-version-assets --domain my_domain --domain-owner 111122223333 \
+ --repository my_repo --format pypi --package flatten-json \
+ --package-version 0.1.7
 ```
 
 The following shows the output\.
@@ -47,82 +48,22 @@ The following shows the output\.
 }
 ```
 
-To list the assets of the Maven package `commons-cli:commons-cli`:
+## List assets of an npm package<a name="list-assets-npm"></a>
+
+An npm package always has a single asset with a name of `package.tgz`\. To list the assets of a scoped npm package, include the scope in the `--namespace` option\.
 
 ```
-aws codeartifact list-package-version-assets --domain my_domain --domain-owner 111122223333 --repository my_repo \
-    --format maven --package commons-cli --namespace commons-cli --package-version 1.0
+aws codeartifact list-package-version-assets --domain my_domain --domain-owner 111122223333 \
+ --repository my_repo --format npm --package webpack \
+ --namespace types --package-version 4.9.2
 ```
 
-The following shows the output\.
+## List assets of a Maven package<a name="list-assets-maven"></a>
+
+To list the assets of a Maven package, include the package namespace in the `--namespace` option\. To list the assets of the Maven package `commons-cli:commons-cli`:
 
 ```
-{
-    "format": "maven",
-    "namespace": "commons-cli",
-    "package": "commons-cli",
-    "version": "1.0",
-    "versionRevision": "REVISION-SAMPLE-55C752BEE9B772FC",
-    "assets": [
-        {
-            "name": "commons-cli-1.0.jar",
-            "size": 30117,
-            "hashes": {
-                "MD5": "41bba98d5b9219c43089eEXAMPLE-MD5",
-                "SHA-1": "69b215c25dd4cda1d997a786ec6EXAMPLE-SHA-1",
-                "SHA-256": "43f24850b7b7b7d79c5fa652418518fbdf427e602b1edabe6EXAMPLE-SHA-256",
-                "SHA-512": "3947382ac2c180ee3f2aba4f8788241527c8db9dfe9f4b039abe9fc560aaf5a1fced7bd1e80a0dca9ce320d95f0864e0dec3ac4f2f7b2b2cbEXAMPLE-SHA-512"
-            }
-        },
-        {
-            "name": "commons-cli-1.0.pom",
-            "size": 2105,
-            "hashes": {
-                "MD5": "41bba98d5b9219c43089eEXAMPLE-MD5",
-                "SHA-1": "69b215c25dd4cda1d997a786ec6EXAMPLE-SHA-1",
-                "SHA-256": "43f24850b7b7b7d79c5fa652418518fbdf427e602b1edabe6EXAMPLE-SHA-256",
-                "SHA-512": "3947382ac2c180ee3f2aba4f8788241527c8db9dfe9f4b039abe9fc560aaf5a1fced7bd1e80a0dca9ce320d95f0864e0dec3ac4f2f7b2b2cbEXAMPLE-SHA-512"
-            }
-        },
-        {
-            "name": "maven-metadata.xml",
-            "size": 119,
-            "hashes": {
-                "MD5": "41bba98d5b9219c43089eEXAMPLE-MD5",
-                "SHA-1": "69b215c25dd4cda1d997a786ec6EXAMPLE-SHA-1",
-                "SHA-256": "43f24850b7b7b7d79c5fa652418518fbdf427e602b1edabe6EXAMPLE-SHA-256",
-                "SHA-512": "3947382ac2c180ee3f2aba4f8788241527c8db9dfe9f4b039abe9fc560aaf5a1fced7bd1e80a0dca9ce320d95f0864e0dec3ac4f2f7b2b2cbEXAMPLE-SHA-512"
-            }
-        }
-    ]
-}
-```
-
-An npm package always has a single asset with a name of `package.tgz`\.
-
-```
-aws codeartifact list-package-version-assets --domain my_domain --domain-owner 111122223333 --repository my_repo \
-    --format npm --package webpack --package-version 4.9.2
-```
-
-The following shows the output\.
-
-```
-{
-    "format": "npm",
-    "package": "webpack",
-    "version": "4.9.2",
-    "versionRevision": "REVISION-SAMPLE-55C752BEE9B772FC",
-    "assets": [
-        {
-            "name": "package.tgz",
-            "size": 242930,
-            "hashes": {
-                "MD5": "41bba98d5b9219c43089eEXAMPLE-MD5",
-                "SHA-256": "43f24850b7b7b7d79c5fa652418518fbdf427e602b1edabe6EXAMPLE-SHA-256",
-                "SHA-512": "3947382ac2c180ee3f2aba4f8788241527c8db9dfe9f4b039abe9fc560aaf5a1fced7bd1e80a0dca9ce320d95f0864e0dec3ac4f2f7b2b2cbEXAMPLE-SHA-512"
-            }
-        }
-    ]
-}
+aws codeartifact list-package-version-assets --domain my_domain --domain-owner 111122223333 \
+ --repository my_repo --format maven --package commons-cli \
+ --namespace commons-cli --package-version 1.0
 ```

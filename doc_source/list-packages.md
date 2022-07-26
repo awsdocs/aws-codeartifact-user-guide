@@ -14,29 +14,58 @@ Sample output:
     "packages": [
         {
             "package": "acorn",
-            "format": "npm"
+            "format": "npm",
+            "originConfiguration": {
+                "restrictions": {
+                    "publish": "BLOCK",
+                    "upstream": "ALLOW"
+            }
         },
         {
             "package": "acorn-dynamic-import",
-            "format": "npm"
+            "format": "npm",
+            "originConfiguration": {
+                "restrictions": {
+                    "publish": "BLOCK",
+                    "upstream": "ALLOW"
+            }
         },
         {
             "package": "ajv",
-            "format": "npm"
+            "format": "npm",
+            "originConfiguration": {
+                "restrictions": {
+                    "publish": "BLOCK",
+                    "upstream": "ALLOW"
+            }
         },
         {
             "package": "ajv-keywords",
-            "format": "npm"
+            "format": "npm",
+            "originConfiguration": {
+                "restrictions": {
+                    "publish": "BLOCK",
+                    "upstream": "ALLOW"
+            }
         },
         {
             "package": "anymatch",
-            "format": "npm"
+            "format": "npm",
+            "originConfiguration": {
+                "restrictions": {
+                    "publish": "BLOCK",
+                    "upstream": "ALLOW"
+            }
         },
         {
-          "package": "ast",
-          "namespace": "webassemblyjs",
-          "format": "npm",
-          
+            "package": "ast",
+            "namespace": "webassemblyjs",
+            "format": "npm",
+            "originConfiguration": {
+                "restrictions": {
+                    "publish": "BLOCK",
+                    "upstream": "ALLOW"
+            }
         }
     ]
 }
@@ -91,7 +120,7 @@ Sample output:
 
 ## List Maven package names<a name="list-packages-maven"></a>
 
-To list only the names of Maven packages, set the value of the `--format` option to `maven`\. You must also specify the Maven group in the `--namespace` option\.
+To list only the names of Maven packages, set the value of the `--format` option to `maven`\. You must also specify the Maven group ID in the `--namespace` option\.
 
 ```
 aws codeartifact list-packages --domain my_domain --domain-owner 111122223333 --repository my_repo  \

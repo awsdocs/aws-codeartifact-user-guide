@@ -3,6 +3,9 @@
 CodeArtifact requires users to authenticate with the service in order to publish or consume package versions\. You must authenticate to the CodeArtifact service by creating an authorization token using your AWS credentials\. In order to create an authorization token, you must have the correct permissions\. For more information on CodeArtifact permissions, see [Overview of managing access permissions to your AWS CodeArtifact resources](auth-and-access-control-iam-access-control-identity-based.md)\.
 
 To fetch an authorization token from CodeArtifact, you must call the [GetAuthorizationToken API](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_GetAuthorizationToken.html)\. Using the AWS CLI, you can call `GetAuthorizationToken` with the `login` or `get-authorization-token` command\.
+
+**Note**  
+Root users cannot call `GetAuthorizationToken`\.
 + `aws codeartifact login` \(npm, pip, and twine\): This command makes it easy to configure common package managers to use CodeArtifact in a single step\. Calling `login` fetches a token with `GetAuthorizationToken` and configures your package manager with the token and correct CodeArtifact repository endpoint\.
 + `aws codeartifact get-authorization-token`: For package managers not supported by `login`, you can call `get-authorization-token` directly and then configure your package manager with the token as required, for example, by adding it to a configuration file or storing it an environment variable\.
 
@@ -36,7 +39,7 @@ The following example shows how to fetch an authorization token with the `login`
 aws codeartifact login --tool npm | pip | twine --domain my_domain --domain-owner 111122223333 --repository my_repo
 ```
 
-For specific guidance on how to use the `login` command with npm, see [Configure and use npm with CodeArtifact](npm-auth.md)\. For Python, see [Configure clients with the login command](python-configure.md)\.
+For specific guidance on how to use the `login` command with npm, see [Configure and use npm with CodeArtifact](npm-auth.md)\. For Python, see [Using CodeArtifact with Python](using-python.md)\.
 
 ## Tokens created with the `GetAuthorizationToken` API<a name="get-auth-token-api"></a>
 
@@ -60,7 +63,7 @@ aws codeartifact get-authorization-token --domain my_domain --domain-owner 11112
 
 See the following documentation for more information:
 + For guidance on tokens and environment variables, see [Pass an auth token using an environment variable](#env-var)\.
-+ For Python users, see [Configure pip without the login command](python-configure-without-pip.md) or [Configure twine without the login command](python-configure-twine.md)\.
++ For Python users, see [Configure pip without the login command](python-configure-pip.md#python-configure-without-pip) or [Configure and use twine with CodeArtifact](python-configure-twine.md)\.
 + For Maven users, see [Use CodeArtifact with Gradle](maven-gradle.md) or [Use CodeArtifact with mvn](maven-mvn.md)\.
 + For npm users, see [Configuring npm without using the login command](npm-auth.md#configuring-npm-without-using-the-login-command)\.
 
@@ -100,5 +103,3 @@ In some scenarios, you don't need to include the `--domain-owner` argument\. For
  If you created the access token using temporary security credentials, such as *assumed roles* or *federated user access*, you can revoke access by updating an IAM policy to deny access\. For information, see [Disabling Permissions for Temporary Security Credentials](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_temp_control-access_disable-perms.html) in the *IAM User Guide*\. 
 
  If you used long\-term IAM user credentials to create the access token, you must modify the user's policy to deny access, or delete the IAM user\. For more information, see [Changing Permissions for an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_change-permissions.html) or [Deleting an IAM User](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_users_manage.html#id_users_deleting)\. 
-
- If you used an account root user's credentials to call `GetAuthorizationToken`, you can't invalidate the authorization token before it expires because the root user doesn't have a permissions policy\.

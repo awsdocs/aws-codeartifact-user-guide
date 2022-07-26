@@ -10,62 +10,76 @@ After you have the CodeArtifact auth token in an environment variable as describ
 
 ## Fetch dependencies<a name="fetching-dependencies"></a>
 
-To fetch dependencies from CodeArtifact in a Gradle build, add a `maven` section to the `repositories` section in the project `build.gradle` file\.
+To fetch dependencies from CodeArtifact in a Gradle build, use the following procedure\.
 
-```
-maven {
-         url 'https://my_domain-111122223333.d.codeartifact.region.amazonaws.com/maven/my_repo/'
-         credentials {
-             username "aws"
-             password System.env.CODEARTIFACT_AUTH_TOKEN
-         }
-}
-```
+**To fetch dependencies from CodeArtifact in a Gradle build**
 
-The `url` in the sample above is your CodeArtifact repository's endpoint\. Gradle uses the endpoint to connect to your repository\. In the sample, `my_domain` is the name of your domain, `111122223333` is the ID of the owner of the domain, and `my_repo` is the name of your repository\. You can retrieve a repository's endpoint by using the `get-repository-endpoint` AWS CLI command\.
+1. If you haven't, create and store a CodeArtifact auth token in an environment variable by following the procedure in [Pass an auth token using an environment variable](tokens-authentication.md#env-var)\.
 
-For example, with a repository named *my\_repo* inside a domain named *my\_domain*, the command is as follows:
+1. Add a `maven` section to the `repositories` section in the project `build.gradle` file\.
 
-```
-aws codeartifact get-repository-endpoint --domain my_domain --domain-owner 111122223333 --repository my_repo --format maven
-```
+   ```
+   maven {
+            url 'https://my_domain-111122223333.d.codeartifact.region.amazonaws.com/maven/my_repo/'
+            credentials {
+                username "aws"
+                password System.env.CODEARTIFACT_AUTH_TOKEN
+            }
+   }
+   ```
 
-The `get-repository-endpoint` command will return the repository endpoint:
+   The `url` in the preceding example is your CodeArtifact repository's endpoint\. Gradle uses the endpoint to connect to your repository\. In the sample, `my_domain` is the name of your domain, `111122223333` is the ID of the owner of the domain, and `my_repo` is the name of your repository\. You can retrieve a repository's endpoint by using the `get-repository-endpoint` AWS CLI command\.
 
-```
-url 'https://my_domain-111122223333.d.codeartifact.region.amazonaws.com/maven/my_repo/'
-```
+   For example, with a repository named *my\_repo* inside a domain named *my\_domain*, the command is as follows:
 
-To use the CodeArtifact repository as the only source for your project dependencies, remove any other sections in `repositories` from `build.gradle`\. If you have more than one repository, Gradle searches each repository for dependencies in the order they are listed\.
+   ```
+   aws codeartifact get-repository-endpoint --domain my_domain --domain-owner 111122223333 --repository my_repo --format maven
+   ```
 
-After you configure the repository, you can add project dependencies to the `dependencies` section with standard Gradle syntax\.
+   The `get-repository-endpoint` command will return the repository endpoint:
 
-```
-dependencies {
-    implementation 'com.google.guava:guava:27.1-jre'
-    implementation 'commons-cli:commons-cli:1.4'
-    testImplementation 'org.testng:testng:6.14.3'
-}
-```
+   ```
+   url 'https://my_domain-111122223333.d.codeartifact.region.amazonaws.com/maven/my_repo/'
+   ```
+
+   The `credentials` object in the preceding example includes the CodeArtifact auth token you created in Step 1 that Gradle uses to authenticate to CodeArtifact\.
+
+1. \(Optional\) \- To use the CodeArtifact repository as the only source for your project dependencies, remove any other sections in `repositories` from `build.gradle`\. If you have more than one repository, Gradle searches each repository for dependencies in the order they are listed\.
+
+1. After you configure the repository, you can add project dependencies to the `dependencies` section with standard Gradle syntax\.
+
+   ```
+   dependencies {
+       implementation 'com.google.guava:guava:27.1-jre'
+       implementation 'commons-cli:commons-cli:1.4'
+       testImplementation 'org.testng:testng:6.14.3'
+   }
+   ```
 
 ## Fetch plugins<a name="fetching-plugins"></a>
 
-By default Gradle will resolve plugins from the public [Gradle Plugin Portal](https://plugins.gradle.org/)\. To pull plugins from a CodeArtifact repository, add a `pluginManagement` block to your `settings.gradle` file\. The `pluginManagement` block must appear before any other statements in `settings.gradle`:
+By default Gradle will resolve plugins from the public [Gradle Plugin Portal](https://plugins.gradle.org/)\. To pull plugins from a CodeArtifact repository, use the following procedure\.
 
-```
-pluginManagement {
-    repositories {
-        maven {
-            name 'my_repo'
-            url 'https://my_domain-111122223333.codeartifact.region.amazonaws.com/maven/my_repo/'
-            credentials {
-                username 'aws'
-                password System.env.CODEARTIFACT_AUTH_TOKEN
-            }
-        }
-    }
-}
-```
+**To pull plugins from a CodeArtifact repository**
+
+1. If you haven't, create and store a CodeArtifact auth token in an environment variable by following the procedure in [Pass an auth token using an environment variable](tokens-authentication.md#env-var)\.
+
+1. Add a `pluginManagement` block to your `settings.gradle` file\. The `pluginManagement` block must appear before any other statements in `settings.gradle`, see the following snippet:
+
+   ```
+   pluginManagement {
+       repositories {
+           maven {
+               name 'my_repo'
+               url 'https://my_domain-111122223333.codeartifact.region.amazonaws.com/maven/my_repo/'
+               credentials {
+                   username 'aws'
+                   password System.env.CODEARTIFACT_AUTH_TOKEN
+               }
+           }
+       }
+   }
+   ```
 
 This will ensure that Gradle resolves plugins from the specified repository\. The repository must have an upstream repository with an external connection to the Gradle Plugin Portal \(e\.g\. `gradle-plugins-store`\) so that commonly\-required Gradle plugins are available to the build\. For more information, see the [Gradle documentation](https://docs.gradle.org/current/userguide/plugins.html#sec:custom_plugin_repositories)\.
 

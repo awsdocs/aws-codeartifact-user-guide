@@ -8,4 +8,4 @@
 
  If you request a snapshot, the version with status `Published` is returned\. This is always the most recent version of the Maven snapshot\. You can also request a particular build of a snapshot\. To see the build versions of a Maven snapshot, use [ListPackageVersions](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_ListPackageVersions.html) and set the `status` parameter to `Unlisted`\. 
 
-To delete all build versions of a Maven snapshot, use [DeletePackageVersions](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DeletePackageVersions.html) and set the `expectedStatus` parameter to `Unlisted`\. 
+To delete all build versions of a Maven snapshot, use [DeletePackageVersions](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_DeletePackageVersions.html), specify the versions that you want to delete, and set the `expectedStatus` parameter to `Unlisted`\. 

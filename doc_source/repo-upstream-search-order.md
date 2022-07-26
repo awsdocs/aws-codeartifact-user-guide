@@ -1,6 +1,6 @@
 # Upstream repository priority order<a name="repo-upstream-search-order"></a>
 
- When you request a package version from a repository with one or more upstream repositories, their priority corresponds to the order that they were listed when calling the `create-repository` or `update-repository` command\. When the requested package version is found, the search stops, even if it didn't search all upstream repositories\. For more information, see [Add, update, or remove upstream repositories \(AWS CLI\)](repo-upstream-add-cli.md)\. 
+ When you request a package version from a repository with one or more upstream repositories, their priority corresponds to the order that they were listed when calling the `create-repository` or `update-repository` command\. When the requested package version is found, the search stops, even if it didn't search all upstream repositories\. For more information, see [Add or remove upstream repositories \(AWS CLI\)](repo-upstream-add.md#repo-upstream-add-cli)\. 
 
  Use the `describe-repository` command to see the priority order\.
 

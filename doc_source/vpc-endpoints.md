@@ -6,7 +6,7 @@ VPC endpoints use AWS PrivateLink, a service that makes it possible for you to a
 
 **Important**  
  VPC endpoints do not support cross\-AWS Region requests\. Make sure that you create your endpoint in the same AWS Region where you plan to issue your API calls to CodeArtifact\. 
- VPC endpoints only support Amazon\-provided DNS through Amazon Route 53 \. If you want to use your own DNS, you can use conditional DNS forwarding\. For more information, see [DHCP Option Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon Virtual Private Cloud User Guide*\. 
+ VPC endpoints only support Amazon\-provided DNS through Amazon Route 53\. If you want to use your own DNS, you can use conditional DNS forwarding\. For more information, see [DHCP Option Sets](https://docs.aws.amazon.com/vpc/latest/userguide/VPC_DHCP_Options.html) in the *Amazon Virtual Private Cloud User Guide*\. 
  The security group attached to the VPC endpoint must allow incoming connections on port 443 from the private subnet of the VPC\. 
 
 **Topics**

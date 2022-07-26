@@ -16,17 +16,22 @@ You can create a domain using the CodeArtifact console or the AWS Command Line I
 
 1.  Expand **Additional configuration**\. 
 
-1.  You must use a *customer master key* \(CMK\) to encrypt all assets in your domain\. You can use an AWS managed CMK or a CMK that you manage\.
-   +  Choose **Default key** if you want to use the default AWS managed CMK\. 
-   +  Choose **Customer managed key** if you want to use a CMK that you manage\. If you use a CMK that you manage, in **Customer master key**, choose the CMK\. 
+1.  You must use an AWS KMS key \(KMS key\) to encrypt all assets in your domain\. You can use an AWS managed KMS key or a KMS key that you manage\.
+**Important**  
+CodeArtifact only supports [symmetric KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#symmetric-cmks)\. You cannot use an [asymmetric KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html#asymmetric-cmks) to encrypt your CodeArtifact domains\. For help determining whether a KMS key is symmetric or asymmetric, see [Identifying symmetric and asymmetric KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/find-symm-asymm.html)\.
+   +  Choose **AWS managed key** if you want to use the default AWS managed key\. 
+   +  Choose **Customer managed key** if you want to use a KMS key that you manage\. To use a KMS key that you manage, in **Customer managed key ARN**, search for and choose the KMS key\. 
 
-    For more information, see [AWS managed CMKs](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk) and [Customer managed CMKs](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) in the *AWS Key Management Service Developer Guide*\. 
+    For more information, see [AWS managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk) and [Customer managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) in the *AWS Key Management Service Developer Guide*\. 
 
 1.  Choose **Create domain**\. 
 
 ## Create a domain \(AWS CLI\)<a name="create-domain-cli"></a>
 
-Use the `create-domain` command to create domain with the AWS CLI\. You must use a *customer master key* \(CMK\) to encrypt all assets in your domain\. You can use an AWS managed CMK or a CMK that you manage\. If you use an AWS managed CMK, do not use the `--encryption-key` parameter\.
+Use the `create-domain` command to create domain with the AWS CLI\. You must use an AWS KMS key \(KMS key\) to encrypt all assets in your domain\. You can use an AWS managed KMS key or a KMS key that you manage\. If you use an AWS managed KMS key, do not use the `--encryption-key` parameter\. For more information about KMS keys, see [AWS managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#aws-managed-cmk) and [Customer managed key](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#customer-cmk) in the *AWS Key Management Service Developer Guide*\.
+
+**Important**  
+CodeArtifact only supports [symmetric KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/concepts.html#symmetric-cmks)\. You cannot use an [asymmetric KMS key](https://docs.aws.amazon.com/kms/latest/developerguide/symmetric-asymmetric.html#asymmetric-cmks) to encrypt your CodeArtifact domains\. For help determining whether a KMS key is symmetric or asymmetric, see [Identifying symmetric and asymmetric KMS keys](https://docs.aws.amazon.com/kms/latest/developerguide/find-symm-asymm.html)\.
 
 ```
 aws codeartifact create-domain --domain my_domain
@@ -49,7 +54,7 @@ aws codeartifact create-domain --domain my_domain
 }
 ```
 
- If you use a CMK that you manage, include its Amazon Resource Name \(ARN\) with the `--encryption-key` parameter\. 
+ If you use a KMS key that you manage, include its Amazon Resource Name \(ARN\) with the `--encryption-key` parameter\. 
 
 ```
 aws codeartifact create-domain --domain my_domain --encryption-key arn:aws:kms:us-west-2:111122223333:key/your-kms-key

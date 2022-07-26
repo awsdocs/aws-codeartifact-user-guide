@@ -14,7 +14,7 @@ The following actions can be triggered by an event:
 +  Copying a package version from one repository to another using `copy-package-versions`\. For more information, see [Copy packages between repositories](copy-package.md)\. 
 +  Deleting a package version using `delete-package-version`\. For more information, see [Delete a package version](delete-package.md)\. 
 +  Retaining a package version in a downstream repository when it has been fetched from an upstream repository\. For more information, see [Working with upstream repositories in CodeArtifact](repos-upstream.md)\. 
-+  Ingesting a package version from an external repository into a CodeArtifact repository\. For more information, see [Add an external connection](external-connection.md)\. 
++  Ingesting a package version from an external repository into a CodeArtifact repository\. For more information, see [Connect a CodeArtifact repository to a public repository](external-connection.md)\. 
 
 Events are delivered to both the account that owns the domain and the account that administers the repository\. For example, suppose that account `111111111111` owns the domain `my_domain`\. Account `222222222222` creates a repository in `my_domain` called `repo2`\. When a new package version is published to `repo2`, both accounts receive the EventBridge events\. The domain\-owning account \(`111111111111`\) receives events for all repositories in the domain\. If a single account owns both the domain and the repository within it, only a single event is delivered\.
 

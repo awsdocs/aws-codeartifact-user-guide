@@ -8,11 +8,45 @@ You can view information about a package version, including dependencies, in Cod
 
  Most information in the output of the `describe-package-version` command depends on the package format\. For example, `describe-package-version` extracts an npm package's information from its `package.json` file\. The revision is created by CodeArtifact\. For more information, see [Specifying a package version revision](copy-package.md#specify-package-version-revision)\. 
 
- Two package versions with the same name can be in the same repository if they each are in different namespaces\. Use the optional `--namespace` parameter to specify a namespace\. The following returns details about version `4.41.5` of an npm package named `webpack`\. 
+ Two package versions with the same name can be in the same repository if they each are in different namespaces\. Use the optional `--namespace` parameter to specify a namespace\. For more information, see [View npm package version details](#describe-package-version-npm) or [View Maven package version details](#describe-package-version-maven)\.
+
+ The following example returns details about version `1.9.0` of a Python package named `pyhamcrest` that is in the `my_repo` repository\. 
 
 ```
 aws codeartifact describe-package-version --domain my_domain --domain-owner 111122223333 --repository my_repo \
---format npm --package webpack --package-version 4.41.5
+--format pypi --package pyhamcrest --package-version 1.9.0
+```
+
+ The output might look like the following\.
+
+```
+{
+  "format": "pypi",
+  "package": "PyHamcrest",
+  "displayName": "PyHamcrest",
+  "version": "1.9.0",
+  "summary": "Hamcrest framework for matcher objects",
+  "homePage": "https://github.com/hamcrest/PyHamcrest",
+  "publishedTime": 1566002944.273,
+  "licenses": [
+    {
+      "id": "license-id",
+      "name": "license-name"
+    }
+  ],
+  "revision": "REVISION-SAMPLE-55C752BEE9B772FC"
+}
+```
+
+## View npm package version details<a name="describe-package-version-npm"></a>
+
+To view details about an npm package version, set the value of the `--format` option to **npm**\. Optionally, include the package version namespace \(npm *scope*\) in the `--namespace` option\. The value for the `--namespace` option should not include the leading `@`\. To search for the namespace `@types`, set the value to *types*\.
+
+The following returns details about version `4.41.5` of an npm package named `webpack` in the `@types` scope\. 
+
+```
+aws codeartifact describe-package-version --domain my_domain --domain-owner 111122223333 --repository my_repo \
+--format npm --package webpack --namespace types --package-version 4.41.5
 ```
 
  The output might look like the following\. 
@@ -20,6 +54,7 @@ aws codeartifact describe-package-version --domain my_domain --domain-owner 1111
 ```
 {
   "format": "npm",
+  "namespace": "types",
   "package": "webpack",
   "displayName": "webpack",
   "version": "4.41.5",
@@ -33,9 +68,20 @@ aws codeartifact describe-package-version --domain my_domain --domain-owner 1111
       "name": "license-name"
     }
   ],
-  "revision": "REVISION-SAMPLE-55C752BEE9B772FC"
+  "revision": "REVISION-SAMPLE-55C752BEE9B772FC",
+  "status": "Published",
+  "origin": {
+            "domainEntryPoint": {
+                "externalConnectionName": "public:npmjs"
+            },
+            "originType": "EXTERNAL"
+  }
 }
 ```
+
+## View Maven package version details<a name="describe-package-version-maven"></a>
+
+To view details about a Maven package version, set the value of the `--format` option to `maven` and include the package version namespace in the `--namespace` option\.
 
  The following example returns details about version `1.2` of a Maven package named `commons-rng-client-api` that is in the `org.apache.commons` namespace and the `my_repo` repository\. 
 
@@ -56,34 +102,6 @@ aws codeartifact describe-package-version --domain my_domain --domain-owner 1111
   "summary": "API for client code that uses random numbers generators.",
   "publishedTime": 1567920624.849,
   "licenses": [],
-  "revision": "REVISION-SAMPLE-55C752BEE9B772FC"
-}
-```
-
- The following example returns details about version `1.9.0` of a Python package named `pyhamcrest` that is in the `my_repo` repository\. 
-
-```
-aws codeartifact describe-package-version --domain my_domain --domain-owner 111122223333 --repository my_repo \
---format pypi --namespace org.apache.commons --package pyhamcrest --package-version 1.9.0
-```
-
- The output might look like the following\.
-
-```
-{
-  "format": "pypi",
-  "package": "PyHamcrest",
-  "displayName": "PyHamcrest",
-  "version": "1.9.0",
-  "summary": "Hamcrest framework for matcher objects",
-  "homePage": "https://github.com/hamcrest/PyHamcrest",
-  "publishedTime": 1566002944.273,
-  "licenses": [
-    {
-      "id": "license-id",
-      "name": "license-name"
-    }
-  ],
   "revision": "REVISION-SAMPLE-55C752BEE9B772FC"
 }
 ```
@@ -129,6 +147,9 @@ aws codeartifact list-package-version-dependencies --domain my_domain --domain-o
 
  Some package formats, such as npm, include a `README` file\. Use the `get-package-version-readme` to get the `README` file of a package version\. The following command returns the `README` file of an npm package named `my-package`, version `4.41.5`, in the `my_repo` repository, in the `my_domain` domain\. 
 
+**Note**  
+CodeArtifact does not support displaying readme files from Maven packages\.
+
 ```
 aws codeartifact get-package-version-readme --domain my_domain --domain-owner 111122223333 --repository my_repo \
 --format npm --package my-package --package-version 4.41.5
@@ -145,17 +166,3 @@ aws codeartifact get-package-version-readme --domain my_domain --domain-owner 11
   "versionRevision": "REVISION-SAMPLE-55C752BEE9B772FC"
 }
 ```
-
-## Update package version status<a name="update-package-version-status"></a>
-
-You can update the status of a package version using both the CLI and console\. For more information on package version status, see [Package version status](packages-overview.md#package-version-status)\.
-
-### Update package version status \(CLI\)<a name="update-package-version-status-cli"></a>
-
-Use the `update-package-versions-status` command to update the package version status\.
-
-```
-aws codeartifact update-package-versions-status --domain my_domain --domain-owner 111122223333 --repository my_repo --format npm --package my-package --versions 4.41.5 --target-status Archived
-```
-
-For more information, see the [UpdatePackageVersionsStatus API](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html)\.

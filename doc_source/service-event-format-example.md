@@ -13,13 +13,14 @@ The following are event fields and descriptions along with an example of a CodeA
 | id | A unique identifier for the event\. | 
 | detail\-type | The type of event\. This determines the fields in the detail object\. The one detail\-type currently supported is CodeArtifact Package Version State Change\. | 
 | source | The source of the event\. For CodeArtifact, it will be aws\.codeartifact\. | 
-| account | The account that owns the domain and repository that triggered the event\. | 
+| account | The AWS account ID of the account that receives the event\. | 
 | time | The exact time the event was triggered\. | 
 | region | The region where the event was triggered\. | 
 | resources | A list that contains the ARN of the package that changed\. The list contains one entry\. For information about package ARN format, see [Grant write access to packages](repo-policies.md#granting-write-access-to-specific-packages)\. | 
 | domainName | The domain that contains the repository that contains the package\. | 
 | domainOwner | The AWS account ID of the owner of the domain\. | 
 | repositoryName | The repository that contains the package\. | 
+| repositoryAdministrator | The AWS account ID of the administrator of the repository\. | 
 | packageFormat | The format of the package that triggered the event\. | 
 | packageNamespace | The namespace of the package that triggered the event\. | 
 | packageName | The name of the package that triggered the event\. | 
@@ -53,6 +54,7 @@ The following are event fields and descriptions along with an example of a CodeA
     "domainName":"my_domain",
     "domainOwner":"111122223333",
     "repositoryName":"myrepo",
+    "repositoryAdministrator":"123456789012",
     "packageFormat":"npm",
     "packageNamespace":null,
     "packageName":"mypackage",

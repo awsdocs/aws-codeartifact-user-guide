@@ -16,3 +16,4 @@ This documentation helps you understand how to apply the shared responsibility m
 + [AWS CodeArtifact authentication and tokens](tokens-authentication.md)
 + [Resilience in AWS CodeArtifact](codeartifact-disaster-recovery-resiliency.md)
 + [Infrastructure security in AWS CodeArtifact](infrastructure-security.md)
++ [Dependency substitution attacks](dependency-substitution-attacks.md)

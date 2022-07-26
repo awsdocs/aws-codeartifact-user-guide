@@ -11,3 +11,5 @@ These topics show you how to list, copy, delete, and search for packages using t
 + [Copy packages between repositories](copy-package.md)
 + [Delete a package version](delete-package.md)
 + [View and update package version details and dependencies](describe-package-version.md)
++ [Update package version status](update-package-version-status.md)
++ [Editing package origin controls](package-origin-controls.md)

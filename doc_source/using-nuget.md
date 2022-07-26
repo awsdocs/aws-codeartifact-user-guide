@@ -10,4 +10,5 @@ AWS CodeArtifact only supports [NuGet\.exe version 4\.8](https://docs.microsoft.
 **Topics**
 + [Use CodeArtifact with Visual Studio](nuget-visual-studio.md)
 + [Use CodeArtifact with nuget or dotnet](nuget-cli.md)
++ [NuGet package name, version, and asset name normalization](nuget-name-normalization.md)
 + [NuGet compatibility](nuget-compatibility.md)

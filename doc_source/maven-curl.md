@@ -8,20 +8,26 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
 
 1. Use the following `curl` command to publish the JAR to a CodeArtifact repository:
 
+   In each of the `curl` commands in this procedure, replace the following placeholders:
+   + Replace *my\_domain* with your CodeArtifact domain name\.
+   + Replace *111122223333* with the ID of the owner of your CodeArtifact domain\.
+   + Replace *us\-west\-2* with the region in which your CodeArtifact domain is located\.
+   + Replace *my\_repo* with your CodeArtifact repository name\.
+
    ```
    curl --request PUT https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/maven/my_repo/com/mycompany/app/my-app/1.0/my-app-1.0.jar \
         --user "aws:$CODEARTIFACT_AUTH_TOKEN" --header "Content-Type: application/octet-stream" \
-        --data-binary @target/my-app-1.0.jar
+        --data-binary @my-app-1.0.jar
    ```
-
-   In the sample above, `my_domain` is the name of your domain, `111122223333` is the ID of AWS account that owns the domain, and `my_repo` is the name of your repository\.
+**Important**  
+You must prefix the value of the `--data-binary` parameter with a `@` character\. When putting the value in quotation marks, the `@` must be included inside the quotation marks\.
 
 1. Use the following `curl` command to publish the POM to a CodeArtifact repository:
 
    ```
    curl --request PUT https://my_domain-111122223333.d.codeartifact.us-west-2.amazonaws.com/maven/my_repo/com/mycompany/app/my-app/1.0/my-app-1.0.pom \
         --user "aws:$CODEARTIFACT_AUTH_TOKEN" --header "Content-Type: application/octet-stream" \
-        --data-binary @target/my-app-1.0.pom
+        --data-binary @my-app-1.0.pom
    ```
 
 1. At this point, the Maven artifact will be in your CodeArtifact repository with a status of `Unfinished`\. To be able to consume the package, it must be in the `Published` state\. You can move the package from `Unfinished` to `Published` by either uploading a `maven-metadata.xml` file to your package, or calling the [UpdatePackageVersionsStatus API](https://docs.aws.amazon.com/codeartifact/latest/APIReference/API_UpdatePackageVersionsStatus.html) to change the status\.
@@ -31,7 +37,7 @@ This section shows how to use the HTTP client `curl` to publish Maven artifacts 
       ```
       curl --request PUT https://my_domain-111122223333.d.codeartifact.region.amazonaws.com/maven/my_repo/com/mycompany/app/my-app/maven-metadata.xml \
            --user "aws:$CODEARTIFACT_AUTH_TOKEN" --header "Content-Type: application/octet-stream" \
-           --data-binary @target/maven-metadata.xml
+           --data-binary @maven-metadata.xml
       ```
 
       The following is an example of the contents of a `maven-metadata.xml` file:

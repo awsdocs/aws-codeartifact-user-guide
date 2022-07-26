@@ -17,7 +17,7 @@ For an ongoing record of events in your AWS account, including events for CodeAr
 
 When CloudTrail logging is enabled in your AWS account, API calls made to CodeArtifact actions are tracked in CloudTrail log files, where they are written with other AWS service records\. CloudTrail determines when to create and write to a new file based on a time period and file size\.
 
-All CodeArtifact actions are logged by CloudTrail\. For example, calls to the `ListRepositories` \(in the AWS CLI, `aws codeartifact list-repositories`\), `CreateRepository` \(`aws codeartifact create-repository`\), and `ListPackages` \(`aws codeartifact list-packages`\) actions generate entries in the CloudTrail log files, in addition to `npm` client commands such as `npm install` and `npm publish`\. `npm` client commands typically make more than one HTTP request to the server\. Each request generates a separate CloudTrail log event\.
+All CodeArtifact actions are logged by CloudTrail\. For example, calls to the `ListRepositories` \(in the AWS CLI, `aws codeartifact list-repositories`\), `CreateRepository` \(`aws codeartifact create-repository`\), and `ListPackages` \(`aws codeartifact list-packages`\) actions generate entries in the CloudTrail log files, in addition to package manager client commands\. Package manager client commands typically make more than one HTTP request to the server\. Each request generates a separate CloudTrail log event\.
 
 ### Cross\-account delivery of CloudTrail logs<a name="codeartifact-cloudtrail-event-delivery"></a>
 
@@ -86,7 +86,7 @@ CloudTrail log files can contain one or more log entries\. Each entry lists mult
 
 ### Example: A log entry for fetching an npm package version<a name="example-a-log-entry-for-fetching-an-npm-package-version"></a>
 
-Requests made by the ** `npm` ** client have additional data logged including the domain name, repository name, and package name in the `requestParameters` field\. The URL path and HTTP method are logged in the `additionalEventData` field\.
+Requests made by all package manager clients, including the ** `npm` ** client, have additional data logged including the domain name, repository name, and package name in the `requestParameters` field\. The URL path and HTTP method are logged in the `additionalEventData` field\.
 
 ```
 {
@@ -116,7 +116,7 @@ Requests made by the ** `npm` ** client have additional data logged including th
    "eventName": "ReadFromRepository",
    "awsRegion": "us-west-2",
    "sourceIPAddress": "205.251.233.50",
-   "userAgent": "AWS Internal",
+   "userAgent": "npm/6.14.15 node/v12.22.9 linux x64 ci/custom",
    "requestParameters": {
        "domainName": "example-domain",
        "domainOwner": "123456789012",

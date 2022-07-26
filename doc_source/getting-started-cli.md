@@ -99,7 +99,7 @@
    }
    ```
 
-    For more information, see [Add an external connection](external-connection.md)\. 
+    For more information, see [Connect a CodeArtifact repository to a public repository](external-connection.md)\. 
 
 1.  Use the update\-repository command to associate the `npm-store` repository as an upstream repository to the `my-repo` repository\. 
 
@@ -127,7 +127,7 @@
    }
    ```
 
-    For more information, see [Add, update, or remove upstream repositories \(AWS CLI\)](repo-upstream-add-cli.md)\. 
+    For more information, see [Add or remove upstream repositories \(AWS CLI\)](repo-upstream-add.md#repo-upstream-add-cli)\. 
 
 1. Use the login command to configure your npm package manager with your `my-repo` repository\. 
 

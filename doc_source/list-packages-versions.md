@@ -3,7 +3,8 @@
 Use the `list-package-versions` command in CodeArtifact to get a list of all of the versions of a package name in a repository\.
 
 ```
-aws codeartifact list-package-versions --package kind-of --domain my_domain --domain-owner 111122223333 \
+aws codeartifact list-package-versions --package kind-of \ 
+--domain my_domain --domain-owner 111122223333 \
 --repository my_repository --format npm
 ```
 
@@ -18,27 +19,57 @@ Sample output:
       {
           "version": "1.0.1",
           "revision": "REVISION-SAMPLE-1-C7F4S5E9B772FC",
-          "status": "Published"
+          "status": "Published",
+          "origin": {
+                "domainEntryPoint": {
+                    "externalConnectionName": "public:npmjs"
+                },
+                "originType": "EXTERNAL"
+            }
       },
       {
           "version": "1.0.0",
           "revision": "REVISION-SAMPLE-2-C752BEEF6D2CFC",
-          "status": "Published"
+          "status": "Published",
+          "origin": {
+                "domainEntryPoint": {
+                    "externalConnectionName": "public:npmjs"
+                },
+                "originType": "EXTERNAL"
+            }
       },
       {
           "version": "0.1.2",
           "revision": "REVISION-SAMPLE-3-654S65A5C5E1FC",
-          "status": "Published"
+          "status": "Published",
+          "origin": {
+                "domainEntryPoint": {
+                    "externalConnectionName": "public:npmjs"
+                },
+                "originType": "EXTERNAL"
+            }
       },
       {
           "version": "0.1.1",
           "revision": "REVISION-SAMPLE-1-C7F4S5E9B772FC"",
-          "status": "Published"
+          "status": "Published",
+          "origin": {
+                "domainEntryPoint": {
+                    "externalConnectionName": "public:npmjs"
+                },
+                "originType": "EXTERNAL"
+            }
       },
       {
           "version": "0.1.0",
           "revision": "REVISION-SAMPLE-4-AF669139B772FC",
-          "status": "Published"
+          "status": "Published",
+          "origin": {
+                "domainEntryPoint": {
+                    "externalConnectionName": "public:npmjs"
+                },
+                "originType": "EXTERNAL"
+            }
       }        
   ]
 }
@@ -49,6 +80,33 @@ You can add the `--status` parameter to the `list-package-versions` call to filt
  You can paginate the response from `list-package-versions` using the `--max-results` and `--next-token` parameters\. For `--max-results`, specify an integer from 1 to 1000 to specify the number of results returned in a single page\. Its default is 50\. To return subsequent pages, run `list-package-versions` again and pass the `nextToken` value received in the previous command output to `--next-token`\. When the `--next-token` option is not used, the first page of results is always returned\. 
 
  The `list-package-versions` command does not list package versions in upstream repositories\. However, references to package versions in an upstream repository that were copied to your repository during a package version request are listed\. For more information, see [Working with upstream repositories in CodeArtifact](repos-upstream.md)\. 
+
+## List npm package versions<a name="list-packages-versions-npm"></a>
+
+To list all the package versions for an npm package, set the value of the `--format` option to `npm`\.
+
+```
+aws codeartifact list-package-versions --package my_package --domain my_domain \ 
+ --domain-owner 111122223333 --repository my_repo --format npm
+```
+
+To list npm package versions in a specific namespace \(npm *scope*\), use the `--namespace` option\. The value for the `--namespace` option should not include the leading `@`\. To search for the namespace `@types`, set the value to *types*\.
+
+```
+aws codeartifact list-package-versions --package my_package --domain my_domain \
+ --domain-owner 111122223333 --repository my_repo --format npm \
+ --namespace types
+```
+
+## List Maven package versions<a name="list-packages-versions-maven"></a>
+
+To list all the package versions for a Maven package, set the value of the `--format` option to `maven`\. You must also specify the Maven group ID in the `--namespace` option\.
+
+```
+aws codeartifact list-package-versions --package my_package --domain my_domain \
+ --domain-owner 111122223333 --repository my_repo --format maven \
+ --namespace org.apache.commons
+```
 
 ## Sort versions<a name="list-package-versions-sorting"></a>
 

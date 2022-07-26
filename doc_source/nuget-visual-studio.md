@@ -42,7 +42,9 @@ To use the credential provider, ensure that any existing AWS CodeArtifact creden
 
    1. Select the checkbox for your newly added package source to enable it\.
 **Note**  
-We recommend adding an external connection to **NuGet\.org** to your CodeArtifact repository and disabling the **nuget\.org** package source in Visual Studio\. When using an external connection, all of the packages fetched from **NuGet\.org** will be stored in your CodeArtifact repository\. If **NuGet\.org** becomes unavailable, your application dependencies will still be available for CI builds and local development\. For more information about external connections, see [Add an external connection](external-connection.md)\.
+We recommend adding an external connection to **NuGet\.org** to your CodeArtifact repository and disabling the **nuget\.org** package source in Visual Studio\. When using an external connection, all of the packages fetched from **NuGet\.org** will be stored in your CodeArtifact repository\. If **NuGet\.org** becomes unavailable, your application dependencies will still be available for CI builds and local development\. For more information about external connections, see [Connect a CodeArtifact repository to a public repository](external-connection.md)\.
+
+1. Restart Visual Studio for the changes to take effect\.
 
 After configuration, Visual Studio can consume packages from your CodeArtifact repository, any of its upstream repositories, or from [NuGet\.org](https://www.nuget.org/) if you have added an external connection\. For more information about browsing and installing NuGet packages in Visual Studio, see [Install and manage packages in Visual Studio using the NuGet Package Manager](https://docs.microsoft.com/en-us/nuget/consume-packages/install-use-packages-visual-studio) in the *NuGet documentation*\.
 

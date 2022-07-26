@@ -7,7 +7,7 @@
 
  When you add upstream repositories using the `create-repository` or `update-repository` command, the order they are passed to the `--upstreams` parameter determines their priority when a package version is requested\. Specify upstream repositories with `--upstreams` in the order that you want CodeArtifact to use when a package version is requested\. For more information, see [Upstream repository priority order](repo-upstream-search-order.md)\. 
 
- The maximum number of direct upstream repositories allowed for one repository is 10\. The maximum number of repositories CodeArtifact looks in when a package version is requested is 25\. 
+ The maximum number of direct upstream repositories allowed for one repository is 10\. Because direct upstream repositories can also have direct upstream repositories of their own, CodeArtifact can search more than 10 repositories for package versions\. The maximum number of repositories CodeArtifact looks in when a package version is requested is 25\. 
 
 ## Package retention from upstream repositories<a name="package-retention-upstream-repos"></a>
 
