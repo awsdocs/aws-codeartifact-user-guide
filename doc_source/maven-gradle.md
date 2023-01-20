@@ -191,7 +191,7 @@ The example shows the `gradle.properties` file located in `GRADLE_USER_HOME`\.
        repositories {
            maven {
                name 'my_repo'
-               url 'https://my_domain-111122223333.codeartifact.region.amazonaws.com/maven/my_repo/'
+               url 'https://my_domain-111122223333.d.codeartifact.region.amazonaws.com/maven/my_repo/'
                credentials {
                    username 'aws'
                    password "$codeartifactToken"
@@ -245,7 +245,7 @@ The example shows the `gradle.properties` file located in `GRADLE_USER_HOME`\.
        repositories {
            maven {
                name 'my_repo'
-               url 'https://my_domain-111122223333.codeartifact.region.amazonaws.com/maven/my_repo/'
+               url 'https://my_domain-111122223333.d.codeartifact.region.amazonaws.com/maven/my_repo/'
                credentials {
                    username 'aws'
                    password props.getProperty("codeartifactToken")
@@ -295,7 +295,7 @@ The example shows the `gradle.properties` file located in `GRADLE_USER_HOME`\.
        repositories {
            maven {
                name 'my_repo'
-               url 'https://my_domain-111122223333.codeartifact.region.amazonaws.com/maven/my_repo/'
+               url 'https://my_domain-111122223333.d.codeartifact.region.amazonaws.com/maven/my_repo/'
                credentials {
                    username 'aws'
                    password codeartifactToken
