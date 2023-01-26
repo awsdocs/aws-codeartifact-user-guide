@@ -26,7 +26,7 @@ A resource policy is a text file in JSON format\. The file must specify a princi
 }
 ```
 
-Because the policy is evaluated only for operations against the repository that it's attached to, you don't need to specify a resource\. Because the resource is implied, you can set the `Resource` to `*`\.
+Because the policy is evaluated only for operations against the repository that it's attached to, you don't need to specify a resource\. Because the resource is implied, you can set the `Resource` to `*`\. In order for a package manager to download a package from this repository, a domain policy for cross\-account access will also need to be created\. The domain policy must grant at least `codeartifact:GetAuthorizationToken` and `sts:GetServiceBearerToken` permissions to the principal\. For an example of a full domain policy for granting cross\-account access, see this [Domain policy example](domain-policies.md#domain-policy-example)\.
 
 **Note**  
 The `codeartifact:ReadFromRepository` action can only be used on a repository resource\. You cannot put a package's Amazon Resource Name \(ARN\) as a resource with `codeartifact:ReadFromRepository` as the action to allow read access to a subset of packages in a repository\. A given principal can either read all the packages in a repository or none of them\.

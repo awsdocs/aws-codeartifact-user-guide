@@ -138,9 +138,9 @@ For manual configuration, you must add a repository endpoint and authorization t
    }
    ```
 
-1. Configure nuget or dotnet to use the repository endpoint from Step 1 and authorization token from Step 2\.
+1. Create the full repository endpoint URL by appending `/v3/index.json` to the URL returned by `get-repository-endpoint` in step 3\.
 
-1. Append `/v3/index.json` to the URL returned by `get-repository-endpoint` in step 1\.
+1. Configure nuget or dotnet to use the repository endpoint from Step 1 and authorization token from Step 2\.
 **Note**  
 The source URL must end in `/v3/index.json` for nuget or dotnet to successfully connect to a CodeArtifact repository\.
 

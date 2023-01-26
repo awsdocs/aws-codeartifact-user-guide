@@ -85,6 +85,9 @@ To list npm packages in a namespace \(npm *scope*\), use the `--namespace` and `
 **Important**  
 The value for the `--namespace` option should not include the leading `@`\. To search for the namespace `@types`, set the value to *types*\.
 
+**Note**  
+The `--namespace` option filters by namespace prefix\. Any npm package with a scope that starts with the value passed to the `--namespace` option will be returned in the `list-packages` response\.
+
 ```
 aws codeartifact list-packages --domain my_domain --domain-owner 111122223333 --repository my_repo  \
     --format npm --namespace types
@@ -121,6 +124,9 @@ Sample output:
 ## List Maven package names<a name="list-packages-maven"></a>
 
 To list only the names of Maven packages, set the value of the `--format` option to `maven`\. You must also specify the Maven group ID in the `--namespace` option\.
+
+**Note**  
+The `--namespace` option filters by namespace prefix\. Any npm package with a scope that starts with the value passed to the `--namespace` option will be returned in the `list-packages` response\.
 
 ```
 aws codeartifact list-packages --domain my_domain --domain-owner 111122223333 --repository my_repo  \
@@ -200,7 +206,7 @@ Sample output:
 
 ## Supported search option combinations<a name="list-packages-option-combinations"></a>
 
-You can use the `--format`, `--namespace`, and `--package-prefix` options in any combination, except that `--namespace` can't be used by itself\. For example, searching for all packages in the `@types` scope requires the `--format` option to be specified\. Using `--namespace` by itself results in an error\. 
+You can use the `--format`, `--namespace`, and `--package-prefix` options in any combination, except that `--namespace` can't be used by itself\. For example, searching for all npm packages with a scope that starts with `@types` requires the `--format` option to be specified\. Using `--namespace` by itself results in an error\. 
 
  Using none of the three options is also supported by `list-packages` and will return all packages of all formats present in the repository\. 
 
