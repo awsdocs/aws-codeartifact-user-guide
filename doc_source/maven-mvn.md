@@ -201,7 +201,7 @@ The `mvn deploy:deploy-file` command will generate a POM file based on the infor
 1. Fetch a CodeArtifact authorization token:
 
    ```
-   export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain my_domain --domain-owner 111122223333 --query authorizationToken --output text --profile profile-name
+   export CODEARTIFACT_AUTH_TOKEN=`aws codeartifact get-authorization-token --domain my_domain --domain-owner 111122223333 --query authorizationToken --output text --profile profile-name`
    ```
 
 1. Run the `mvn deploy:deploy-file` command:
